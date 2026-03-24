@@ -352,7 +352,7 @@ function renderSkillDetail(skill: SkillStatusEntry, props: SkillsProps) {
           <div style="border-top: 1px solid var(--border); padding-top: 12px; display: grid; gap: 6px; font-size: 12px; color: var(--muted);">
             <div><span style="font-weight: 600;">Source:</span> ${skill.source}</div>
             <div style="font-family: var(--mono); word-break: break-all;">${skill.filePath}</div>
-            ${safeExternalHref(skill.homepage) ? html`<div><a href="${safeExternalHref(skill.homepage)}" target="_blank" rel="noopener noreferrer">${skill.homepage}</a></div>` : nothing}
+            ${(() => { const safeHref = safeExternalHref(skill.homepage); return safeHref ? html`<div><a href="${safeHref}" target="_blank" rel="noopener noreferrer">${skill.homepage}</a></div>` : nothing; })()}
           </div>
         </div>
       </div>
