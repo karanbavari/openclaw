@@ -35,6 +35,7 @@ Docs: https://docs.openclaw.ai
 - Subagents/tasks: keep subagent completion and cleanup from crashing when task-registry writes fail, so a corrupt or missing task row no longer takes down the gateway during lifecycle finalization. Thanks @vincentkoc.
 - Sandbox/browser: compare browser runtime inspection against `agents.defaults.sandbox.browser.image` so `openclaw sandbox list --browser` stops reporting healthy browser containers as image mismatches. (#58759) Thanks @sandpile.
 - Exec/approvals: resume the original agent session after an approved async exec finishes, so external completion followups continue the task instead of waiting for a new user turn. (#58860) Thanks @Nanako0129.
+- Exec/runtime: reject explicit host overrides when `tools.exec.host=auto` while still allowing explicit `auto`, so callers cannot silently force gateway or node execution past the configured host policy. (#58897) Thanks @vincentkoc.
 - Gateway/node pairing: create repair pairing requests when a paired node reconnects with allowlisted commands missing from its approved node record, refresh stale pending repair metadata, and surface paired node command metadata in `nodes status`/`describe` even while the node is offline. Fixes #58824.
 - Channels/plugins: keep bundled channel plugins loadable from legacy `channels.<id>` config even under restrictive plugin allowlists, and make `openclaw doctor` warn only on real plugin blockers instead of misleading setup guidance. (#58873) Thanks @obviyus
 
