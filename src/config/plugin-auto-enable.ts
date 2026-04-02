@@ -27,6 +27,7 @@ type PluginEnableChange = {
 export type PluginAutoEnableResult = {
   config: OpenClawConfig;
   changes: string[];
+  autoEnabledReasons: Record<string, string[]>;
 };
 
 const EMPTY_PLUGIN_MANIFEST_REGISTRY: PluginManifestRegistry = {
@@ -583,7 +584,7 @@ export function applyPluginAutoEnable(params: {
 }): PluginAutoEnableResult {
   const env = params.env ?? process.env;
   if (!configMayNeedPluginAutoEnable(params.config, env)) {
-    return { config: params.config, changes: [] };
+    return { config: params.config, changes: [], autoEnabledReasons: {} };
   }
   const registry =
     params.manifestRegistry ??
@@ -592,14 +593,15 @@ export function applyPluginAutoEnable(params: {
       : EMPTY_PLUGIN_MANIFEST_REGISTRY);
   const configured = resolveConfiguredPlugins(params.config, env, registry);
   if (configured.length === 0) {
-    return { config: params.config, changes: [] };
+    return { config: params.config, changes: [], autoEnabledReasons: {} };
   }
 
   let next = params.config;
   const changes: string[] = [];
+  const autoEnabledReasons = new Map<string, string[]>();
 
   if (next.plugins?.enabled === false) {
-    return { config: next, changes };
+    return { config: next, changes, autoEnabledReasons: {} };
   }
 
   for (const entry of configured) {
@@ -638,8 +640,12 @@ export function applyPluginAutoEnable(params: {
     if (!builtInChannelId) {
       next = ensurePluginAllowlisted(next, entry.pluginId);
     }
+    autoEnabledReasons.set(entry.pluginId, [
+      ...(autoEnabledReasons.get(entry.pluginId) ?? []),
+      entry.reason,
+    ]);
     changes.push(formatAutoEnableChange(entry));
   }
 
-  return { config: next, changes };
+  return { config: next, changes, autoEnabledReasons: Object.fromEntries(autoEnabledReasons) };
 }

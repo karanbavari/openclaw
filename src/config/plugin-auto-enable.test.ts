@@ -125,6 +125,9 @@ describe("applyPluginAutoEnable", () => {
     expect(result.config.channels?.slack?.enabled).toBe(true);
     expect(result.config.plugins?.entries?.slack).toBeUndefined();
     expect(result.config.plugins?.allow).toEqual(["telegram"]);
+    expect(result.autoEnabledReasons).toEqual({
+      slack: ["slack configured"],
+    });
     expect(result.changes.join("\n")).toContain("Slack configured, enabled automatically.");
   });
 
@@ -150,6 +153,9 @@ describe("applyPluginAutoEnable", () => {
 
     expect(result.config.plugins?.allow).toEqual(["telegram", "browser"]);
     expect(result.config.plugins?.entries?.browser?.enabled).toBe(true);
+    expect(result.autoEnabledReasons).toEqual({
+      browser: ["browser configured"],
+    });
     expect(result.changes).toContain("browser configured, enabled automatically.");
   });
 

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { afterAll, afterEach, describe, expect, it } from "vitest";
+import { applyPluginAutoEnable } from "../config/plugin-auto-enable.js";
 import { clearInternalHooks, getRegisteredEventKeys } from "../hooks/internal-hooks.js";
 import { emitDiagnosticEvent, resetDiagnosticEventsForTest } from "../infra/diagnostic-events.js";
 import { withEnv } from "../test-utils/env.js";
@@ -1062,6 +1063,68 @@ describe("loadOpenClawPlugins", () => {
       assert(registry);
     },
   );
+
+  it("marks auto-enabled bundled channels as activated but not explicitly enabled", () => {
+    setupBundledTelegramPlugin();
+    const rawConfig = {
+      channels: {
+        telegram: {
+          botToken: "x",
+        },
+      },
+      plugins: {
+        enabled: true,
+      },
+    } satisfies PluginLoadConfig;
+    const autoEnabled = applyPluginAutoEnable({
+      config: rawConfig,
+      env: {},
+    });
+
+    const registry = loadOpenClawPlugins({
+      cache: false,
+      workspaceDir: cachedBundledTelegramDir,
+      config: autoEnabled.config,
+      activationSourceConfig: rawConfig,
+      autoEnabledReasons: autoEnabled.autoEnabledReasons,
+    });
+
+    expect(registry.plugins.find((entry) => entry.id === "telegram")).toMatchObject({
+      explicitlyEnabled: false,
+      activated: true,
+      activationSource: "auto",
+      activationReason: "telegram configured",
+    });
+  });
+
+  it("keeps explicit plugin enablement distinct from derived activation", () => {
+    const { bundledDir } = writeBundledPlugin({
+      id: "demo",
+    });
+    const config = {
+      plugins: {
+        entries: {
+          demo: {
+            enabled: true,
+          },
+        },
+      },
+    } satisfies PluginLoadConfig;
+
+    const registry = loadOpenClawPlugins({
+      cache: false,
+      workspaceDir: bundledDir,
+      config,
+      activationSourceConfig: config,
+    });
+
+    expect(registry.plugins.find((entry) => entry.id === "demo")).toMatchObject({
+      explicitlyEnabled: true,
+      activated: true,
+      activationSource: "explicit",
+      activationReason: "enabled in config",
+    });
+  });
 
   it("preserves package.json metadata for bundled memory plugins", () => {
     const registry = loadBundledMemoryPluginRegistry({

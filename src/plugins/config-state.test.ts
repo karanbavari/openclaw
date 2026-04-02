@@ -3,6 +3,7 @@ import {
   normalizePluginsConfig,
   resolveEffectiveEnableState,
   resolveEnableState,
+  resolveEffectivePluginActivationState,
   resolveMemorySlotDecision,
 } from "./config-state.js";
 
@@ -199,6 +200,95 @@ describe("resolveEffectiveEnableState", () => {
         allow: ["browser"] as string[],
       }),
     ).toEqual({ enabled: false, reason: "not in allowlist" });
+  });
+});
+
+describe("resolveEffectivePluginActivationState", () => {
+  it("distinguishes explicit enablement from auto activation", () => {
+    const rawConfig: NonNullable<
+      Parameters<typeof resolveEffectivePluginActivationState>[0]["sourceRootConfig"]
+    > = {
+      channels: {
+        telegram: {
+          botToken: "x",
+        },
+      },
+    };
+    const effectiveConfig: NonNullable<
+      Parameters<typeof resolveEffectivePluginActivationState>[0]["rootConfig"]
+    > = {
+      channels: {
+        telegram: {
+          botToken: "x",
+          enabled: true,
+        },
+      },
+    };
+
+    expect(
+      resolveEffectivePluginActivationState({
+        id: "telegram",
+        origin: "bundled",
+        config: normalizePluginsConfig(effectiveConfig.plugins),
+        rootConfig: effectiveConfig,
+        sourceConfig: normalizePluginsConfig(rawConfig.plugins),
+        sourceRootConfig: rawConfig,
+        autoEnabledReason: "telegram configured",
+      }),
+    ).toEqual({
+      enabled: true,
+      activated: true,
+      explicitlyEnabled: false,
+      source: "auto",
+      reason: "telegram configured",
+    });
+  });
+
+  it("preserves explicit selection even when plugins are globally disabled", () => {
+    const rawConfig = {
+      plugins: {
+        enabled: false,
+        entries: {
+          browser: {
+            enabled: true,
+          },
+        },
+      },
+    };
+
+    expect(
+      resolveEffectivePluginActivationState({
+        id: "browser",
+        origin: "bundled",
+        config: normalizePluginsConfig(rawConfig.plugins),
+        rootConfig: rawConfig,
+        sourceConfig: normalizePluginsConfig(rawConfig.plugins),
+        sourceRootConfig: rawConfig,
+      }),
+    ).toEqual({
+      enabled: false,
+      activated: false,
+      explicitlyEnabled: true,
+      source: "disabled",
+      reason: "plugins disabled",
+    });
+  });
+
+  it("marks bundled default-enabled plugins as default activation", () => {
+    expect(
+      resolveEffectivePluginActivationState({
+        id: "openai",
+        origin: "bundled",
+        config: normalizePluginsConfig({}),
+        enabledByDefault: true,
+      }),
+    ).toEqual({
+      enabled: true,
+      activated: true,
+      explicitlyEnabled: false,
+      source: "default",
+      reason: "bundled default enablement",
+    });
   });
 });
 
