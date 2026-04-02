@@ -546,6 +546,11 @@ jobs:
         continue-on-error: true
         run: pnpm run lint:web-search-provider-boundaries
 
+      - name: Run web fetch provider boundary guard
+        id: web_fetch_provider_boundary
+        continue-on-error: true
+        run: pnpm run lint:web-fetch-provider-boundaries
+
       - name: Run extension src boundary guard
         id: extension_src_outside_plugin_sdk_boundary
         continue-on-error: true
