@@ -54,9 +54,9 @@ describe("plugin activation boundary", () => {
   function importAmbientModules() {
     ambientImportsPromise ??= Promise.all([
       import("./agents/cli-session.js"),
-      import("./commands/onboard-custom.js"),
-      import("./commands/opencode-go-model-default.js"),
-      import("./commands/opencode-zen-model-default.js"),
+      import("./internal-commands/onboard-custom.js"),
+      import("./internal-commands/opencode-go-model-default.js"),
+      import("./internal-commands/opencode-zen-model-default.js"),
     ]).then(() => undefined);
     return ambientImportsPromise;
   }
@@ -102,7 +102,7 @@ describe("plugin activation boundary", () => {
     browserAmbientImportsPromise ??= Promise.all([
       import("./agents/sandbox/browser.js"),
       import("./agents/sandbox/context.js"),
-      import("./commands/doctor-browser.js"),
+      import("./internal-commands/doctor-browser.js"),
       import("./node-host/runner.js"),
       import("./security/audit.js"),
       import("./security/audit-extra.sync.js"),

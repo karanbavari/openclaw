@@ -1,7 +1,7 @@
 import type { Command } from "commander";
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../agents/agent-scope.js";
-import { removeCommandByName } from "../cli/program/command-tree.js";
-import { registerLazyCommand } from "../cli/program/register-lazy-command.js";
+import { removeCommandByName } from "../internal-cli/program/command-tree.js";
+import { registerLazyCommand } from "../internal-cli/program/register-lazy-command.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { loadConfig } from "../config/config.js";
 import { applyPluginAutoEnable } from "../config/plugin-auto-enable.js";

@@ -48,7 +48,7 @@ vi.mock("./nodes-utils.js", () => ({
   resolveNode: nodeUtilsMocks.resolveNode,
 }));
 
-vi.mock("../../cli/nodes-camera.js", () => ({
+vi.mock("../../internal-cli/nodes-camera.js", () => ({
   cameraTempPath: nodesCameraMocks.cameraTempPath,
   parseCameraClipPayload: nodesCameraMocks.parseCameraClipPayload,
   parseCameraSnapPayload: nodesCameraMocks.parseCameraSnapPayload,
@@ -56,7 +56,7 @@ vi.mock("../../cli/nodes-camera.js", () => ({
   writeCameraPayloadToFile: nodesCameraMocks.writeCameraPayloadToFile,
 }));
 
-vi.mock("../../cli/nodes-screen.js", () => ({
+vi.mock("../../internal-cli/nodes-screen.js", () => ({
   parseScreenRecordPayload: screenMocks.parseScreenRecordPayload,
   screenRecordTempPath: screenMocks.screenRecordTempPath,
   writeScreenRecordToFile: screenMocks.writeScreenRecordToFile,
@@ -74,14 +74,14 @@ async function loadFreshNodesToolModuleForTest() {
     resolveNodeId: nodeUtilsMocks.resolveNodeId,
     resolveNode: nodeUtilsMocks.resolveNode,
   }));
-  vi.doMock("../../cli/nodes-camera.js", () => ({
+  vi.doMock("../../internal-cli/nodes-camera.js", () => ({
     cameraTempPath: nodesCameraMocks.cameraTempPath,
     parseCameraClipPayload: nodesCameraMocks.parseCameraClipPayload,
     parseCameraSnapPayload: nodesCameraMocks.parseCameraSnapPayload,
     writeCameraClipPayloadToFile: nodesCameraMocks.writeCameraClipPayloadToFile,
     writeCameraPayloadToFile: nodesCameraMocks.writeCameraPayloadToFile,
   }));
-  vi.doMock("../../cli/nodes-screen.js", () => ({
+  vi.doMock("../../internal-cli/nodes-screen.js", () => ({
     parseScreenRecordPayload: screenMocks.parseScreenRecordPayload,
     screenRecordTempPath: screenMocks.screenRecordTempPath,
     writeScreenRecordToFile: screenMocks.writeScreenRecordToFile,

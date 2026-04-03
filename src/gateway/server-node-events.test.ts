@@ -67,7 +67,7 @@ vi.mock("../infra/heartbeat-wake.js", async (importOriginal) => {
     }),
   );
 });
-vi.mock("../commands/agent.js", () => ({
+vi.mock("../internal-commands/agent.js", () => ({
   agentCommand: ingressAgentCommandMock,
   agentCommandFromIngress: ingressAgentCommandMock,
 }));
@@ -136,9 +136,9 @@ vi.mock("./session-utils.js", () => ({
 }));
 
 import { normalizeChannelId } from "../channels/plugins/index.js";
-import type { CliDeps } from "../cli/deps.js";
-import { agentCommand } from "../commands/agent.js";
-import type { HealthSummary } from "../commands/health.js";
+import type { CliDeps } from "../internal-cli/deps.js";
+import { agentCommand } from "../internal-commands/agent.js";
+import type { HealthSummary } from "../internal-commands/health.js";
 import { loadConfig } from "../config/config.js";
 import { updateSessionStore } from "../config/sessions.js";
 import { requestHeartbeatNow } from "../infra/heartbeat-wake.js";

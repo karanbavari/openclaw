@@ -1,4 +1,4 @@
-import type { WizardPrompter } from "../wizard/prompts.js";
+import type { WizardPrompter } from "../setup-runtime/prompts.js";
 import type { SecretInputMode } from "./provider-auth-types.js";
 
 export type SecretInputModePromptCopy = {

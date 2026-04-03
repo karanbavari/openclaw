@@ -9,7 +9,7 @@ import {
   whatsappOutbound,
 } from "../../test/channel-outbounds.js";
 import { runSubagentAnnounceFlow } from "../agents/subagent-announce.js";
-import type { CliDeps } from "../cli/deps.js";
+import type { CliDeps } from "../internal-cli/deps.js";
 import { setActivePluginRegistry } from "../plugins/runtime.js";
 import { createOutboundTestPlugin, createTestRegistry } from "../test-utils/channel-plugins.js";
 import { createCliDeps, mockAgentPayloads } from "./isolated-agent.delivery.test-helpers.js";

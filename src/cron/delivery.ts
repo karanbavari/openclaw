@@ -1,5 +1,5 @@
-import type { CliDeps } from "../cli/deps.js";
-import { createOutboundSendDeps } from "../cli/outbound-send-deps.js";
+import type { CliDeps } from "../internal-cli/deps.js";
+import { createOutboundSendDeps } from "../internal-cli/outbound-send-deps.js";
 import type { CronFailureDestinationConfig } from "../config/types.cron.js";
 import type { OpenClawConfig } from "../config/types.js";
 import { formatErrorMessage } from "../infra/errors.js";

@@ -6,7 +6,7 @@ import {
   resolveIngressWorkspaceOverrideForSpawnedRun,
 } from "../../agents/spawned-context.js";
 import { buildBareSessionResetPrompt } from "../../auto-reply/reply/session-reset-prompt.js";
-import { agentCommandFromIngress } from "../../commands/agent.js";
+import { agentCommandFromIngress } from "../../internal-commands/agent.js";
 import { loadConfig } from "../../config/config.js";
 import {
   mergeSessionEntry,

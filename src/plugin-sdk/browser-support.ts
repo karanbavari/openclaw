@@ -49,13 +49,13 @@ export { formatDocsLink } from "../terminal/links.js";
 export { theme } from "../terminal/theme.js";
 export { CONFIG_DIR, escapeRegExp, resolveUserPath, shortenHomePath } from "../utils.js";
 export { parseBooleanValue } from "../utils/boolean.js";
-export { formatCliCommand } from "../cli/command-format.js";
-export { runCommandWithRuntime } from "../cli/cli-utils.js";
-export { inheritOptionFromParent } from "../cli/command-options.js";
-export { addGatewayClientOptions, callGatewayFromCli } from "../cli/gateway-rpc.js";
-export type { GatewayRpcOpts } from "../cli/gateway-rpc.js";
-export { formatHelpExamples } from "../cli/help-format.js";
-export { withTimeout } from "../node-host/with-timeout.js";
+export { formatCliCommand } from "../internal-cli/command-format.js";
+export { runCommandWithRuntime } from "../internal-cli/cli-utils.js";
+export { inheritOptionFromParent } from "../internal-cli/command-options.js";
+export { addGatewayClientOptions, callGatewayFromCli } from "../internal-cli/gateway-rpc.js";
+export type { GatewayRpcOpts } from "../internal-cli/gateway-rpc.js";
+export { formatHelpExamples } from "../internal-cli/help-format.js";
+export { withTimeout } from "../utils/with-timeout.js";
 export {
   isNodeCommandAllowed,
   resolveNodeCommandAllowlist,

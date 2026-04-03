@@ -70,7 +70,7 @@ export type { OpenClawPluginApi } from "../plugins/types.js";
 export { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "../routing/session-key.js";
 export { resolveDmGroupAccessWithLists } from "../security/dm-policy-shared.js";
 export { formatDocsLink } from "../terminal/links.js";
-export type { WizardPrompter } from "../wizard/prompts.js";
+export type { WizardPrompter } from "../setup-runtime/prompts.js";
 export { resolveInboundRouteEnvelopeBuilderWithRuntime } from "./inbound-envelope.js";
 export { createChannelPairingController } from "./channel-pairing.js";
 export {

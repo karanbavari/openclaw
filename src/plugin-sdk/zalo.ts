@@ -59,7 +59,7 @@ export type { PluginRuntime } from "../plugins/runtime/types.js";
 export type { OpenClawPluginApi } from "../plugins/types.js";
 export { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "../routing/session-key.js";
 export type { RuntimeEnv } from "../runtime.js";
-export type { WizardPrompter } from "../wizard/prompts.js";
+export type { WizardPrompter } from "../setup-runtime/prompts.js";
 export { formatAllowFromLowercase, isNormalizedSenderAllowed } from "./allow-from.js";
 export { zaloSetupAdapter } from "./zalo-setup.js";
 export { zaloSetupWizard } from "./zalo-setup.js";

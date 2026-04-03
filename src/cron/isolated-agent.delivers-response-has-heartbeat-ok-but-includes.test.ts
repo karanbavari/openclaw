@@ -4,7 +4,7 @@ import { withTempHome as withTempHomeBase } from "../../test/helpers/temp-home.j
 import * as modelSelection from "../agents/model-selection.js";
 import { runEmbeddedPiAgent } from "../agents/pi-embedded.js";
 import { runSubagentAnnounceFlow } from "../agents/subagent-announce.js";
-import type { CliDeps } from "../cli/deps.js";
+import type { CliDeps } from "../internal-cli/deps.js";
 import { callGateway } from "../gateway/call.js";
 import { runCronIsolatedAgentTurn } from "./isolated-agent.js";
 import { makeCfg, makeJob, writeSessionStore } from "./isolated-agent.test-harness.js";

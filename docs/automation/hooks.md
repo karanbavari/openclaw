@@ -1190,7 +1190,7 @@ test("my handler works", async () => {
 - **`src/hooks/config.ts`**: Eligibility checking
 - **`src/hooks/hooks-status.ts`**: Status reporting
 - **`src/hooks/loader.ts`**: Dynamic module loader
-- **`src/cli/hooks-cli.ts`**: CLI commands
+- **`src/internal-cli/hooks-cli.ts`**: internal command bridge
 - **`src/gateway/server-startup.ts`**: Loads hooks at gateway start
 - **`src/auto-reply/reply/commands-core.ts`**: Triggers command events
 

@@ -64,7 +64,7 @@ const targetedChannelProxyFiles = [
 
 const targetedUnitProxyFiles = [
   ...sharedTargetedUnitProxyFiles,
-  "src/cli/qr-dashboard.integration.test.ts",
+  "src/internal-cli/qr-dashboard.integration.test.ts",
 ];
 
 const REPO_ROOT = path.resolve(import.meta.dirname, "../..");

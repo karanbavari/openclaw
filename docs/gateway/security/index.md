@@ -841,7 +841,7 @@ See [Tailscale](/gateway/tailscale) and [Web overview](/web).
 ### 0.6.1) Browser control via node host (recommended)
 
 If your Gateway is remote but the browser runs on another machine, run a **node host**
-on the browser machine and let the Gateway proxy browser actions (see [Browser tool](/tools/browser)).
+on the browser machine and let the Gateway proxy browser actions. This browser automation flow has been removed in this SaaS-focused fork.
 Treat node pairing like admin access.
 
 Recommended pattern:

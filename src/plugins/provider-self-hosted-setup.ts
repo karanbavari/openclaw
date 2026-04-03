@@ -10,7 +10,7 @@ import type { ModelDefinitionConfig } from "../config/types.models.js";
 import { createSubsystemLogger } from "../logging/subsystem.js";
 import { isReasoningModelHeuristic } from "../plugin-sdk/provider-reasoning.js";
 import { normalizeOptionalSecretInput } from "../utils/normalize-secret-input.js";
-import type { WizardPrompter } from "../wizard/prompts.js";
+import type { WizardPrompter } from "../setup-runtime/prompts.js";
 import { applyAuthProfileConfig } from "./provider-auth-helpers.js";
 import type {
   ProviderDiscoveryContext,

@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import "./isolated-agent.mocks.js";
 import { beforeEach, describe, expect, it } from "vitest";
-import type { CliDeps } from "../cli/deps.js";
+import type { CliDeps } from "../internal-cli/deps.js";
 import { resolveDefaultSessionStorePath } from "../config/sessions.js";
 import { peekSystemEvents, resetSystemEventsForTest } from "../infra/system-events.js";
 import { createCliDeps, mockAgentPayloads } from "./isolated-agent.delivery.test-helpers.js";

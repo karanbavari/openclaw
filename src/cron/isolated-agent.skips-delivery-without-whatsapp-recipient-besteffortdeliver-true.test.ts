@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import * as modelSelection from "../agents/model-selection.js";
 import { runSubagentAnnounceFlow } from "../agents/subagent-announce.js";
-import type { CliDeps } from "../cli/deps.js";
+import type { CliDeps } from "../internal-cli/deps.js";
 import { callGateway } from "../gateway/call.js";
 import {
   createCliDeps,

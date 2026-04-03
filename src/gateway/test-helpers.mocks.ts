@@ -747,10 +747,10 @@ vi.mock("/src/agents/pi-embedded-runner/runs.js", async () => {
   );
 });
 
-vi.mock("../commands/health.js", () => ({
+vi.mock("../internal-commands/health.js", () => ({
   getHealthSnapshot: vi.fn().mockResolvedValue({ ok: true, stub: true }),
 }));
-vi.mock("../commands/status.js", () => ({
+vi.mock("../internal-commands/status.js", () => ({
   getStatusSummary: vi.fn().mockResolvedValue({ ok: true }),
 }));
 vi.mock(buildBundledPluginModuleId("whatsapp", "runtime-api.js"), () => ({
@@ -769,7 +769,7 @@ vi.mock("../channels/web/index.js", async () => {
       (hoisted.sendWhatsAppMock as (...args: unknown[]) => unknown)(...args),
   };
 });
-vi.mock("../commands/agent.js", () => ({
+vi.mock("../internal-commands/agent.js", () => ({
   agentCommand,
   agentCommandFromIngress: agentCommand,
 }));
@@ -800,8 +800,8 @@ vi.mock("/src/auto-reply/reply/get-reply-from-config.runtime.js", () => ({
   getReplyFromConfig: (...args: Parameters<GetReplyFromConfigFn>) =>
     hoisted.getReplyFromConfig(...args),
 }));
-vi.mock("../cli/deps.js", async () => {
-  const actual = await vi.importActual<typeof import("../cli/deps.js")>("../cli/deps.js");
+vi.mock("../internal-cli/deps.js", async () => {
+  const actual = await vi.importActual<typeof import("../internal-cli/deps.js")>("../internal-cli/deps.js");
   const base = actual.createDefaultDeps();
   return {
     ...actual,

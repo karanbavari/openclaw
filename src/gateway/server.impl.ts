@@ -6,8 +6,8 @@ import { initSubagentRegistry } from "../agents/subagent-registry.js";
 import { getTotalPendingReplies } from "../auto-reply/reply/dispatcher-registry.js";
 import type { CanvasHostServer } from "../canvas-host/server.js";
 import { type ChannelId, listChannelPlugins } from "../channels/plugins/index.js";
-import { formatCliCommand } from "../cli/command-format.js";
-import { createDefaultDeps } from "../cli/deps.js";
+import { formatCliCommand } from "../internal-cli/command-format.js";
+import { createDefaultDeps } from "../internal-cli/deps.js";
 import { isRestartEnabled } from "../config/commands.js";
 import {
   type ConfigFileSnapshot,
@@ -82,7 +82,6 @@ import {
   getInspectableTaskRegistrySummary,
   startTaskRegistryMaintenance,
 } from "../tasks/task-registry.maintenance.js";
-import { runSetupWizard } from "../wizard/setup.js";
 import { createAuthRateLimiter, type AuthRateLimiter } from "./auth-rate-limit.js";
 import { startChannelHealthMonitor } from "./channel-health-monitor.js";
 import { startGatewayConfigReloader } from "./config-reload.js";
@@ -128,7 +127,6 @@ import { runStartupMatrixMigration } from "./server-startup-matrix-migration.js"
 import { runStartupSessionMigration } from "./server-startup-session-migration.js";
 import { startGatewaySidecars } from "./server-startup.js";
 import { startGatewayTailscaleExposure } from "./server-tailscale.js";
-import { createWizardSessionTracker } from "./server-wizard-sessions.js";
 import { attachGatewayWsHandlers } from "./server-ws-runtime.js";
 import {
   getHealthCache,
@@ -365,14 +363,6 @@ export type GatewayServerOptions = {
    * Test-only: allow canvas host startup even when NODE_ENV/VITEST would disable it.
    */
   allowCanvasHostInTests?: boolean;
-  /**
-   * Test-only: override the setup wizard runner.
-   */
-  wizardRunner?: (
-    opts: import("../commands/onboard-types.js").OnboardOptions,
-    runtime: import("../runtime.js").RuntimeEnv,
-    prompter: import("../wizard/prompts.js").WizardPrompter,
-  ) => Promise<void>;
 };
 
 export async function startGatewayServer(
@@ -701,9 +691,6 @@ export async function startGatewayServer(
         }
       : { kind: "missing" };
   }
-
-  const wizardRunner = opts.wizardRunner ?? runSetupWizard;
-  const { wizardSessions, findRunningWizard, purgeWizardSession } = createWizardSessionTracker();
 
   const deps = createDefaultDeps();
   let canvasHostServer: CanvasHostServer | null = null;
@@ -1290,14 +1277,10 @@ export async function startGatewayServer(
       getSessionEventSubscriberConnIds: sessionEventSubscribers.getAll,
       registerToolEventRecipient: toolEventRecipients.add,
       dedupe,
-      wizardSessions,
-      findRunningWizard,
-      purgeWizardSession,
       getRuntimeSnapshot,
       startChannel,
       stopChannel,
       markChannelLoggedOut,
-      wizardRunner,
       broadcastVoiceWakeChanged,
     };
 

@@ -4,7 +4,6 @@ import { SsrFBlockedError } from "../../infra/net/ssrf.js";
 import { logDebug } from "../../logger.js";
 import type { RuntimeWebFetchMetadata } from "../../secrets/runtime-web-tools.types.js";
 import { wrapExternalContent, wrapWebContent } from "../../security/external-content.js";
-import { resolveWebFetchDefinition } from "../../web-fetch/runtime.js";
 import { stringEnum } from "../schema/typebox.js";
 import type { AnyAgentTool } from "./common.js";
 import { jsonResult, readNumberParam, readStringParam } from "./common.js";
@@ -30,6 +29,13 @@ import {
 } from "./web-shared.js";
 
 export { extractReadableContent } from "./web-fetch-utils.js";
+
+type WebFetchProviderFallback =
+  | {
+      provider: { id: string; label: string };
+      definition: { execute: (args: Record<string, unknown>) => Promise<unknown> };
+    }
+  | null;
 
 const EXTRACT_MODES = ["markdown", "text"] as const;
 
@@ -254,56 +260,8 @@ export async function fetchFirecrawlContent(params: FetchFirecrawlContentParams)
   status?: number;
   warning?: string;
 }> {
-  const config: OpenClawConfig = {
-    tools: {
-      web: {
-        fetch: {
-          provider: "firecrawl",
-        },
-      },
-    },
-    plugins: {
-      entries: {
-        firecrawl: {
-          enabled: true,
-          config: {
-            webFetch: {
-              apiKey: params.apiKey,
-              baseUrl: params.baseUrl,
-              onlyMainContent: params.onlyMainContent,
-              maxAgeMs: params.maxAgeMs,
-              timeoutSeconds: params.timeoutSeconds,
-            },
-          },
-        },
-      },
-    },
-  };
-
-  const resolved = resolveWebFetchDefinition({
-    config,
-    preferRuntimeProviders: false,
-    providerId: "firecrawl",
-  });
-  if (!resolved) {
-    throw new Error("Firecrawl web fetch provider is unavailable.");
-  }
-
-  const payload = await resolved.definition.execute({
-    url: params.url,
-    extractMode: params.extractMode,
-    maxChars: params.maxChars ?? DEFAULT_FETCH_MAX_CHARS,
-    proxy: params.proxy,
-    storeInCache: params.storeInCache,
-  });
-
-  return {
-    text: typeof payload.text === "string" ? payload.text : "",
-    title: typeof payload.title === "string" ? payload.title : undefined,
-    finalUrl: typeof payload.finalUrl === "string" ? payload.finalUrl : undefined,
-    status: typeof payload.status === "number" ? payload.status : undefined,
-    warning: typeof payload.warning === "string" ? payload.warning : undefined,
-  };
+  void params;
+  throw new Error("Web fetch provider integrations are unsupported in this SaaS fork.");
 }
 
 type WebFetchRuntimeParams = {
@@ -316,7 +274,7 @@ type WebFetchRuntimeParams = {
   cacheTtlMs: number;
   userAgent: string;
   readabilityEnabled: boolean;
-  providerFallback: ReturnType<typeof resolveWebFetchDefinition>;
+  providerFallback: WebFetchProviderFallback;
 };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -639,50 +597,6 @@ export function createWebFetchTool(options?: {
   sandboxed?: boolean;
   runtimeWebFetch?: RuntimeWebFetchMetadata;
 }): AnyAgentTool | null {
-  const fetch = resolveFetchConfig(options?.config);
-  if (!resolveFetchEnabled({ fetch, sandboxed: options?.sandboxed })) {
-    return null;
-  }
-  const readabilityEnabled = resolveFetchReadabilityEnabled(fetch);
-  const providerFallback = resolveWebFetchDefinition({
-    config: options?.config,
-    sandboxed: options?.sandboxed,
-    runtimeWebFetch: options?.runtimeWebFetch,
-    preferRuntimeProviders: true,
-  });
-  const userAgent =
-    (fetch && "userAgent" in fetch && typeof fetch.userAgent === "string" && fetch.userAgent) ||
-    DEFAULT_FETCH_USER_AGENT;
-  const maxResponseBytes = resolveFetchMaxResponseBytes(fetch);
-  return {
-    label: "Web Fetch",
-    name: "web_fetch",
-    description:
-      "Fetch and extract readable content from a URL (HTML → markdown/text). Use for lightweight page access without browser automation.",
-    parameters: WebFetchSchema,
-    execute: async (_toolCallId, args) => {
-      const params = args as Record<string, unknown>;
-      const url = readStringParam(params, "url", { required: true });
-      const extractMode = readStringParam(params, "extractMode") === "text" ? "text" : "markdown";
-      const maxChars = readNumberParam(params, "maxChars", { integer: true });
-      const maxCharsCap = resolveFetchMaxCharsCap(fetch);
-      const result = await runWebFetch({
-        url,
-        extractMode,
-        maxChars: resolveMaxChars(
-          maxChars ?? fetch?.maxChars,
-          DEFAULT_FETCH_MAX_CHARS,
-          maxCharsCap,
-        ),
-        maxResponseBytes,
-        maxRedirects: resolveMaxRedirects(fetch?.maxRedirects, DEFAULT_FETCH_MAX_REDIRECTS),
-        timeoutSeconds: resolveTimeoutSeconds(fetch?.timeoutSeconds, DEFAULT_TIMEOUT_SECONDS),
-        cacheTtlMs: resolveCacheTtlMs(fetch?.cacheTtlMinutes, DEFAULT_CACHE_TTL_MINUTES),
-        userAgent,
-        readabilityEnabled,
-        providerFallback,
-      });
-      return jsonResult(result);
-    },
-  };
+  void options;
+  return null;
 }

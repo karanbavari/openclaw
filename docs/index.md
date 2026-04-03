@@ -1,5 +1,5 @@
 ---
-summary: "OpenClaw is a multi-channel gateway for AI agents that runs on any OS."
+summary: "OpenClaw is a web-based SaaS control plane for AI agents, business channels, and automation."
 read_when:
   - Introducing OpenClaw to newcomers
 title: "OpenClaw"
@@ -25,34 +25,31 @@ title: "OpenClaw"
 > _"EXFOLIATE! EXFOLIATE!"_ — A space lobster, probably
 
 <p align="center">
-  <strong>Any OS gateway for AI agents across WhatsApp, Telegram, Discord, iMessage, and more.</strong><br />
-  Send a message, get an agent response from your pocket. Plugins add Mattermost and more.
+  <strong>Web-based control plane for multi-agent business automation across WhatsApp, Telegram, and retained provider backends.</strong><br />
+  Operate channels, sessions, and agents from a browser-first SaaS surface.
 </p>
 
 <Columns>
-  <Card title="Get Started" href="/start/getting-started" icon="rocket">
-    Install OpenClaw and bring up the Gateway in minutes.
-  </Card>
-  <Card title="Run Onboarding" href="/start/wizard" icon="sparkles">
-    Guided setup with `openclaw onboard` and pairing flows.
-  </Card>
   <Card title="Open the Control UI" href="/web/control-ui" icon="layout-dashboard">
-    Launch the browser dashboard for chat, config, and sessions.
+    Launch the browser dashboard for channels, sessions, and admin controls.
+  </Card>
+  <Card title="Platform Overview" href="/web/index" icon="rocket">
+    Start with the retained web, gateway, and channel surfaces.
   </Card>
 </Columns>
 
 ## What is OpenClaw?
 
-OpenClaw is a **self-hosted gateway** that connects your favorite chat apps — WhatsApp, Telegram, Discord, iMessage, and more — to AI coding agents like Pi. You run a single Gateway process on your own machine (or a server), and it becomes the bridge between your messaging apps and an always-available AI assistant.
+OpenClaw is a **web-first gateway and control plane** that connects retained business messaging channels to AI agents and provider backends. This fork is being shaped into a SaaS-oriented operations platform: the browser UI is the main entry point, while the gateway remains the core runtime for sessions, routing, and automation.
 
-**Who is it for?** Developers and power users who want a personal AI assistant they can message from anywhere — without giving up control of their data or relying on a hosted service.
+**Who is it for?** Teams building a browser-managed, multi-agent business workflow system on top of a retained gateway backbone.
 
 **What makes it different?**
 
-- **Self-hosted**: runs on your hardware, your rules
-- **Multi-channel**: one Gateway serves WhatsApp, Telegram, Discord, and more simultaneously
-- **Agent-native**: built for coding agents with tool use, sessions, memory, and multi-agent routing
-- **Open source**: MIT licensed, community-driven
+- **Web-first**: browser admin UI is the primary control surface
+- **Retained channels**: focused runtime surface for WhatsApp and Telegram
+- **Agent-native**: sessions, memory, routing, and multi-agent execution remain central
+- **Extensible providers**: reduced provider set for the retained model backends
 
 **What do you need?** Node 24 (recommended), or Node 22 LTS (`22.14+`) for compatibility, an API key from your chosen provider, and 5 minutes. For best quality and security, use the strongest latest-generation model available.
 
@@ -60,12 +57,11 @@ OpenClaw is a **self-hosted gateway** that connects your favorite chat apps — 
 
 ```mermaid
 flowchart LR
-  A["Chat apps + plugins"] --> B["Gateway"]
-  B --> C["Pi agent"]
-  B --> D["CLI"]
+  A["Business channels"] --> B["Gateway"]
+  B --> C["Agents"]
+  B --> D["Provider plugins"]
   B --> E["Web Control UI"]
-  B --> F["macOS app"]
-  B --> G["iOS and Android nodes"]
+  B --> F["Heartbeat and automations"]
 ```
 
 The Gateway is the single source of truth for sessions, routing, and channel connections.
@@ -73,50 +69,19 @@ The Gateway is the single source of truth for sessions, routing, and channel con
 ## Key capabilities
 
 <Columns>
-  <Card title="Multi-channel gateway" icon="network">
-    WhatsApp, Telegram, Discord, and iMessage with a single Gateway process.
+  <Card title="Channel gateway" icon="network">
+    WhatsApp and Telegram channel runtime with a single Gateway process.
   </Card>
-  <Card title="Plugin channels" icon="plug">
-    Add Mattermost and more with extension packages.
+  <Card title="Reduced plugin surface" icon="plug">
+    Focused provider and channel plugins for a lighter SaaS-oriented core.
   </Card>
   <Card title="Multi-agent routing" icon="route">
     Isolated sessions per agent, workspace, or sender.
   </Card>
-  <Card title="Media support" icon="image">
-    Send and receive images, audio, and documents.
-  </Card>
   <Card title="Web Control UI" icon="monitor">
-    Browser dashboard for chat, config, sessions, and nodes.
-  </Card>
-  <Card title="Mobile nodes" icon="smartphone">
-    Pair iOS and Android nodes for Canvas, camera, and voice-enabled workflows.
+    Browser dashboard for chat, config, sessions, and operations.
   </Card>
 </Columns>
-
-## Quick start
-
-<Steps>
-  <Step title="Install OpenClaw">
-    ```bash
-    npm install -g openclaw@latest
-    ```
-  </Step>
-  <Step title="Onboard and install the service">
-    ```bash
-    openclaw onboard --install-daemon
-    ```
-  </Step>
-  <Step title="Chat">
-    Open the Control UI in your browser and send a message:
-
-    ```bash
-    openclaw dashboard
-    ```
-
-    Or connect a channel ([Telegram](/channels/telegram) is fastest) and chat from your phone.
-
-  </Step>
-</Steps>
 
 Need the full install and dev setup? See [Getting Started](/start/getting-started).
 

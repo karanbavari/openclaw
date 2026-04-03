@@ -88,7 +88,7 @@ describe("non-extension test boundaries", () => {
       "../plugin-sdk/xiaomi.js",
       "../plugin-sdk/zai.js",
     ]);
-    const file = "src/commands/onboard-auth.test.ts";
+    const file = "src/internal-commands/onboard-auth.test.ts";
     const source = fs.readFileSync(path.join(repoRoot, file), "utf8");
     const imports = findPluginSdkImports(source).filter((entry) =>
       bannedPluginSdkModules.has(entry),

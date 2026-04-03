@@ -1,17 +1,17 @@
 import { resolveChannelDefaultAccountId } from "../channels/plugins/helpers.js";
 import { getChannelSetupPlugin } from "../channels/plugins/setup-registry.js";
 import type { ChannelSetupPlugin } from "../channels/plugins/setup-wizard-types.js";
-import { formatCliCommand } from "../cli/command-format.js";
+import { formatCliCommand } from "../internal-cli/command-format.js";
 import type {
   ChannelSetupDmPolicy,
   ChannelSetupWizardAdapter,
-} from "../commands/channel-setup/types.js";
-import type { ChannelChoice } from "../commands/onboard-types.js";
+} from "../internal-commands/channel-setup/types.js";
+import type { ChannelChoice } from "../internal-commands/onboard-types.js";
 import type { OpenClawConfig } from "../config/config.js";
 import type { DmPolicy } from "../config/types.js";
 import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "../routing/session-key.js";
 import { formatDocsLink } from "../terminal/links.js";
-import type { WizardPrompter, WizardSelectOption } from "../wizard/prompts.js";
+import type { WizardPrompter, WizardSelectOption } from "../setup-runtime/prompts.js";
 
 export type ConfiguredChannelAction = "update" | "disable" | "delete" | "skip";
 

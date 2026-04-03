@@ -30,7 +30,7 @@ vi.mock("../../plugins/clawhub.js", async () => {
   };
 });
 
-vi.mock("../../cli/plugins-install-persist.js", () => ({
+vi.mock("../../internal-cli/plugins-install-persist.js", () => ({
   persistPluginInstall: persistPluginInstallMock,
 }));
 

@@ -1,4 +1,4 @@
-import { normalizeLegacyOnboardAuthChoice } from "../commands/auth-choice-legacy.js";
+import { normalizeLegacyOnboardAuthChoice } from "../internal-commands/auth-choice-legacy.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { resolveManifestProviderAuthChoice } from "./provider-auth-choices.js";
 

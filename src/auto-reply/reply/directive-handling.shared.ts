@@ -1,4 +1,4 @@
-import { formatCliCommand } from "../../cli/command-format.js";
+import { formatCliCommand } from "../../internal-cli/command-format.js";
 import { SYSTEM_MARK, prefixSystemMessage } from "../../infra/system-message.js";
 import { isInternalMessageChannel } from "../../utils/message-channel.js";
 import type { ElevatedLevel, ReasoningLevel } from "./directives.js";

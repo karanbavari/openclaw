@@ -25,7 +25,6 @@ describe("method scope resolution", () => {
     ["node.pair.approve", ["operator.write"]],
     ["poll", ["operator.write"]],
     ["config.patch", ["operator.admin"]],
-    ["wizard.start", ["operator.admin"]],
     ["update.run", ["operator.admin"]],
   ])("resolves least-privilege scopes for %s", (method, expected) => {
     expect(resolveLeastPrivilegeOperatorScopesForMethod(method)).toEqual(expected);

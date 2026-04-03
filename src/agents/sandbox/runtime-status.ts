@@ -1,4 +1,4 @@
-import { formatCliCommand } from "../../cli/command-format.js";
+import { formatCliCommand } from "../../internal-cli/command-format.js";
 import type { OpenClawConfig } from "../../config/config.js";
 import {
   canonicalizeMainSessionAlias,

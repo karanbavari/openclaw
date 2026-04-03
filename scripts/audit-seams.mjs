@@ -596,8 +596,8 @@ function describeCronSeamKinds(relativePath, source) {
     "../../infra/outbound/session-context.js",
     "../infra/outbound/identity.js",
     "../../infra/outbound/identity.js",
-    "../cli/outbound-send-deps.js",
-    "../../cli/outbound-send-deps.js",
+    "../internal-cli/outbound-send-deps.js",
+    "../../internal-cli/outbound-send-deps.js",
   ]);
   const importsHeartbeat = hasAnyImportSource(source, [
     "../auto-reply/heartbeat.js",

@@ -1,12 +1,12 @@
 import fs from "node:fs";
-import { buildNpmInstallRecordFields } from "../../cli/npm-resolution.js";
+import { buildNpmInstallRecordFields } from "../../internal-cli/npm-resolution.js";
 import {
   buildPreferredClawHubSpec,
   createPluginInstallLogger,
   decidePreferredClawHubFallback,
   resolveFileNpmSpecToLocalPath,
-} from "../../cli/plugins-command-helpers.js";
-import { persistPluginInstall } from "../../cli/plugins-install-persist.js";
+} from "../../internal-cli/plugins-command-helpers.js";
+import { persistPluginInstall } from "../../internal-cli/plugins-install-persist.js";
 import {
   readConfigFileSnapshot,
   validateConfigObjectWithPlugins,

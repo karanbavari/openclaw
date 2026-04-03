@@ -100,7 +100,7 @@ export {
 export { formatDocsLink } from "../terminal/links.js";
 export { sleep } from "../utils.js";
 export { loadWebMedia } from "./web-media.js";
-export type { WizardPrompter } from "../wizard/prompts.js";
+export type { WizardPrompter } from "../setup-runtime/prompts.js";
 export { keepHttpServerTaskAlive } from "./channel-lifecycle.core.js";
 export { withFileLock } from "./file-lock.js";
 export { dispatchReplyFromConfigWithSettledDispatcher } from "./inbound-reply-dispatch.js";

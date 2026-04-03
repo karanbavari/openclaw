@@ -3,8 +3,8 @@
 export type { OpenClawConfig } from "../config/config.js";
 export type { DmPolicy, GroupPolicy } from "../config/types.js";
 export type { SecretInput } from "../config/types.secrets.js";
-export type { WizardPrompter } from "../wizard/prompts.js";
-export { WizardCancelledError } from "../wizard/prompts.js";
+export type { WizardPrompter } from "../setup-runtime/prompts.js";
+export { WizardCancelledError } from "../setup-runtime/prompts.js";
 export type { ChannelSetupAdapter } from "../channels/plugins/types.adapters.js";
 export type { ChannelSetupInput } from "../channels/plugins/types.core.js";
 export type {
@@ -18,7 +18,7 @@ export type {
 } from "../channels/plugins/setup-wizard.js";
 
 export { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "../routing/session-key.js";
-export { formatCliCommand } from "../cli/command-format.js";
+export { formatCliCommand } from "../internal-cli/command-format.js";
 export { detectBinary } from "../plugins/setup-binary.js";
 export { installSignalCli } from "../plugins/signal-cli-install.js";
 export { formatDocsLink } from "../terminal/links.js";

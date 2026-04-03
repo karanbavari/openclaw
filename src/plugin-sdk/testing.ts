@@ -18,9 +18,9 @@ export {
   spyRuntimeErrors,
   spyRuntimeJson,
   spyRuntimeLogs,
-} from "../cli/test-runtime-capture.js";
-export type { CliMockOutputRuntime, CliRuntimeCapture } from "../cli/test-runtime-capture.js";
-export { setDefaultChannelPluginRegistryForTests } from "../commands/channel-test-helpers.js";
+} from "../internal-cli/test-runtime-capture.js";
+export type { CliMockOutputRuntime, CliRuntimeCapture } from "../internal-cli/test-runtime-capture.js";
+export { setDefaultChannelPluginRegistryForTests } from "../internal-commands/channel-test-helpers.js";
 export type { ChannelAccountSnapshot, ChannelGatewayContext } from "../channels/plugins/types.js";
 export type { OpenClawConfig } from "../config/config.js";
 export { callGateway } from "../gateway/call.js";

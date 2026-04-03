@@ -1,4 +1,4 @@
-import { parseByteSize } from "../cli/parse-bytes.js";
+import { parseByteSize } from "../internal-cli/parse-bytes.js";
 
 /**
  * Parse an optional byte-size value from config.

@@ -4,7 +4,7 @@ import {
   DEFAULT_HEARTBEAT_EVERY,
   resolveHeartbeatPrompt as resolveHeartbeatPromptText,
 } from "../auto-reply/heartbeat.js";
-import { parseDurationMs } from "../cli/parse-duration.js";
+import { parseDurationMs } from "../internal-cli/parse-duration.js";
 import type { OpenClawConfig } from "../config/config.js";
 import type { AgentDefaultsConfig } from "../config/types.agent-defaults.js";
 import { normalizeAgentId } from "../routing/session-key.js";

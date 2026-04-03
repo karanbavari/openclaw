@@ -55,18 +55,9 @@ OpenClaw has three public release lanes:
   test matrices, regenerate and review the planner-owned `checks-fast-extensions`
   shard plan via `node scripts/ci-write-manifest-outputs.mjs --workflow ci`
   before approval so release notes do not describe a stale CI layout
-- Stable macOS release readiness also includes the updater surfaces:
-  - the GitHub release must end up with the packaged `.zip`, `.dmg`, and `.dSYM.zip`
-  - `appcast.xml` on `main` must point at the new stable zip after publish
-  - the packaged app must keep a non-debug bundle id, a non-empty Sparkle feed
-    URL, and a `CFBundleVersion` at or above the canonical Sparkle build floor
-    for that release version
-
 ## Public references
 
 - [`.github/workflows/openclaw-npm-release.yml`](https://github.com/openclaw/openclaw/blob/main/.github/workflows/openclaw-npm-release.yml)
-- [`scripts/package-mac-dist.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/package-mac-dist.sh)
-- [`scripts/make_appcast.sh`](https://github.com/openclaw/openclaw/blob/main/scripts/make_appcast.sh)
 
 Maintainers use the private release docs in
 [`openclaw/maintainers/release/README.md`](https://github.com/openclaw/maintainers/blob/main/release/README.md)

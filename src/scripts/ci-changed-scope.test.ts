@@ -62,38 +62,6 @@ describe("detectChangedScope", () => {
     });
   });
 
-  it("keeps node lane off for native-only changes", () => {
-    expect(detectChangedScope(["apps/macos/Sources/Foo.swift"])).toEqual({
-      runNode: false,
-      runMacos: true,
-      runAndroid: false,
-      runWindows: false,
-      runSkillsPython: false,
-      runChangedSmoke: false,
-    });
-    expect(detectChangedScope(["apps/shared/OpenClawKit/Sources/Foo.swift"])).toEqual({
-      runNode: false,
-      runMacos: true,
-      runAndroid: true,
-      runWindows: false,
-      runSkillsPython: false,
-      runChangedSmoke: false,
-    });
-  });
-
-  it("does not force macOS for generated protocol model-only changes", () => {
-    expect(detectChangedScope(["apps/macos/Sources/OpenClawProtocol/GatewayModels.swift"])).toEqual(
-      {
-        runNode: false,
-        runMacos: false,
-        runAndroid: false,
-        runWindows: false,
-        runSkillsPython: false,
-        runChangedSmoke: false,
-      },
-    );
-  });
-
   it("enables node lane for non-native non-doc files by fallback", () => {
     expect(detectChangedScope(["README.md"])).toEqual({
       runNode: false,

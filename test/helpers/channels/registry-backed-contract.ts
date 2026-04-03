@@ -19,7 +19,7 @@ import {
   installChannelThreadingContractSuite,
   installSessionBindingContractSuite,
 } from "../../../src/channels/plugins/contracts/suites.js";
-import { setDefaultChannelPluginRegistryForTests } from "../../../src/commands/channel-test-helpers.js";
+import { setDefaultChannelPluginRegistryForTests } from "../../../src/internal-commands/channel-test-helpers.js";
 import {
   clearRuntimeConfigSnapshot,
   setRuntimeConfigSnapshot,

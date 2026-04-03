@@ -6,7 +6,7 @@ import {
   resolveComparableTargetForChannel,
 } from "../../channels/plugins/target-parsing.js";
 import type { ChannelOutboundTargetMode } from "../../channels/plugins/types.js";
-import { formatCliCommand } from "../../cli/command-format.js";
+import { formatCliCommand } from "../../internal-cli/command-format.js";
 import type { OpenClawConfig } from "../../config/config.js";
 import type { SessionEntry } from "../../config/sessions.js";
 import type { AgentDefaultsConfig } from "../../config/types.agent-defaults.js";

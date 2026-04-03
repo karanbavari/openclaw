@@ -56,7 +56,7 @@ import type {
   SpeechVoiceOption,
 } from "../tts/provider-types.js";
 import type { DeliveryContext } from "../utils/delivery-context.js";
-import type { WizardPrompter } from "../wizard/prompts.js";
+import type { WizardPrompter } from "../setup-runtime/prompts.js";
 import type { SecretInputMode } from "./provider-auth-types.js";
 import type { createVpsAwareOAuthHandlers } from "./provider-oauth-flow.js";
 import type { PluginRuntime } from "./runtime/types.js";

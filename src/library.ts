@@ -1,8 +1,8 @@
 import type { getReplyFromConfig as getReplyFromConfigRuntime } from "./auto-reply/reply.runtime.js";
 import { applyTemplate } from "./auto-reply/templating.js";
-import { createDefaultDeps } from "./cli/deps.js";
-import type { promptYesNo as promptYesNoRuntime } from "./cli/prompt.js";
-import { waitForever } from "./cli/wait.js";
+import { createDefaultDeps } from "./internal-cli/deps.js";
+import type { promptYesNo as promptYesNoRuntime } from "./internal-cli/prompt.js";
+import { waitForever } from "./internal-cli/wait.js";
 import { loadConfig } from "./config/config.js";
 import { resolveStorePath } from "./config/sessions/paths.js";
 import { deriveSessionKey, resolveSessionKey } from "./config/sessions/session-key.js";
@@ -29,7 +29,7 @@ type RunCommandWithTimeout = typeof runCommandWithTimeoutRuntime;
 type MonitorWebChannel = typeof monitorWebChannelRuntime;
 
 let replyRuntimePromise: Promise<typeof import("./auto-reply/reply.runtime.js")> | null = null;
-let promptRuntimePromise: Promise<typeof import("./cli/prompt.js")> | null = null;
+let promptRuntimePromise: Promise<typeof import("./internal-cli/prompt.js")> | null = null;
 let binariesRuntimePromise: Promise<typeof import("./infra/binaries.js")> | null = null;
 let execRuntimePromise: Promise<typeof import("./process/exec.js")> | null = null;
 let whatsappRuntimePromise: Promise<
@@ -42,7 +42,7 @@ function loadReplyRuntime() {
 }
 
 function loadPromptRuntime() {
-  promptRuntimePromise ??= import("./cli/prompt.js");
+  promptRuntimePromise ??= import("./internal-cli/prompt.js");
   return promptRuntimePromise;
 }
 

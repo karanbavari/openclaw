@@ -6,7 +6,7 @@
  * run records. The base session (`...:cron:<jobId>`) is kept as-is.
  */
 
-import { parseDurationMs } from "../cli/parse-duration.js";
+import { parseDurationMs } from "../internal-cli/parse-duration.js";
 import {
   archiveRemovedSessionTranscripts,
   loadSessionStore,

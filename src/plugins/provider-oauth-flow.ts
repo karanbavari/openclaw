@@ -1,5 +1,5 @@
 import type { RuntimeEnv } from "../runtime.js";
-import type { WizardPrompter } from "../wizard/prompts.js";
+import type { WizardPrompter } from "../setup-runtime/prompts.js";
 
 export type OAuthPrompt = { message: string; placeholder?: string };
 

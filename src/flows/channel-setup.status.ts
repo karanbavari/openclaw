@@ -7,19 +7,19 @@ import {
   formatChannelSelectionLine,
   listChatChannels,
 } from "../channels/registry.js";
-import { formatCliCommand } from "../cli/command-format.js";
-import { resolveChannelSetupEntries } from "../commands/channel-setup/discovery.js";
-import { resolveChannelSetupWizardAdapterForPlugin } from "../commands/channel-setup/registry.js";
+import { formatCliCommand } from "../internal-cli/command-format.js";
+import { resolveChannelSetupEntries } from "../internal-commands/channel-setup/discovery.js";
+import { resolveChannelSetupWizardAdapterForPlugin } from "../internal-commands/channel-setup/registry.js";
 import type {
   ChannelSetupWizardAdapter,
   ChannelSetupStatus,
   SetupChannelsOptions,
-} from "../commands/channel-setup/types.js";
-import type { ChannelChoice } from "../commands/onboard-types.js";
+} from "../internal-commands/channel-setup/types.js";
+import type { ChannelChoice } from "../internal-commands/onboard-types.js";
 import { isChannelConfigured } from "../config/channel-configured.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { formatDocsLink } from "../terminal/links.js";
-import type { WizardPrompter } from "../wizard/prompts.js";
+import type { WizardPrompter } from "../setup-runtime/prompts.js";
 import type { FlowContribution } from "./types.js";
 
 export type ChannelStatusSummary = {

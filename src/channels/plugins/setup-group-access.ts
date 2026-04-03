@@ -1,4 +1,4 @@
-import type { WizardPrompter } from "../../wizard/prompts.js";
+import type { WizardPrompter } from "../../setup-runtime/prompts.js";
 import { splitSetupEntries } from "./setup-wizard-helpers.js";
 
 export type ChannelAccessPolicy = "allowlist" | "open" | "disabled";

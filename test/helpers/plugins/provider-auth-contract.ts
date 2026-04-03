@@ -8,7 +8,7 @@ import type {
   WizardPrompter,
   WizardProgress,
   WizardSelectParams,
-} from "../../../src/wizard/prompts.js";
+} from "../../../src/setup-runtime/prompts.js";
 
 type LoginOpenAICodexOAuth =
   (typeof import("openclaw/plugin-sdk/provider-auth-login"))["loginOpenAICodexOAuth"];

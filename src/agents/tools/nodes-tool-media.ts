@@ -7,13 +7,13 @@ import {
   parseCameraSnapPayload,
   writeCameraClipPayloadToFile,
   writeCameraPayloadToFile,
-} from "../../cli/nodes-camera.js";
+} from "../../internal-cli/nodes-camera.js";
 import {
   parseScreenRecordPayload,
   screenRecordTempPath,
   writeScreenRecordToFile,
-} from "../../cli/nodes-screen.js";
-import { parseDurationMs } from "../../cli/parse-duration.js";
+} from "../../internal-cli/nodes-screen.js";
+import { parseDurationMs } from "../../internal-cli/parse-duration.js";
 import { imageMimeFromFormat } from "../../media/mime.js";
 import type { ImageSanitizationLimits } from "../image-sanitization.js";
 import { sanitizeToolResultImages } from "../tool-images.js";

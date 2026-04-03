@@ -1,4 +1,4 @@
-import { getCommandPathWithRootOptions } from "../cli/argv.js";
+import { getCommandPathWithRootOptions } from "../internal-cli/argv.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { resolveNodeRequireFromMeta } from "./node-require.js";
 

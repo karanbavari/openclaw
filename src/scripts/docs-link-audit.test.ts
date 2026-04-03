@@ -61,21 +61,15 @@ describe("docs-link-audit", () => {
                 groups: [
                   {
                     group: "Keep",
-                    pages: ["help/testing", "zh-CN/help/testing", "ja-JP/help/testing"],
+                    pages: ["help/testing"],
                   },
                 ],
               },
             ],
           },
-          {
-            language: "zh-Hans",
-            tabs: [{ tab: "中文", groups: [{ group: "帮助", pages: ["zh-CN/help/testing"] }] }],
-          },
         ],
         redirects: [
           { source: "/help/testing", destination: "/help/testing" },
-          { source: "/zh-CN/help/testing", destination: "/help/testing" },
-          { source: "/help/testing", destination: "/ja-JP/help/testing" },
         ],
       }),
     ).toEqual({
@@ -98,7 +92,6 @@ describe("docs-link-audit", () => {
     const fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), "docs-link-audit-fixture-"));
     const docsRoot = path.join(fixtureRoot, "docs");
     fs.mkdirSync(path.join(docsRoot, "help"), { recursive: true });
-    fs.mkdirSync(path.join(docsRoot, "zh-CN", "help"), { recursive: true });
     fs.writeFileSync(
       path.join(docsRoot, "docs.json"),
       `${JSON.stringify(
@@ -108,10 +101,6 @@ describe("docs-link-audit", () => {
               language: "en",
               tabs: [{ tab: "Docs", groups: [{ group: "Help", pages: ["help/testing"] }] }],
             },
-            {
-              language: "zh-Hans",
-              tabs: [{ tab: "中文", groups: [{ group: "帮助", pages: ["zh-CN/help/testing"] }] }],
-            },
           ],
         },
         null,
@@ -120,12 +109,10 @@ describe("docs-link-audit", () => {
       "utf8",
     );
     fs.writeFileSync(path.join(docsRoot, "help", "testing.md"), "# testing\n", "utf8");
-    fs.writeFileSync(path.join(docsRoot, "zh-CN", "help", "testing.md"), "# 测试\n", "utf8");
 
     const anchorDocsDir = prepareAnchorAuditDocsDir(docsRoot);
     try {
       expect(fs.existsSync(path.join(anchorDocsDir, "help", "testing.md"))).toBe(true);
-      expect(fs.existsSync(path.join(anchorDocsDir, "zh-CN"))).toBe(false);
 
       const sanitizedDocsJson = JSON.parse(
         fs.readFileSync(path.join(anchorDocsDir, "docs.json"), "utf8"),

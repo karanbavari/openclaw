@@ -1,4 +1,4 @@
-import { parseDurationMs } from "../../../cli/parse-duration.js";
+import { parseDurationMs } from "../../../internal-cli/parse-duration.js";
 
 export type ContextPruningToolMatch = {
   allow?: string[];

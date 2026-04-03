@@ -1,5 +1,5 @@
 import { randomUUID } from "node:crypto";
-import type { CliDeps } from "../../cli/deps.js";
+import type { CliDeps } from "../../internal-cli/deps.js";
 import { loadConfig, type OpenClawConfig } from "../../config/config.js";
 import { resolveMainSessionKeyFromConfig } from "../../config/sessions.js";
 import { runCronIsolatedAgentTurn } from "../../cron/isolated-agent.js";

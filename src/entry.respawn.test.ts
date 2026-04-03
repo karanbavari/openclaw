@@ -11,7 +11,7 @@ const isTruthyEnvValueMock = vi.hoisted(() =>
   vi.fn((value: string | undefined) => value === "1" || value === "true"),
 );
 
-vi.mock("./cli/respawn-policy.js", () => ({
+vi.mock("./internal-cli/respawn-policy.js", () => ({
   shouldSkipRespawnForArgv: shouldSkipRespawnForArgvMock,
 }));
 

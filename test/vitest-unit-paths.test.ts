@@ -17,7 +17,7 @@ describe("isUnitConfigTestFile", () => {
       ),
     ).toBe(false);
     expect(isUnitConfigTestFile("src/agents/pi-embedded-runner.test.ts")).toBe(false);
-    expect(isUnitConfigTestFile("src/commands/onboard.test.ts")).toBe(false);
+    expect(isUnitConfigTestFile("src/internal-commands/onboard.test.ts")).toBe(false);
     expect(isUnitConfigTestFile("ui/src/ui/views/other.test.ts")).toBe(false);
     expect(isUnitConfigTestFile("src/infra/git-commit.live.test.ts")).toBe(false);
     expect(isUnitConfigTestFile("src/infra/git-commit.e2e.test.ts")).toBe(false);

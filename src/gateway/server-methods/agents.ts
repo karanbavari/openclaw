@@ -23,7 +23,7 @@ import {
   findAgentEntryIndex,
   listAgentEntries,
   pruneAgentConfig,
-} from "../../commands/agents.config.js";
+} from "../../internal-commands/agents.config.js";
 import { loadConfig, writeConfigFile } from "../../config/config.js";
 import { resolveSessionTranscriptsDirForAgent } from "../../config/sessions/paths.js";
 import { sameFileIdentity } from "../../infra/file-identity.js";

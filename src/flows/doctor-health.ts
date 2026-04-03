@@ -1,11 +1,11 @@
 import { intro as clackIntro, outro as clackOutro } from "@clack/prompts";
-import { loadAndMaybeMigrateDoctorConfig } from "../commands/doctor-config-flow.js";
-import { noteSourceInstallIssues } from "../commands/doctor-install.js";
-import { noteStartupOptimizationHints } from "../commands/doctor-platform-notes.js";
-import { createDoctorPrompter, type DoctorOptions } from "../commands/doctor-prompter.js";
-import { maybeRepairUiProtocolFreshness } from "../commands/doctor-ui.js";
-import { maybeOfferUpdateBeforeDoctor } from "../commands/doctor-update.js";
-import { printWizardHeader } from "../commands/onboard-helpers.js";
+import { loadAndMaybeMigrateDoctorConfig } from "../internal-commands/doctor-config-flow.js";
+import { noteSourceInstallIssues } from "../internal-commands/doctor-install.js";
+import { noteStartupOptimizationHints } from "../internal-commands/doctor-platform-notes.js";
+import { createDoctorPrompter, type DoctorOptions } from "../internal-commands/doctor-prompter.js";
+import { maybeRepairUiProtocolFreshness } from "../internal-commands/doctor-ui.js";
+import { maybeOfferUpdateBeforeDoctor } from "../internal-commands/doctor-update.js";
+import { printWizardHeader } from "../internal-commands/onboard-helpers.js";
 import { CONFIG_PATH } from "../config/config.js";
 import { resolveOpenClawPackageRoot } from "../infra/openclaw-root.js";
 import type { RuntimeEnv } from "../runtime.js";

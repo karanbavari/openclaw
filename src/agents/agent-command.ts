@@ -10,10 +10,10 @@ import {
   supportsXHighThinking,
   type VerboseLevel,
 } from "../auto-reply/thinking.js";
-import { formatCliCommand } from "../cli/command-format.js";
-import { resolveCommandSecretRefsViaGateway } from "../cli/command-secret-gateway.js";
-import { getAgentRuntimeCommandSecretTargetIds } from "../cli/command-secret-targets.js";
-import { type CliDeps, createDefaultDeps } from "../cli/deps.js";
+import { formatCliCommand } from "../internal-cli/command-format.js";
+import { resolveCommandSecretRefsViaGateway } from "../internal-cli/command-secret-gateway.js";
+import { getAgentRuntimeCommandSecretTargetIds } from "../internal-cli/command-secret-targets.js";
+import { type CliDeps, createDefaultDeps } from "../internal-cli/deps.js";
 import {
   loadConfig,
   readConfigFileSnapshotForWrite,

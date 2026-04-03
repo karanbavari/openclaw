@@ -83,8 +83,8 @@ export type PluginRuntimeCore = {
     listProviders: typeof import("../../plugin-sdk/image-generation-runtime.js").listRuntimeImageGenerationProviders;
   };
   webSearch: {
-    listProviders: typeof import("../../web-search/runtime.js").listWebSearchProviders;
-    search: typeof import("../../web-search/runtime.js").runWebSearch;
+    listProviders: () => Array<unknown>;
+    search: (params: Record<string, unknown>) => Promise<unknown>;
   };
   stt: {
     transcribeAudioFile: typeof import("../../media-understanding/transcribe-audio.js").transcribeAudioFile;

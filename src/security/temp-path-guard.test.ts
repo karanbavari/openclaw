@@ -189,8 +189,8 @@ function hasDynamicTmpdirJoin(source: string): boolean {
 
 describe("temp path guard", () => {
   it("skips test helper filename variants", () => {
-    expect(shouldSkip("src/commands/test-helpers.ts")).toBe(true);
-    expect(shouldSkip("src/commands/sessions.test-helpers.ts")).toBe(true);
+    expect(shouldSkip("src/internal-commands/test-helpers.ts")).toBe(true);
+    expect(shouldSkip("src/internal-commands/sessions.test-helpers.ts")).toBe(true);
     expect(shouldSkip("src\\commands\\sessions.test-helpers.ts")).toBe(true);
   });
 

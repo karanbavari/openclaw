@@ -520,7 +520,7 @@ describe("test planner", () => {
     const plan = buildExecutionPlan(
       {
         mode: "local",
-        fileFilters: ["src/cli/qr-dashboard.integration.test.ts"],
+        fileFilters: ["src/internal-cli/qr-dashboard.integration.test.ts"],
         passthroughArgs: [],
       },
       {

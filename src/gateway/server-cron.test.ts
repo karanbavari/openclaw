@@ -1,7 +1,7 @@
 import os from "node:os";
 import path from "node:path";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import type { CliDeps } from "../cli/deps.js";
+import type { CliDeps } from "../internal-cli/deps.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { SsrFBlockedError } from "../infra/net/ssrf.js";
 import { mergeMockedModule } from "../test-utils/vitest-module-mocks.js";

@@ -223,7 +223,7 @@ For ad-hoc workflows, call Lobster directly.
 - The tool is an **optional plugin**; enable it additively via `tools.alsoAllow: ["lobster"]` (recommended).
 - Lobster expects the `lobster` CLI to be available on `PATH`.
 
-See [Lobster](/tools/lobster) for full usage and examples.
+Use the retained taskflow and heartbeat docs for the supported automation patterns in this fork.
 
 ## Main Session vs Isolated Session
 

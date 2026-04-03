@@ -7,43 +7,43 @@ import {
   resolveConfiguredModelRef,
   resolveHooksGmailModel,
 } from "../agents/model-selection.js";
-import { formatCliCommand } from "../cli/command-format.js";
+import { formatCliCommand } from "../internal-cli/command-format.js";
 import {
   maybeRemoveDeprecatedCliAuthProfiles,
   maybeRepairLegacyOAuthProfileIds,
   noteAuthProfileHealth,
-} from "../commands/doctor-auth.js";
-import { noteBootstrapFileSize } from "../commands/doctor-bootstrap-size.js";
-import { noteChromeMcpBrowserReadiness } from "../commands/doctor-browser.js";
-import { maybeRepairBundledPluginRuntimeDeps } from "../commands/doctor-bundled-plugin-runtime-deps.js";
-import { doctorShellCompletion } from "../commands/doctor-completion.js";
-import { maybeRepairLegacyCronStore } from "../commands/doctor-cron.js";
-import { maybeRepairGatewayDaemon } from "../commands/doctor-gateway-daemon-flow.js";
-import { checkGatewayHealth, probeGatewayMemoryStatus } from "../commands/doctor-gateway-health.js";
+} from "../internal-commands/doctor-auth.js";
+import { noteBootstrapFileSize } from "../internal-commands/doctor-bootstrap-size.js";
+import { noteChromeMcpBrowserReadiness } from "../internal-commands/doctor-browser.js";
+import { maybeRepairBundledPluginRuntimeDeps } from "../internal-commands/doctor-bundled-plugin-runtime-deps.js";
+import { doctorShellCompletion } from "../internal-commands/doctor-completion.js";
+import { maybeRepairLegacyCronStore } from "../internal-commands/doctor-cron.js";
+import { maybeRepairGatewayDaemon } from "../internal-commands/doctor-gateway-daemon-flow.js";
+import { checkGatewayHealth, probeGatewayMemoryStatus } from "../internal-commands/doctor-gateway-health.js";
 import {
   maybeRepairGatewayServiceConfig,
   maybeScanExtraGatewayServices,
-} from "../commands/doctor-gateway-services.js";
-import { noteMemorySearchHealth } from "../commands/doctor-memory-search.js";
+} from "../internal-commands/doctor-gateway-services.js";
+import { noteMemorySearchHealth } from "../internal-commands/doctor-memory-search.js";
 import {
   noteMacLaunchAgentOverrides,
   noteMacLaunchctlGatewayEnvOverrides,
-} from "../commands/doctor-platform-notes.js";
-import { maybeRepairLegacyPluginManifestContracts } from "../commands/doctor-plugin-manifests.js";
-import type { DoctorOptions, DoctorPrompter } from "../commands/doctor-prompter.js";
-import { maybeRepairSandboxImages, noteSandboxScopeWarnings } from "../commands/doctor-sandbox.js";
-import { noteSecurityWarnings } from "../commands/doctor-security.js";
-import { noteSessionLockHealth } from "../commands/doctor-session-locks.js";
-import { noteStateIntegrity, noteWorkspaceBackupTip } from "../commands/doctor-state-integrity.js";
+} from "../internal-commands/doctor-platform-notes.js";
+import { maybeRepairLegacyPluginManifestContracts } from "../internal-commands/doctor-plugin-manifests.js";
+import type { DoctorOptions, DoctorPrompter } from "../internal-commands/doctor-prompter.js";
+import { maybeRepairSandboxImages, noteSandboxScopeWarnings } from "../internal-commands/doctor-sandbox.js";
+import { noteSecurityWarnings } from "../internal-commands/doctor-security.js";
+import { noteSessionLockHealth } from "../internal-commands/doctor-session-locks.js";
+import { noteStateIntegrity, noteWorkspaceBackupTip } from "../internal-commands/doctor-state-integrity.js";
 import {
   detectLegacyStateMigrations,
   runLegacyStateMigrations,
-} from "../commands/doctor-state-migrations.js";
-import { noteWorkspaceStatus } from "../commands/doctor-workspace-status.js";
-import { MEMORY_SYSTEM_PROMPT, shouldSuggestMemorySystem } from "../commands/doctor-workspace.js";
-import { noteOpenAIOAuthTlsPrerequisites } from "../commands/oauth-tls-preflight.js";
-import { applyWizardMetadata, randomToken } from "../commands/onboard-helpers.js";
-import { ensureSystemdUserLingerInteractive } from "../commands/systemd-linger.js";
+} from "../internal-commands/doctor-state-migrations.js";
+import { noteWorkspaceStatus } from "../internal-commands/doctor-workspace-status.js";
+import { MEMORY_SYSTEM_PROMPT, shouldSuggestMemorySystem } from "../internal-commands/doctor-workspace.js";
+import { noteOpenAIOAuthTlsPrerequisites } from "../internal-commands/oauth-tls-preflight.js";
+import { applyWizardMetadata, randomToken } from "../internal-commands/onboard-helpers.js";
+import { ensureSystemdUserLingerInteractive } from "../internal-commands/systemd-linger.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { CONFIG_PATH, readConfigFileSnapshot, writeConfigFile } from "../config/config.js";
 import { logConfigUpdated } from "../config/logging.js";

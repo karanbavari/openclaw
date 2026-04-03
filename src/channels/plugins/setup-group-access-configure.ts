@@ -1,5 +1,5 @@
 import type { OpenClawConfig } from "../../config/config.js";
-import type { WizardPrompter } from "../../wizard/prompts.js";
+import type { WizardPrompter } from "../../setup-runtime/prompts.js";
 import { promptChannelAccessConfig, type ChannelAccessPolicy } from "./setup-group-access.js";
 
 export async function configureChannelAccessWithAllowlist<TResolved>(params: {

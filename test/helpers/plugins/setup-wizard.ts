@@ -1,10 +1,10 @@
 import { vi } from "vitest";
 import { buildChannelSetupWizardAdapterFromSetupWizard } from "../../../src/channels/plugins/setup-wizard.js";
 import type { ChannelPlugin } from "../../../src/channels/plugins/types.js";
-import type { WizardPrompter } from "../../../src/wizard/prompts.js";
+import type { WizardPrompter } from "../../../src/setup-runtime/prompts.js";
 import { createRuntimeEnv } from "./runtime-env.js";
 
-export type { WizardPrompter } from "../../../src/wizard/prompts.js";
+export type { WizardPrompter } from "../../../src/setup-runtime/prompts.js";
 
 export async function selectFirstWizardOption<T>(params: {
   options: Array<{ value: T }>;

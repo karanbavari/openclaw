@@ -1,6 +1,6 @@
 import type { OpenClawConfig } from "../../config/config.js";
 import { DEFAULT_ACCOUNT_ID } from "../../routing/session-key.js";
-import type { WizardPrompter } from "../../wizard/prompts.js";
+import type { WizardPrompter } from "../../setup-runtime/prompts.js";
 import { configureChannelAccessWithAllowlist } from "./setup-group-access-configure.js";
 import type { ChannelAccessPolicy } from "./setup-group-access.js";
 import {

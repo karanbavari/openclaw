@@ -27,8 +27,7 @@ OpenClaw uses the pi SDK to embed an AI coding agent into its messaging gateway 
 {
   "@mariozechner/pi-agent-core": "0.61.1",
   "@mariozechner/pi-ai": "0.61.1",
-  "@mariozechner/pi-coding-agent": "0.61.1",
-  "@mariozechner/pi-tui": "0.61.1"
+  "@mariozechner/pi-coding-agent": "0.61.1"
 }
 ```
 
@@ -37,7 +36,6 @@ OpenClaw uses the pi SDK to embed an AI coding agent into its messaging gateway 
 | `pi-ai`           | Core LLM abstractions: `Model`, `streamSimple`, message types, provider APIs                           |
 | `pi-agent-core`   | Agent loop, tool execution, `AgentMessage` types                                                       |
 | `pi-coding-agent` | High-level SDK: `createAgentSession`, `SessionManager`, `AuthStorage`, `ModelRegistry`, built-in tools |
-| `pi-tui`          | Terminal UI components (used in OpenClaw's local TUI mode)                                             |
 
 ## File Structure
 
@@ -510,17 +508,6 @@ if (sandboxRoot) {
 
 - `apply_patch` tool for Codex models
 - Thinking level downgrade handling
-
-## TUI Integration
-
-OpenClaw also has a local TUI mode that uses pi-tui components directly:
-
-```typescript
-// src/tui/tui.ts
-import { ... } from "@mariozechner/pi-tui";
-```
-
-This provides the interactive terminal experience similar to pi's native mode.
 
 ## Key Differences from Pi CLI
 

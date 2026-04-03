@@ -8,7 +8,7 @@ import {
   isValidFileSecretRefId,
   resolveDefaultSecretProviderAlias,
 } from "../secrets/ref-contract.js";
-import type { WizardPrompter } from "../wizard/prompts.js";
+import type { WizardPrompter } from "../setup-runtime/prompts.js";
 
 let secretResolvePromise: Promise<typeof import("../secrets/resolve.js")> | undefined;
 

@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
 import {
   ANTHROPIC_SETUP_TOKEN_PREFIX,
   validateAnthropicSetupToken,
-} from "../commands/auth-token.js";
+} from "../internal-commands/auth-token.js";
 import { loadConfig } from "../config/config.js";
 import { resolveOpenClawAgentDir } from "./agent-paths.js";
 import {

@@ -9,14 +9,14 @@ import {
   normalizeProviderId,
   resolveConfiguredModelRef,
 } from "../agents/model-selection.js";
-import { formatTokenK } from "../commands/models/shared.js";
+import { formatTokenK } from "../internal-commands/models/shared.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { resolveAgentModelPrimaryValue } from "../config/model-input.js";
 import { applyPrimaryModel } from "../plugins/provider-model-primary.js";
 import type { ProviderPlugin } from "../plugins/types.js";
 import type { RuntimeEnv } from "../runtime.js";
 import { createLazyRuntimeSurface } from "../shared/lazy-runtime.js";
-import type { WizardPrompter, WizardSelectOption } from "../wizard/prompts.js";
+import type { WizardPrompter, WizardSelectOption } from "../setup-runtime/prompts.js";
 
 export { applyPrimaryModel } from "../plugins/provider-model-primary.js";
 
@@ -46,7 +46,7 @@ export type PromptDefaultModelResult = { model?: string; config?: OpenClawConfig
 export type PromptModelAllowlistResult = { models?: string[] };
 
 async function loadModelPickerRuntime() {
-  return import("../commands/model-picker.runtime.js");
+  return import("../internal-commands/model-picker.runtime.js");
 }
 
 const loadResolvedModelPickerRuntime = createLazyRuntimeSurface(

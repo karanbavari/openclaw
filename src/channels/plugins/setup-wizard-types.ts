@@ -1,7 +1,7 @@
 import type { OpenClawConfig } from "../../config/config.js";
 import type { DmPolicy } from "../../config/types.js";
 import type { RuntimeEnv } from "../../runtime.js";
-import type { WizardPrompter } from "../../wizard/prompts.js";
+import type { WizardPrompter } from "../../setup-runtime/prompts.js";
 import type { ChannelId, ChannelPlugin } from "./types.js";
 
 export type ChannelSetupPlugin = Pick<

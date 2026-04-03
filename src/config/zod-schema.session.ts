@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { parseByteSize } from "../cli/parse-bytes.js";
-import { parseDurationMs } from "../cli/parse-duration.js";
+import { parseByteSize } from "../internal-cli/parse-bytes.js";
+import { parseDurationMs } from "../internal-cli/parse-duration.js";
 import { ElevatedAllowFromSchema } from "./zod-schema.agent-runtime.js";
 import { createAllowDenyChannelRulesSchema } from "./zod-schema.allowdeny.js";
 import {

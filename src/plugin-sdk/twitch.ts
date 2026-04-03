@@ -34,7 +34,7 @@ export type { PluginRuntime } from "../plugins/runtime/types.js";
 export type { OpenClawPluginApi } from "../plugins/types.js";
 export type { RuntimeEnv } from "../runtime.js";
 export { formatDocsLink } from "../terminal/links.js";
-export type { WizardPrompter } from "../wizard/prompts.js";
+export type { WizardPrompter } from "../setup-runtime/prompts.js";
 
 const twitchSetup = createOptionalChannelSetupSurface({
   channel: "twitch",

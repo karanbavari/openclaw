@@ -304,8 +304,7 @@ Common signatures:
 
 Related:
 
-- [/tools/browser-linux-troubleshooting](/tools/browser-linux-troubleshooting)
-- [/tools/browser](/tools/browser)
+- Browser automation tooling has been removed from this SaaS-focused fork.
 
 ## If you upgraded and something suddenly broke
 

@@ -2,7 +2,7 @@
 import { spawnSync } from "node:child_process";
 import os from "node:os";
 import path from "node:path";
-import { forceFreePort, type PortProcess } from "../src/cli/ports.js";
+import { forceFreePort, type PortProcess } from "../src/internal-cli/ports.js";
 import { resolveGatewayPort } from "../src/config/config.js";
 
 function killGatewayListeners(port: number): PortProcess[] {

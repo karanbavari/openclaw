@@ -82,7 +82,7 @@ vi.mock("../../config/config.js", async (importOriginal) => {
   };
 });
 
-vi.mock("../../cli/command-secret-gateway.js", () => ({
+vi.mock("../../internal-cli/command-secret-gateway.js", () => ({
   resolveCommandSecretRefsViaGateway: mocks.resolveCommandSecretRefsViaGateway,
 }));
 

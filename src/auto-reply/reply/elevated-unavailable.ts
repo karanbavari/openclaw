@@ -1,4 +1,4 @@
-import { formatCliCommand } from "../../cli/command-format.js";
+import { formatCliCommand } from "../../internal-cli/command-format.js";
 
 export function formatElevatedUnavailableMessage(params: {
   runtimeSandboxed: boolean;

@@ -11,7 +11,7 @@ export {
   writeConfigFile,
 } from "../config/io.js";
 export { logConfigUpdated } from "../config/logging.js";
-export { updateConfig } from "../commands/models/shared.js";
+export { updateConfig } from "../internal-commands/models/shared.js";
 export { resolveChannelModelOverride } from "../channels/model-overrides.js";
 export { resolveMarkdownTableMode } from "../config/markdown-tables.js";
 export {

@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import { parseTimeoutMs } from "../../cli/parse-timeout.js";
+import { parseTimeoutMs } from "../../internal-cli/parse-timeout.js";
 import { jsonResult, readStringParam } from "./common.js";
 import type { GatewayCallOptions } from "./gateway.js";
 import { callGatewayTool } from "./gateway.js";

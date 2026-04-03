@@ -162,7 +162,7 @@ export function execDockerRaw(
   });
 }
 
-import { formatCliCommand } from "../../cli/command-format.js";
+import { formatCliCommand } from "../../internal-cli/command-format.js";
 import { markOpenClawExecEnv } from "../../infra/openclaw-exec-env.js";
 import { defaultRuntime } from "../../runtime.js";
 import { computeSandboxConfigHash } from "./config-hash.js";

@@ -1,5 +1,5 @@
 import { resolveNodeStartupTlsEnvironment } from "./bootstrap/node-startup-env.js";
-import { shouldSkipRespawnForArgv } from "./cli/respawn-policy.js";
+import { shouldSkipRespawnForArgv } from "./internal-cli/respawn-policy.js";
 import { isTruthyEnvValue } from "./infra/env.js";
 
 export const EXPERIMENTAL_WARNING_FLAG = "--disable-warning=ExperimentalWarning";

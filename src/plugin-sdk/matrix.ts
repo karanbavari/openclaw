@@ -140,7 +140,7 @@ export type { RuntimeEnv } from "../runtime.js";
 export { normalizeStringEntries } from "../shared/string-normalization.js";
 export { formatDocsLink } from "../terminal/links.js";
 export { redactSensitiveText } from "../logging/redact.js";
-export type { WizardPrompter } from "../wizard/prompts.js";
+export type { WizardPrompter } from "../setup-runtime/prompts.js";
 export {
   evaluateGroupRouteAccessForPolicy,
   resolveSenderScopedGroupPolicy,

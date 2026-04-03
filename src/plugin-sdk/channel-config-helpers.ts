@@ -4,7 +4,7 @@ import {
   setAccountEnabledInConfigSection as setAccountEnabledInConfigSectionInSection,
 } from "../channels/plugins/config-helpers.js";
 import type { ChannelConfigAdapter } from "../channels/plugins/types.adapters.js";
-import { formatCliCommand } from "../cli/command-format.js";
+import { formatCliCommand } from "../internal-cli/command-format.js";
 import type { OpenClawConfig } from "../config/config.js";
 import { resolveAccountEntry } from "../routing/account-lookup.js";
 import { DEFAULT_ACCOUNT_ID, normalizeAccountId } from "../routing/session-key.js";

@@ -79,10 +79,6 @@ vi.mock("./tools/sessions-yield-tool.js", () => ({
 vi.mock("./tools/subagents-tool.js", () => ({
   createSubagentsTool: mockToolFactory("subagents_stub"),
 }));
-vi.mock("./tools/tts-tool.js", () => ({
-  createTtsTool: mockToolFactory("tts_stub"),
-}));
-
 function asConfig(value: unknown): OpenClawConfig {
   return value as OpenClawConfig;
 }

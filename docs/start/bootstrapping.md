@@ -1,18 +1,17 @@
 ---
-summary: "Agent bootstrapping ritual that seeds the workspace and identity files"
+summary: "Agent workspace bootstrapping for the retained gateway runtime"
 read_when:
   - Understanding what happens on the first agent run
   - Explaining where bootstrapping files live
-  - Debugging onboarding identity setup
+  - Debugging initial workspace seeding in the retained runtime
 title: "Agent Bootstrapping"
 sidebarTitle: "Bootstrapping"
 ---
 
 # Agent Bootstrapping
 
-Bootstrapping is the **first‑run** ritual that prepares an agent workspace and
-collects identity details. It happens after onboarding, when the agent starts
-for the first time.
+Bootstrapping is the **first-run** workspace ritual that prepares an agent workspace
+and seeds identity/reference files for the retained gateway runtime.
 
 ## What bootstrapping does
 
@@ -26,9 +25,9 @@ On the first agent run, OpenClaw bootstraps the workspace (default
 
 ## Where it runs
 
-Bootstrapping always runs on the **gateway host**. If the macOS app connects to
-a remote Gateway, the workspace and bootstrapping files live on that remote
-machine.
+Bootstrapping always runs on the **gateway host**. In this SaaS-oriented fork,
+the browser control surface remains the primary entry point while the workspace
+files stay on the backend host.
 
 <Note>
 When the Gateway runs on another machine, edit workspace files on the gateway
@@ -37,5 +36,5 @@ host (for example, `user@gateway-host:~/.openclaw/workspace`).
 
 ## Related docs
 
-- macOS app onboarding: [Onboarding](/start/onboarding)
+- Web control surface: [Control UI](/web/control-ui)
 - Workspace layout: [Agent workspace](/concepts/agent-workspace)

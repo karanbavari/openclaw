@@ -15,30 +15,30 @@ const resolveCommitHashMock = vi.hoisted(() => vi.fn<() => string | null>(() => 
 const runCliMock = vi.hoisted(() => vi.fn(async () => {}));
 const shouldSkipRespawnForArgvMock = vi.hoisted(() => vi.fn(() => true));
 
-vi.mock("./cli/argv.js", () => ({
+vi.mock("./internal-cli/argv.js", () => ({
   isRootHelpInvocation: isRootHelpInvocationMock,
   isRootVersionInvocation: isRootVersionInvocationMock,
 }));
 
-vi.mock("./cli/container-target.js", () => ({
+vi.mock("./internal-cli/container-target.js", () => ({
   parseCliContainerArgs: (argv: string[]) => ({ ok: true, container: null, argv }),
   resolveCliContainerTarget: resolveCliContainerTargetMock,
 }));
 
-vi.mock("./cli/profile.js", () => ({
+vi.mock("./internal-cli/profile.js", () => ({
   applyCliProfileEnv: applyCliProfileEnvMock,
   parseCliProfileArgs: parseCliProfileArgsMock,
 }));
 
-vi.mock("./cli/run-main.js", () => ({
+vi.mock("./internal-cli/run-main.js", () => ({
   runCli: runCliMock,
 }));
 
-vi.mock("./cli/respawn-policy.js", () => ({
+vi.mock("./internal-cli/respawn-policy.js", () => ({
   shouldSkipRespawnForArgv: shouldSkipRespawnForArgvMock,
 }));
 
-vi.mock("./cli/windows-argv.js", () => ({
+vi.mock("./internal-cli/windows-argv.js", () => ({
   normalizeWindowsArgv: normalizeWindowsArgvMock,
 }));
 

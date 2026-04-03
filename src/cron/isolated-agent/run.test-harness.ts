@@ -211,8 +211,8 @@ vi.mock("../../auto-reply/thinking.js", async (importOriginal) => {
   };
 });
 
-vi.mock("../../cli/outbound-send-deps.js", async (importOriginal) => {
-  const actual = await importOriginal<typeof import("../../cli/outbound-send-deps.js")>();
+vi.mock("../../internal-cli/outbound-send-deps.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../internal-cli/outbound-send-deps.js")>();
   return {
     ...actual,
     createOutboundSendDeps: vi.fn().mockReturnValue({}),

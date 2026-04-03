@@ -19,10 +19,6 @@
       "durationMs": 3357.946533203125,
       "testCount": 29
     },
-    "test/web-search-provider-boundary.test.ts": {
-      "durationMs": 2897.3154296875,
-      "testCount": 1
-    },
     "src/plugin-sdk/index.bundle.test.ts": {
       "durationMs": 2524.4013671875,
       "testCount": 1
@@ -139,10 +135,6 @@
       "durationMs": 451.165771484375,
       "testCount": 19
     },
-    "src/node-host/invoke-system-run-plan.test.ts": {
-      "durationMs": 437.455810546875,
-      "testCount": 41
-    },
     "src/cron/isolated-agent.delivers-response-has-heartbeat-ok-but-includes.test.ts": {
       "durationMs": 406.56201171875,
       "testCount": 6
@@ -219,7 +211,7 @@
       "durationMs": 292.16796875,
       "testCount": 4
     },
-    "src/cli/program/preaction.test.ts": {
+    "src/internal-cli/program/preaction.test.ts": {
       "durationMs": 291.583251953125,
       "testCount": 8
     },
@@ -231,7 +223,7 @@
       "durationMs": 276.7587890625,
       "testCount": 12
     },
-    "src/cli/daemon-cli/install.integration.test.ts": {
+    "src/internal-cli/daemon-cli/install.integration.test.ts": {
       "durationMs": 275.413330078125,
       "testCount": 2
     },
@@ -263,7 +255,7 @@
       "durationMs": 233.672607421875,
       "testCount": 4
     },
-    "src/cli/daemon-cli/restart-health.test.ts": {
+    "src/internal-cli/daemon-cli/restart-health.test.ts": {
       "durationMs": 231.465087890625,
       "testCount": 10
     },
@@ -303,10 +295,6 @@
       "durationMs": 204.234130859375,
       "testCount": 10
     },
-    "src/node-host/invoke-system-run.test.ts": {
-      "durationMs": 197.60498046875,
-      "testCount": 39
-    },
     "src/plugins/sdk-alias.test.ts": {
       "durationMs": 193.329345703125,
       "testCount": 24
@@ -339,10 +327,6 @@
       "durationMs": 156.636474609375,
       "testCount": 4
     },
-    "test/scripts/ios-team-id.test.ts": {
-      "durationMs": 155.50732421875,
-      "testCount": 3
-    },
     "src/hooks/plugin-hooks.test.ts": {
       "durationMs": 151.358642578125,
       "testCount": 4
@@ -362,10 +346,6 @@
     "ui/src/ui/app-chat.test.ts": {
       "durationMs": 143.6455078125,
       "testCount": 3
-    },
-    "src/wizard/setup.gateway-config.test.ts": {
-      "durationMs": 142.656494140625,
-      "testCount": 7
     },
     "src/entry.version-fast-path.test.ts": {
       "durationMs": 141.65087890625,
@@ -415,7 +395,7 @@
       "durationMs": 127.07763671875,
       "testCount": 30
     },
-    "src/cli/config-cli.integration.test.ts": {
+    "src/internal-cli/config-cli.integration.test.ts": {
       "durationMs": 126.407470703125,
       "testCount": 4
     },
@@ -491,7 +471,7 @@
       "durationMs": 100.48779296875,
       "testCount": 1
     },
-    "src/cli/update-cli/restart-helper.test.ts": {
+    "src/internal-cli/update-cli/restart-helper.test.ts": {
       "durationMs": 99.556640625,
       "testCount": 20
     },
@@ -575,7 +555,7 @@
       "durationMs": 76.61181640625,
       "testCount": 4
     },
-    "src/cli/plugins-cli.install.test.ts": {
+    "src/internal-cli/plugins-cli.install.test.ts": {
       "durationMs": 76.592529296875,
       "testCount": 8
     },
@@ -591,7 +571,7 @@
       "durationMs": 73.209228515625,
       "testCount": 4
     },
-    "src/cli/pairing-cli.test.ts": {
+    "src/internal-cli/pairing-cli.test.ts": {
       "durationMs": 72.9013671875,
       "testCount": 12
     },
@@ -607,7 +587,7 @@
       "durationMs": 70.1806640625,
       "testCount": 3
     },
-    "src/cli/program.smoke.test.ts": {
+    "src/internal-cli/program.smoke.test.ts": {
       "durationMs": 69.348388671875,
       "testCount": 4
     },
@@ -651,7 +631,7 @@
       "durationMs": 65.213134765625,
       "testCount": 5
     },
-    "src/cli/daemon-cli/status.gather.test.ts": {
+    "src/internal-cli/daemon-cli/status.gather.test.ts": {
       "durationMs": 65.18212890625,
       "testCount": 12
     },
@@ -747,7 +727,7 @@
       "durationMs": 54.710693359375,
       "testCount": 4
     },
-    "src/cli/memory-cli.test.ts": {
+    "src/internal-cli/memory-cli.test.ts": {
       "durationMs": 54.0625,
       "testCount": 24
     },
@@ -807,7 +787,7 @@
       "durationMs": 49.58642578125,
       "testCount": 1
     },
-    "src/cli/nodes-camera.test.ts": {
+    "src/internal-cli/nodes-camera.test.ts": {
       "durationMs": 48.5517578125,
       "testCount": 17
     },
@@ -915,7 +895,7 @@
       "durationMs": 40.9560546875,
       "testCount": 8
     },
-    "src/cli/mcp-cli.test.ts": {
+    "src/internal-cli/mcp-cli.test.ts": {
       "durationMs": 40.920166015625,
       "testCount": 2
     },
@@ -995,14 +975,6 @@
       "durationMs": 34.947509765625,
       "testCount": 8
     },
-    "src/plugins/bundled-web-search.test.ts": {
-      "durationMs": 34.859130859375,
-      "testCount": 4
-    },
-    "src/node-host/invoke-browser.test.ts": {
-      "durationMs": 34.781982421875,
-      "testCount": 4
-    },
     "src/plugins/marketplace.test.ts": {
       "durationMs": 34.758544921875,
       "testCount": 3
@@ -1019,7 +991,7 @@
       "durationMs": 33.62744140625,
       "testCount": 3
     },
-    "src/cli/update-cli.test.ts": {
+    "src/internal-cli/update-cli.test.ts": {
       "durationMs": 33.624267578125,
       "testCount": 20
     }

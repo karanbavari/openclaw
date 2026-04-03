@@ -8,4 +8,4 @@ export type { OpenClawConfig } from "../config/config.js";
 export { formatZonedTimestamp } from "../infra/format-time/format-datetime.js";
 export type { PluginRuntime, RuntimeLogger } from "../plugins/runtime/types.js";
 export type { RuntimeEnv } from "../runtime.js";
-export type { WizardPrompter } from "../wizard/prompts.js";
+export type { WizardPrompter } from "../setup-runtime/prompts.js";

@@ -7,7 +7,6 @@ import {
   createLazyRuntimeModule,
 } from "../../shared/lazy-runtime.js";
 import { VERSION } from "../../version.js";
-import { listWebSearchProviders, runWebSearch } from "../../web-search/runtime.js";
 import { createRuntimeAgent } from "./runtime-agent.js";
 import { defineCachedValue } from "./runtime-cache.js";
 import { createRuntimeChannel } from "./runtime-channel.js";
@@ -197,8 +196,10 @@ export function createPluginRuntime(_options: CreatePluginRuntimeOptions = {}): 
     system: createRuntimeSystem(),
     media: createRuntimeMedia(),
     webSearch: {
-      listProviders: listWebSearchProviders,
-      search: runWebSearch,
+      listProviders: () => [],
+      search: async () => {
+        throw new Error("Web search is unsupported in this SaaS fork.");
+      },
     },
     channel: createRuntimeChannel(),
     events: createRuntimeEvents(),

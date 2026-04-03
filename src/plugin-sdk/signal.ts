@@ -33,7 +33,7 @@ export {
   createPatchedAccountSetupAdapter,
   createSetupInputPresenceValidator,
 } from "../channels/plugins/setup-helpers.js";
-export { formatCliCommand } from "../cli/command-format.js";
+export { formatCliCommand } from "../internal-cli/command-format.js";
 export { formatDocsLink } from "../terminal/links.js";
 
 export {

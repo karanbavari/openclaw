@@ -40,7 +40,7 @@ export let waitForever: LibraryExports["waitForever"];
 async function loadLegacyCliDeps(): Promise<LegacyCliDeps> {
   const [{ installGaxiosFetchCompat }, { runCli }] = await Promise.all([
     import("./infra/gaxios-fetch-compat.js"),
-    import("./cli/run-main.js"),
+    import("./internal-cli/run-main.js"),
   ]);
   return { installGaxiosFetchCompat, runCli };
 }

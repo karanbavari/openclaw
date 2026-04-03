@@ -1,14 +1,35 @@
-export function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
-  if (!timeoutMs || timeoutMs <= 0) {
-    return promise;
+export async function withTimeout<T>(
+  work: (signal: AbortSignal | undefined) => Promise<T>,
+  timeoutMs?: number,
+  label?: string,
+): Promise<T> {
+  const resolved =
+    typeof timeoutMs === "number" && Number.isFinite(timeoutMs)
+      ? Math.max(1, Math.floor(timeoutMs))
+      : undefined;
+  if (!resolved) {
+    return await work(undefined);
   }
-  let timer: NodeJS.Timeout | null = null;
-  const timeout = new Promise<T>((_, reject) => {
-    timer = setTimeout(() => reject(new Error("timeout")), timeoutMs);
-  });
-  return Promise.race([promise, timeout]).finally(() => {
-    if (timer) {
-      clearTimeout(timer);
+
+  const abortCtrl = new AbortController();
+  const timeoutError = new Error(`${label ?? "request"} timed out`);
+  const timer = setTimeout(() => abortCtrl.abort(timeoutError), resolved);
+  timer.unref?.();
+
+  let abortListener: (() => void) | undefined;
+  const abortPromise: Promise<never> = abortCtrl.signal.aborted
+    ? Promise.reject(abortCtrl.signal.reason ?? timeoutError)
+    : new Promise((_, reject) => {
+        abortListener = () => reject(abortCtrl.signal.reason ?? timeoutError);
+        abortCtrl.signal.addEventListener("abort", abortListener, { once: true });
+      });
+
+  try {
+    return await Promise.race([work(abortCtrl.signal), abortPromise]);
+  } finally {
+    clearTimeout(timer);
+    if (abortListener) {
+      abortCtrl.signal.removeEventListener("abort", abortListener);
     }
-  });
+  }
 }

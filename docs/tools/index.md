@@ -1,5 +1,5 @@
 ---
-summary: "OpenClaw tools and plugins overview: what the agent can do and how to extend it"
+summary: "Overview of the retained tools and plugin surface in the SaaS-focused fork"
 read_when:
   - You want to understand what tools OpenClaw provides
   - You need to configure, allow, or deny tools
@@ -10,8 +10,8 @@ title: "Tools and Plugins"
 # Tools and Plugins
 
 Everything the agent does beyond generating text happens through **tools**.
-Tools are how the agent reads files, runs commands, browses the web, sends
-messages, and interacts with devices.
+Tools are how the agent reads files, runs commands, manages sessions, sends
+messages, and performs retained gateway actions.
 
 ## Tools, skills, and plugins
 
@@ -19,8 +19,8 @@ OpenClaw has three layers that work together:
 
 <Steps>
   <Step title="Tools are what the agent calls">
-    A tool is a typed function the agent can invoke (e.g. `exec`, `browser`,
-    `web_search`, `message`). OpenClaw ships a set of **built-in tools** and
+    A tool is a typed function the agent can invoke (e.g. `exec`, `message`,
+    `sessions_spawn`). OpenClaw ships a set of **built-in tools** and
     plugins can register additional ones.
 
     The agent sees tools as structured function definitions sent to the model API.
@@ -38,8 +38,8 @@ OpenClaw has three layers that work together:
   </Step>
 
   <Step title="Plugins package everything together">
-    A plugin is a package that can register any combination of capabilities:
-    channels, model providers, tools, skills, speech, image generation, and more.
+    A plugin is a package that can register capabilities such as channels,
+    model providers, tools, skills, and memory services.
     Some plugins are **core** (shipped with OpenClaw), others are **external**
     (published on npm by the community).
 
@@ -55,8 +55,6 @@ These tools ship with OpenClaw and are available without installing any plugins:
 | Tool                                    | What it does                                             | Page                                    |
 | --------------------------------------- | -------------------------------------------------------- | --------------------------------------- |
 | `exec` / `process`                      | Run shell commands, manage background processes          | [Exec](/tools/exec)                     |
-| `browser`                               | Control a Chromium browser (navigate, click, screenshot) | [Browser](/tools/browser)               |
-| `web_search` / `x_search` / `web_fetch` | Search the web, search X posts, fetch page content       | [Web](/tools/web)                       |
 | `read` / `write` / `edit`               | File I/O in the workspace                                |                                         |
 | `apply_patch`                           | Multi-hunk file patches                                  | [Apply Patch](/tools/apply-patch)       |
 | `message`                               | Send messages across all channels                        | [Agent Send](/tools/agent-send)         |
@@ -70,12 +68,8 @@ For image work, use `image` for analysis and `image_generate` for generation or 
 
 ### Plugin-provided tools
 
-Plugins can register additional tools. Some examples:
-
-- [Lobster](/tools/lobster) — typed workflow runtime with resumable approvals
-- [LLM Task](/tools/llm-task) — JSON-only LLM step for structured output
-- [Diffs](/tools/diffs) — diff viewer and renderer
-- [OpenProse](/prose) — markdown-first workflow orchestration
+Plugins can register additional tools where the retained SaaS fork still needs them.
+The bundled surface is intentionally narrower than upstream.
 
 ## Tool configuration
 
@@ -87,7 +81,7 @@ config. Deny always wins over allow.
 ```json5
 {
   tools: {
-    allow: ["group:fs", "browser", "web_search"],
+    allow: ["group:fs", "message"],
     deny: ["exec"],
   },
 }
@@ -115,8 +109,7 @@ Use `group:*` shorthands in allow/deny lists:
 | `group:fs`         | read, write, edit, apply_patch                                                                            |
 | `group:sessions`   | sessions_list, sessions_history, sessions_send, sessions_spawn, sessions_yield, subagents, session_status |
 | `group:memory`     | memory_search, memory_get                                                                                 |
-| `group:web`        | web_search, x_search, web_fetch                                                                           |
-| `group:ui`         | browser, canvas                                                                                           |
+| `group:ui`         | canvas                                                                                                    |
 | `group:automation` | cron, gateway                                                                                             |
 | `group:messaging`  | message                                                                                                   |
 | `group:nodes`      | nodes                                                                                                     |

@@ -11,9 +11,9 @@ import {
   CHANNEL_MESSAGE_ACTION_NAMES,
   type ChannelMessageActionName,
 } from "../../channels/plugins/types.js";
-import { resolveCommandSecretRefsViaGateway } from "../../cli/command-secret-gateway.js";
-import { getScopedChannelsCommandSecretTargets } from "../../cli/command-secret-targets.js";
-import { resolveMessageSecretScope } from "../../cli/message-secret-scope.js";
+import { resolveCommandSecretRefsViaGateway } from "../../internal-cli/command-secret-gateway.js";
+import { getScopedChannelsCommandSecretTargets } from "../../internal-cli/command-secret-targets.js";
+import { resolveMessageSecretScope } from "../../internal-cli/message-secret-scope.js";
 import type { OpenClawConfig } from "../../config/config.js";
 import { loadConfig } from "../../config/config.js";
 import { GATEWAY_CLIENT_IDS, GATEWAY_CLIENT_MODES } from "../../gateway/protocol/client-info.js";

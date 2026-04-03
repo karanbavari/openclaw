@@ -3,10 +3,10 @@ import { spawn } from "node:child_process";
 import { enableCompileCache } from "node:module";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
-import { isRootHelpInvocation, isRootVersionInvocation } from "./cli/argv.js";
-import { parseCliContainerArgs, resolveCliContainerTarget } from "./cli/container-target.js";
-import { applyCliProfileEnv, parseCliProfileArgs } from "./cli/profile.js";
-import { normalizeWindowsArgv } from "./cli/windows-argv.js";
+import { isRootHelpInvocation, isRootVersionInvocation } from "./internal-cli/argv.js";
+import { parseCliContainerArgs, resolveCliContainerTarget } from "./internal-cli/container-target.js";
+import { applyCliProfileEnv, parseCliProfileArgs } from "./internal-cli/profile.js";
+import { normalizeWindowsArgv } from "./internal-cli/windows-argv.js";
 import { buildCliRespawnPlan } from "./entry.respawn.js";
 import { isTruthyEnvValue, normalizeEnv } from "./infra/env.js";
 import { isMainModule } from "./infra/is-main.js";
@@ -185,7 +185,7 @@ export function tryHandleRootHelpFastPath(
       .catch(handleError);
     return true;
   }
-  import("./cli/program/root-help.js")
+  import("./internal-cli/program/root-help.js")
     .then(({ outputRootHelp }) => {
       return outputRootHelp();
     })
@@ -197,7 +197,7 @@ function runMainOrRootHelp(argv: string[]): void {
   if (tryHandleRootHelpFastPath(argv)) {
     return;
   }
-  import("./cli/run-main.js")
+  import("./internal-cli/run-main.js")
     .then(({ runCli }) => runCli(argv))
     .catch((error) => {
       console.error(

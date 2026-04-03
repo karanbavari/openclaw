@@ -65,7 +65,7 @@ export {
   resolveEffectiveAllowFromLists,
 } from "../security/dm-policy-shared.js";
 export { formatDocsLink } from "../terminal/links.js";
-export type { WizardPrompter } from "../wizard/prompts.js";
+export type { WizardPrompter } from "../setup-runtime/prompts.js";
 export { createChannelPairingController } from "./channel-pairing.js";
 export { dispatchInboundReplyWithBase } from "./inbound-reply-dispatch.js";
 export { ircSetupAdapter, ircSetupWizard } from "./irc-surface.js";

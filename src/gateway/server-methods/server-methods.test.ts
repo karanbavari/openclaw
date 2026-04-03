@@ -20,7 +20,7 @@ import { sanitizeChatSendMessageInput } from "./chat.js";
 import { createExecApprovalHandlers } from "./exec-approval.js";
 import { logsHandlers } from "./logs.js";
 
-vi.mock("../../commands/status.js", () => ({
+vi.mock("../../internal-commands/status.js", () => ({
   getStatusSummary: vi.fn().mockResolvedValue({ ok: true }),
 }));
 
@@ -1111,11 +1111,11 @@ describe("exec approval handlers", () => {
 });
 
 describe("gateway healthHandlers.status scope handling", () => {
-  let statusModule: typeof import("../../commands/status.js");
+  let statusModule: typeof import("../../internal-commands/status.js");
   let healthHandlers: typeof import("./health.js").healthHandlers;
 
   beforeAll(async () => {
-    statusModule = await import("../../commands/status.js");
+    statusModule = await import("../../internal-commands/status.js");
     ({ healthHandlers } = await import("./health.js"));
   });
 
