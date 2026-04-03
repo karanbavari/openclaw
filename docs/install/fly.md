@@ -439,32 +439,8 @@ fly ssh console -a my-openclaw
 
 ### Webhooks with private deployment
 
-If you need webhook callbacks (Twilio, Telnyx, etc.) without public exposure:
-
-1. **ngrok tunnel** - Run ngrok inside the container or as a sidecar
-2. **Tailscale Funnel** - Expose specific paths via Tailscale
-3. **Outbound-only** - Some providers (Twilio) work fine for outbound calls without webhooks
-
-Example voice-call config with ngrok:
-
-```json5
-{
-  plugins: {
-    entries: {
-      "voice-call": {
-        enabled: true,
-        config: {
-          provider: "twilio",
-          tunnel: { provider: "ngrok" },
-          webhookSecurity: {
-            allowedHosts: ["example.ngrok.app"],
-          },
-        },
-      },
-    },
-  },
-}
-```
+This fork no longer bundles the voice-call stack, so Twilio/Telnyx call webhook
+examples were removed from this guide.
 
 The ngrok tunnel runs inside the container and provides a public webhook URL without exposing the Fly app itself. Set `webhookSecurity.allowedHosts` to the public tunnel hostname so forwarded host headers are accepted.
 

@@ -10,10 +10,7 @@ const mocks = vi.hoisted(() => ({
     if (!raw) {
       return null;
     }
-    if (raw === "imsg") {
-      return "imessage";
-    }
-    if (["telegram", "discord", "imessage"].includes(raw)) {
+    if (["telegram", "whatsapp"].includes(raw)) {
       return raw;
     }
     return null;
@@ -21,7 +18,7 @@ const mocks = vi.hoisted(() => ({
   getPairingAdapter: vi.fn((channel: string) => ({
     idLabel: pairingIdLabels[channel] ?? "userId",
   })),
-  listPairingChannels: vi.fn(() => ["telegram", "discord", "imessage"]),
+  listPairingChannels: vi.fn(() => ["telegram", "whatsapp"]),
 }));
 
 const {
@@ -35,7 +32,7 @@ const {
 
 const pairingIdLabels: Record<string, string> = {
   telegram: "telegramUserId",
-  discord: "discordUserId",
+  whatsapp: "whatsappJid",
 };
 
 vi.mock("../pairing/pairing-store.js", () => ({
@@ -119,11 +116,11 @@ describe("pairing cli", () => {
       meta: { username: "peter" },
     },
     {
-      name: "discord ids",
-      channel: "discord",
+      name: "whatsapp ids",
+      channel: "whatsapp",
       id: "999",
-      label: "discordUserId",
-      meta: { tag: "Ada#0001" },
+      label: "whatsappJid",
+      meta: { phone: "+919999999999" },
     },
   ])("labels $name correctly", async ({ channel, id, label, meta }) => {
     listChannelPairingRequests.mockResolvedValueOnce([
@@ -163,31 +160,13 @@ describe("pairing cli", () => {
     expect(listChannelPairingRequests).toHaveBeenCalledWith("telegram", process.env, "yy");
   });
 
-  it("normalizes channel aliases", async () => {
-    listChannelPairingRequests.mockResolvedValueOnce([]);
-
-    await runPairing(["pairing", "list", "imsg"]);
-
-    expect(normalizeChannelId).toHaveBeenCalledWith("imsg");
-    expect(listChannelPairingRequests).toHaveBeenCalledWith("imessage");
-  });
-
-  it("accepts extension channels outside the registry", async () => {
-    listChannelPairingRequests.mockResolvedValueOnce([]);
-
-    await runPairing(["pairing", "list", "zalo"]);
-
-    expect(normalizeChannelId).toHaveBeenCalledWith("zalo");
-    expect(listChannelPairingRequests).toHaveBeenCalledWith("zalo");
-  });
-
   it("defaults list to the sole available channel", async () => {
-    listPairingChannels.mockReturnValueOnce(["slack"]);
+    listPairingChannels.mockReturnValueOnce(["telegram"]);
     listChannelPairingRequests.mockResolvedValueOnce([]);
 
     await runPairing(["pairing", "list"]);
 
-    expect(listChannelPairingRequests).toHaveBeenCalledWith("slack");
+    expect(listChannelPairingRequests).toHaveBeenCalledWith("telegram");
   });
 
   it("accepts channel as positional for approve (npm-run compatible)", async () => {
@@ -228,13 +207,13 @@ describe("pairing cli", () => {
   });
 
   it("defaults approve to the sole available channel when only code is provided", async () => {
-    listPairingChannels.mockReturnValueOnce(["slack"]);
+    listPairingChannels.mockReturnValueOnce(["whatsapp"]);
     mockApprovedPairing();
 
     await runPairing(["pairing", "approve", "ABCDEFGH"]);
 
     expect(approveChannelPairingCode).toHaveBeenCalledWith({
-      channel: "slack",
+      channel: "whatsapp",
       code: "ABCDEFGH",
     });
   });

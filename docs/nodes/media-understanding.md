@@ -43,7 +43,6 @@ If understanding fails or is disabled, **the reply flow continues** with the ori
 - `tools.media.image` / `tools.media.audio` / `tools.media.video`:
   - defaults (`prompt`, `maxChars`, `maxBytes`, `timeoutSeconds`, `language`)
   - provider overrides (`baseUrl`, `headers`, `providerOptions`)
-  - Deepgram audio options via `tools.media.audio.providerOptions.deepgram`
   - audio transcript echo controls (`echoTranscript`, default `false`; `echoFormat`)
   - optional **per‑capability `models` list** (preferred before shared models)
   - `attachments` policy (`mode`, `maxAttachments`, `prefer`)
@@ -190,10 +189,7 @@ lists, OpenClaw can infer defaults:
 - `openai`, `anthropic`, `minimax`: **image**
 - `moonshot`: **image + video**
 - `google` (Gemini API): **image + audio + video**
-- `mistral`: **audio**
 - `zai`: **image**
-- `groq`: **audio**
-- `deepgram`: **audio**
 
 For CLI entries, **set `capabilities` explicitly** to avoid surprising matches.
 If you omit `capabilities`, the entry is eligible for the list it appears in.

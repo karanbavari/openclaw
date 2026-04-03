@@ -15,8 +15,8 @@ x-i18n:
 
 # 模型提供商
 
-OpenClaw 可以使用许多 LLM 提供商。选择一个提供商，完成身份验证，然后将
-默认模型设置为 `provider/model`。
+这个 fork 只保留了一组精简后的内置 LLM 提供商。选择一个提供商，完成身份验证，
+然后将默认模型设置为 `provider/model`。
 
 在找聊天渠道文档（WhatsApp/Telegram/Discord/Slack/Mattermost（插件）/等）？请参见 [Channels](/channels)。
 
@@ -31,39 +31,22 @@ OpenClaw 可以使用许多 LLM 提供商。选择一个提供商，完成身份
 }
 ```
 
-## 提供商文档
+## 保留的内置模型提供商
 
-- [Amazon Bedrock](/providers/bedrock)
 - [Anthropic（API + Claude Code CLI）](/providers/anthropic)
-- [Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)
+- [GitHub Copilot](/providers/github-copilot)
 - [GLM 模型](/providers/glm)
-- [Hugging Face（Inference）](/providers/huggingface)
+- [Google（Gemini）](/providers/google)
 - [Kilocode](/providers/kilocode)
-- [LiteLLM（统一网关）](/providers/litellm)
 - [MiniMax](/providers/minimax)
-- [Mistral](/providers/mistral)
 - [Moonshot AI（Kimi + Kimi Coding）](/providers/moonshot)
-- [NVIDIA](/providers/nvidia)
-- [Ollama（云端 + 本地模型）](/providers/ollama)
 - [OpenAI（API + Codex）](/providers/openai)
-- [OpenCode（Zen + Go）](/providers/opencode)
 - [OpenRouter](/providers/openrouter)
-- [Qianfan](/providers/qianfan)
-- [Qwen（OAuth）](/providers/qwen)
-- [Together AI](/providers/together)
-- [Vercel AI Gateway](/providers/vercel-ai-gateway)
-- [Venice（Venice AI，注重隐私）](/providers/venice)
-- [vLLM（本地模型）](/providers/vllm)
-- [Xiaomi](/providers/xiaomi)
 - [Z.AI](/providers/zai)
-
-## 转录提供商
-
-- [Deepgram（音频转录）](/providers/deepgram)
 
 ## 社区工具
 
 - [Claude Max API Proxy](/providers/claude-max-api-proxy) - 面向 Claude 订阅凭证的社区代理（使用前请核实 Anthropic 政策/条款）
 
-有关完整的提供商目录（xAI、Groq、Mistral 等）和高级配置，
-请参见 [模型提供商](/concepts/model-providers)。
+上游其它内置提供商在这个 fork 中已被移除；如果配置里继续引用它们，
+校验会直接报错。

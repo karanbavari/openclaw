@@ -23,7 +23,7 @@ x-i18n:
 
 ```json
 {
-  "id": "voice-call",
+  "id": "open-prose",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,

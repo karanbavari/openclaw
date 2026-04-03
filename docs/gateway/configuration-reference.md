@@ -2025,7 +2025,7 @@ Configures inbound media understanding (image/audio/video):
 
 **Provider entry** (`type: "provider"` or omitted):
 
-- `provider`: API provider id (`openai`, `anthropic`, `google`/`gemini`, `groq`, etc.)
+- `provider`: API provider id (`openai`, `anthropic`, `google`/`gemini`, etc.)
 - `model`: model id override
 - `profile` / `preferredProfile`: `auth-profiles.json` profile selection
 
@@ -2036,7 +2036,7 @@ Configures inbound media understanding (image/audio/video):
 
 **Common fields:**
 
-- `capabilities`: optional list (`image`, `audio`, `video`). Defaults: `openai`/`anthropic`/`minimax` → image, `google` → image+audio+video, `groq` → audio.
+- `capabilities`: optional list (`image`, `audio`, `video`). Defaults: `openai`/`anthropic`/`minimax` → image, `google` → image+audio+video.
 - `prompt`, `maxChars`, `maxBytes`, `timeoutSeconds`, `language`: per-entry overrides.
 - Failures fall back to the next entry.
 
@@ -2457,18 +2457,18 @@ See [Local Models](/gateway/local-models). TL;DR: run a large local model via LM
 {
   plugins: {
     enabled: true,
-    allow: ["voice-call"],
+    allow: ["open-prose"],
     deny: [],
     load: {
-      paths: ["~/Projects/oss/voice-call-extension"],
+      paths: ["~/Projects/oss/my-plugin"],
     },
     entries: {
-      "voice-call": {
+      "open-prose": {
         enabled: true,
         hooks: {
           allowPromptInjection: false,
         },
-        config: { provider: "twilio" },
+        config: {},
       },
     },
   },

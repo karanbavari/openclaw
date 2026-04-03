@@ -17,7 +17,7 @@ vi.mock("node:fs", async () => {
 });
 
 vi.mock("../channels/registry.js", () => ({
-  CHAT_CHANNEL_ORDER: ["telegram", "discord"],
+  CHAT_CHANNEL_ORDER: ["telegram", "whatsapp"],
 }));
 
 describe("resolveCliChannelOptions", () => {
@@ -39,7 +39,7 @@ describe("resolveCliChannelOptions", () => {
       throw new Error("ENOENT");
     });
 
-    expect(resolveCliChannelOptions()).toEqual(["telegram", "discord"]);
+    expect(resolveCliChannelOptions()).toEqual(["telegram", "whatsapp"]);
   });
 
   it("ignores external catalog env during CLI bootstrap", async () => {

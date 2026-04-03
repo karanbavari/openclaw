@@ -44,22 +44,17 @@ x-i18n:
     - **OpenAI Code (Codex) 订阅（OAuth）**：浏览器流程；粘贴 `code#state`。
       - 当模型未设置或为 `openai/*` 时，将 `agents.defaults.model` 设置为 `openai-codex/gpt-5.2`。
     - **OpenAI API key**：如果存在则使用 `OPENAI_API_KEY`，否则提示输入 key，然后将其存储到凭证配置文件中。
-    - **xAI（Grok）API key**：提示输入 `XAI_API_KEY`，并将 xAI 配置为模型提供商。
-    - **OpenCode**：提示输入 `OPENCODE_API_KEY`（或 `OPENCODE_ZEN_API_KEY`，可从 https://opencode.ai/auth 获取），并让你选择 Zen 或 Go 目录。
-    - **Ollama**：提示输入 Ollama base URL，提供 **Cloud + Local** 或 **Local** 模式，发现可用模型，并在需要时自动拉取所选本地模型。
-    - 更多细节： [Ollama](/providers/ollama)
+    - **OpenRouter API key**：提示输入 `OPENROUTER_API_KEY`。
+    - **Google Gemini API key**：提示输入 `GEMINI_API_KEY`。
+    - **GitHub Copilot**：启动 GitHub Copilot 设备登录流程。
+    - **Kilocode API key**：提示输入 `KILOCODE_API_KEY`。
     - **API key**：为你存储该 key。
-    - **Vercel AI Gateway（多模型代理）**：提示输入 `AI_GATEWAY_API_KEY`。
-    - 更多细节： [Vercel AI Gateway](/providers/vercel-ai-gateway)
-    - **Cloudflare AI Gateway**：提示输入 Account ID、Gateway ID 和 `CLOUDFLARE_AI_GATEWAY_API_KEY`。
-    - 更多细节： [Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)
-    - **MiniMax M2.5**：自动写入配置。
+    - **MiniMax**：自动写入配置。
     - 更多细节： [MiniMax](/providers/minimax)
-    - **Synthetic（Anthropic 兼容）**：提示输入 `SYNTHETIC_API_KEY`。
-    - 更多细节： [Synthetic](/providers/synthetic)
     - **Moonshot（Kimi K2）**：自动写入配置。
     - **Kimi Coding**：自动写入配置。
     - 更多细节： [Moonshot AI (Kimi + Kimi Coding)](/providers/moonshot)
+    - **Z.AI**：为同一个 API key 提供受支持的 endpoint 预设。
     - **Skip**：暂不配置认证。
     - 从已检测到的选项中选择默认模型（或手动输入 `provider/model`）。为了获得最佳质量并降低 prompt injection 风险，请选择你在提供商栈中可用的最强最新一代模型。
     - 向导会运行模型检查，并在所配置模型未知或缺少认证时发出警告。

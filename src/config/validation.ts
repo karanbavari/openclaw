@@ -1,4 +1,5 @@
 import path from "node:path";
+import { normalizeProviderId } from "../agents/provider-id.js";
 import { resolveAgentWorkspaceDir, resolveDefaultAgentId } from "../agents/agent-scope.js";
 import { CHANNEL_IDS, normalizeChatChannelId } from "../channels/registry.js";
 import { withBundledPluginAllowlistCompat } from "../plugins/bundled-compat.js";
@@ -32,6 +33,48 @@ import { coerceSecretRef } from "./types.secrets.js";
 import { OpenClawSchema } from "./zod-schema.js";
 
 const LEGACY_REMOVED_PLUGIN_IDS = new Set(["google-antigravity-auth", "google-gemini-cli-auth"]);
+const REMOVED_CAPABILITY_PLUGIN_IDS = new Set([
+  "deepgram",
+  "elevenlabs",
+  "groq",
+  "microsoft",
+  "talk-voice",
+  "voice-call",
+]);
+const REMOVED_PROVIDER_IDS = new Set([
+  "amazon-bedrock",
+  "anthropic-vertex",
+  "byteplus",
+  "byteplus-plan",
+  "chutes",
+  "cloudflare-ai-gateway",
+  "copilot-proxy",
+  "deepseek",
+  "fal",
+  "huggingface",
+  "litellm",
+  "microsoft-foundry",
+  "mistral",
+  "modelstudio",
+  "nvidia",
+  "ollama",
+  "opencode",
+  "opencode-go",
+  "qianfan",
+  "qwen-portal",
+  "sglang",
+  "synthetic",
+  "together",
+  "venice",
+  "vercel-ai-gateway",
+  "vllm",
+  "volcengine",
+  "volcengine-plan",
+  "xai",
+  "xiaomi",
+]);
+const REMOVED_SPEECH_PROVIDER_IDS = new Set(["elevenlabs", "microsoft", "edge"]);
+const REMOVED_MEDIA_PROVIDER_IDS = new Set(["deepgram", "groq"]);
 
 type UnknownIssueRecord = Record<string, unknown>;
 type ConfigPathSegment = string | number;
@@ -337,6 +380,129 @@ function mergeUnsupportedMutableSecretRefIssues(
       ),
   );
   return [...policyIssues, ...filteredSchemaIssues];
+}
+
+type ConfigModelRefEntry = {
+  path: string;
+  value: string;
+};
+
+function addModelRefEntry(
+  entries: ConfigModelRefEntry[],
+  path: string,
+  value: unknown,
+): void {
+  if (typeof value !== "string") {
+    return;
+  }
+  const trimmed = value.trim();
+  if (trimmed) {
+    entries.push({ path, value: trimmed });
+  }
+}
+
+function collectConfiguredModelRefEntries(config: OpenClawConfig): ConfigModelRefEntry[] {
+  const entries: ConfigModelRefEntry[] = [];
+  const addModelList = (path: string, value: unknown) => {
+    if (typeof value === "string") {
+      addModelRefEntry(entries, path, value);
+      return;
+    }
+    if (!isRecord(value)) {
+      return;
+    }
+    addModelRefEntry(entries, `${path}.primary`, value.primary);
+    if (Array.isArray(value.fallbacks)) {
+      for (const [index, fallback] of value.fallbacks.entries()) {
+        addModelRefEntry(entries, `${path}.fallbacks.${index}`, fallback);
+      }
+    }
+  };
+
+  addModelList("agents.defaults.model", config.agents?.defaults?.model);
+  addModelList("agents.defaults.imageModel", config.agents?.defaults?.imageModel);
+  addModelList(
+    "agents.defaults.imageGenerationModel",
+    config.agents?.defaults?.imageGenerationModel,
+  );
+  addModelList("agents.defaults.pdfModel", config.agents?.defaults?.pdfModel);
+  addModelList("agents.defaults.subagents.model", config.agents?.defaults?.subagents?.model);
+  addModelRefEntry(
+    entries,
+    "agents.defaults.compaction.model",
+    config.agents?.defaults?.compaction?.model,
+  );
+  addModelRefEntry(
+    entries,
+    "agents.defaults.heartbeat.model",
+    config.agents?.defaults?.heartbeat?.model,
+  );
+  addModelRefEntry(entries, "messages.tts.summaryModel", config.messages?.tts?.summaryModel);
+  addModelRefEntry(entries, "hooks.gmail.model", config.hooks?.gmail?.model);
+
+  for (const key of Object.keys(config.agents?.defaults?.models ?? {})) {
+    addModelRefEntry(entries, `agents.defaults.models.${key}`, key);
+  }
+
+  for (const [index, agent] of (config.agents?.list ?? []).entries()) {
+    addModelList(`agents.list.${index}.model`, agent.model);
+    addModelList(`agents.list.${index}.subagents.model`, agent.subagents?.model);
+    addModelRefEntry(entries, `agents.list.${index}.heartbeat.model`, agent.heartbeat?.model);
+  }
+
+  for (const [index, mapping] of (config.hooks?.mappings ?? []).entries()) {
+    addModelRefEntry(entries, `hooks.mappings.${index}.model`, mapping.model);
+  }
+
+  if (isRecord(config.channels?.modelByChannel)) {
+    for (const [channelId, mapping] of Object.entries(config.channels.modelByChannel)) {
+      if (!isRecord(mapping)) {
+        continue;
+      }
+      for (const [target, value] of Object.entries(mapping)) {
+        addModelRefEntry(entries, `channels.modelByChannel.${channelId}.${target}`, value);
+      }
+    }
+  }
+
+  addModelList("tools.subagents.model", config.tools?.subagents?.model);
+  return entries;
+}
+
+function resolveSupportedProviderIds(registry: ReturnType<typeof loadPluginManifestRegistry>): Set<string> {
+  const supported = new Set<string>();
+  for (const plugin of registry.plugins) {
+    for (const providerId of plugin.providers) {
+      const normalized = normalizeProviderId(providerId);
+      if (normalized) {
+        supported.add(normalized);
+      }
+    }
+  }
+  return supported;
+}
+
+function buildUnsupportedProviderMessage(
+  providerId: string,
+  supportedProviderIds: readonly string[],
+): string {
+  const supported = supportedProviderIds.join(", ");
+  if (REMOVED_PROVIDER_IDS.has(providerId)) {
+    return `provider "${providerId}" is no longer supported in this fork; supported providers: ${supported}`;
+  }
+  return `unknown provider "${providerId}"; supported providers: ${supported}`;
+}
+
+function buildRemovedPluginMessage(pluginId: string): string {
+  return `plugin "${pluginId}" is no longer supported in this fork`;
+}
+
+function buildRemovedSpeechProviderMessage(providerId: string): string {
+  return `speech provider "${providerId}" is no longer supported in this fork; only OpenAI-backed speech remains bundled`;
+}
+
+function buildRemovedMediaProviderMessage(providerId: string): string {
+  return `audio/media provider "${providerId}" is no longer supported in this fork`;
 }
 
 export function collectUnsupportedSecretRefPolicyIssues(raw: unknown): ConfigValidationIssue[] {
@@ -822,6 +988,131 @@ function validateConfigObjectWithPluginsBase(
     }
   }
 
+  const { registry } = ensureRegistry();
+  const knownIds = ensureKnownIds();
+  const normalizedPlugins = ensureNormalizedPlugins();
+  const supportedProviderIds = Array.from(resolveSupportedProviderIds(registry)).toSorted(
+    (left, right) => left.localeCompare(right),
+  );
+  const supportedProviderIdSet = new Set(supportedProviderIds);
+
+  const pushRemovedPluginConfigIssue = (path: string, pluginId: string) => {
+    issues.push({
+      path,
+      message: buildRemovedPluginMessage(pluginId),
+    });
+  };
+
+  const validateRemovedSpeechProvider = (providerId: unknown, path: string) => {
+    if (typeof providerId !== "string") {
+      return;
+    }
+    const normalized = providerId.trim().toLowerCase();
+    if (!REMOVED_SPEECH_PROVIDER_IDS.has(normalized)) {
+      return;
+    }
+    issues.push({
+      path,
+      message: buildRemovedSpeechProviderMessage(normalized),
+    });
+  };
+
+  const validateRemovedMediaProvider = (providerId: unknown, path: string) => {
+    if (typeof providerId !== "string") {
+      return;
+    }
+    const normalized = providerId.trim().toLowerCase();
+    if (!REMOVED_MEDIA_PROVIDER_IDS.has(normalized)) {
+      return;
+    }
+    issues.push({
+      path,
+      message: buildRemovedMediaProviderMessage(normalized),
+    });
+  };
+
+  if (config.models?.providers && isRecord(config.models.providers)) {
+    for (const key of Object.keys(config.models.providers)) {
+      const normalizedProvider = normalizeProviderId(key);
+      if (!normalizedProvider || supportedProviderIdSet.has(normalizedProvider)) {
+        continue;
+      }
+      issues.push({
+        path: `models.providers.${key}`,
+        message: buildUnsupportedProviderMessage(normalizedProvider, supportedProviderIds),
+      });
+    }
+  }
+
+  if (config.auth?.profiles && isRecord(config.auth.profiles)) {
+    for (const [profileId, profile] of Object.entries(config.auth.profiles)) {
+      if (!isRecord(profile)) {
+        continue;
+      }
+      const providerValue = typeof profile.provider === "string" ? profile.provider.trim() : "";
+      if (!providerValue) {
+        continue;
+      }
+      const normalizedProvider = normalizeProviderId(providerValue);
+      if (!normalizedProvider || supportedProviderIdSet.has(normalizedProvider)) {
+        continue;
+      }
+      issues.push({
+        path: `auth.profiles.${profileId}.provider`,
+        message: buildUnsupportedProviderMessage(normalizedProvider, supportedProviderIds),
+      });
+    }
+  }
+
+  for (const entry of collectConfiguredModelRefEntries(config)) {
+    const slashIndex = entry.value.indexOf("/");
+    if (slashIndex <= 0) {
+      continue;
+    }
+    const normalizedProvider = normalizeProviderId(entry.value.slice(0, slashIndex));
+    if (!normalizedProvider || supportedProviderIdSet.has(normalizedProvider)) {
+      continue;
+    }
+    issues.push({
+      path: entry.path,
+      message: buildUnsupportedProviderMessage(normalizedProvider, supportedProviderIds),
+    });
+  }
+
+  validateRemovedSpeechProvider(config.messages?.tts?.provider, "messages.tts.provider");
+  if (isRecord(config.messages?.tts?.providers)) {
+    for (const providerId of Object.keys(config.messages.tts.providers)) {
+      validateRemovedSpeechProvider(providerId, `messages.tts.providers.${providerId}`);
+    }
+  }
+
+  validateRemovedSpeechProvider(config.talk?.provider, "talk.provider");
+  if (isRecord(config.talk?.providers)) {
+    for (const providerId of Object.keys(config.talk.providers)) {
+      validateRemovedSpeechProvider(providerId, `talk.providers.${providerId}`);
+    }
+  }
+
+  const audioModels = config.tools?.media?.audio?.models;
+  if (Array.isArray(audioModels)) {
+    for (const [index, model] of audioModels.entries()) {
+      validateRemovedMediaProvider(model?.provider, `tools.media.audio.models.${index}.provider`);
+    }
+  }
+
+  if (isRecord(config.tools?.media?.audio?.providerOptions)) {
+    for (const providerId of Object.keys(config.tools.media.audio.providerOptions)) {
+      validateRemovedMediaProvider(providerId, `tools.media.audio.providerOptions.${providerId}`);
+    }
+  }
+
+  if (isRecord(config.tools?.media?.audio) && "deepgram" in config.tools.media.audio) {
+    issues.push({
+      path: "tools.media.audio.deepgram",
+      message: buildRemovedMediaProviderMessage("deepgram"),
+    });
+  }
+
   if (!hasExplicitPluginsConfig) {
     if (issues.length > 0) {
       return { ok: false, issues, warnings };
@@ -829,9 +1120,6 @@ function validateConfigObjectWithPluginsBase(
     return { ok: true, config: mutatedConfig, warnings };
   }
 
-  const { registry } = ensureRegistry();
-  const knownIds = ensureKnownIds();
-  const normalizedPlugins = ensureNormalizedPlugins();
   const pushMissingPluginIssue = (
     path: string,
     pluginId: string,
@@ -862,6 +1150,10 @@ function validateConfigObjectWithPluginsBase(
   const entries = pluginsConfig?.entries;
   if (entries && isRecord(entries)) {
     for (const pluginId of Object.keys(entries)) {
+      if (REMOVED_CAPABILITY_PLUGIN_IDS.has(pluginId)) {
+        pushRemovedPluginConfigIssue(`plugins.entries.${pluginId}`, pluginId);
+        continue;
+      }
       if (!knownIds.has(pluginId)) {
         // Keep gateway startup resilient when plugins are removed/renamed across upgrades.
         pushMissingPluginIssue(`plugins.entries.${pluginId}`, pluginId, { warnOnly: true });
@@ -874,6 +1166,10 @@ function validateConfigObjectWithPluginsBase(
     if (typeof pluginId !== "string" || !pluginId.trim()) {
       continue;
     }
+    if (REMOVED_CAPABILITY_PLUGIN_IDS.has(pluginId)) {
+      pushRemovedPluginConfigIssue("plugins.allow", pluginId);
+      continue;
+    }
     if (!knownIds.has(pluginId)) {
       pushMissingPluginIssue("plugins.allow", pluginId, { warnOnly: true });
     }
@@ -882,6 +1178,10 @@ function validateConfigObjectWithPluginsBase(
   const deny = pluginsConfig?.deny ?? [];
   for (const pluginId of deny) {
     if (typeof pluginId !== "string" || !pluginId.trim()) {
+      continue;
+    }
+    if (REMOVED_CAPABILITY_PLUGIN_IDS.has(pluginId)) {
+      pushRemovedPluginConfigIssue("plugins.deny", pluginId);
       continue;
     }
     if (!knownIds.has(pluginId)) {

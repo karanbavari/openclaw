@@ -62,7 +62,7 @@ Those belong in your plugin code and `package.json`.
 
 ```json
 {
-  "id": "voice-call",
+  "id": "open-prose",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,

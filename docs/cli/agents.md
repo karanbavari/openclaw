@@ -42,7 +42,7 @@ openclaw agents bindings --json
 Add bindings:
 
 ```bash
-openclaw agents bind --agent work --bind telegram:ops --bind discord:guild-a
+openclaw agents bind --agent work --bind telegram:ops --bind whatsapp:biz
 ```
 
 If you omit `accountId` (`--bind <channel>`), OpenClaw resolves it from channel defaults and plugin setup hooks when available.

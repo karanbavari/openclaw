@@ -184,7 +184,7 @@ state-dir plugin root. Use
 openclaw plugins update <id-or-npm-spec>
 openclaw plugins update --all
 openclaw plugins update <id-or-npm-spec> --dry-run
-openclaw plugins update @openclaw/voice-call@beta
+openclaw plugins update @openclaw/open-prose@beta
 ```
 
 Updates apply to tracked installs in `plugins.installs` and tracked hook-pack

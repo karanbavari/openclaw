@@ -8,8 +8,8 @@ title: "Model Provider Quickstart"
 
 # Model Providers
 
-OpenClaw can use many LLM providers. Pick one, authenticate, then set the default
-model as `provider/model`.
+This fork keeps a reduced bundled provider set. Pick one, authenticate, then set
+the default model as `provider/model`.
 
 ## Quick start (two steps)
 
@@ -22,24 +22,18 @@ model as `provider/model`.
 }
 ```
 
-## Supported providers (starter set)
+## Supported providers
 
 - [OpenAI (API + Codex)](/providers/openai)
 - [Anthropic (API + Claude Code CLI)](/providers/anthropic)
-- [OpenRouter](/providers/openrouter)
-- [Vercel AI Gateway](/providers/vercel-ai-gateway)
-- [Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)
+- [GitHub Copilot](/providers/github-copilot)
+- [Google (Gemini)](/providers/google)
+- [Kilocode](/providers/kilocode)
 - [Moonshot AI (Kimi + Kimi Coding)](/providers/moonshot)
-- [Mistral](/providers/mistral)
-- [Synthetic](/providers/synthetic)
-- [OpenCode (Zen + Go)](/providers/opencode)
+- [MiniMax](/providers/minimax)
+- [OpenRouter](/providers/openrouter)
 - [Z.AI](/providers/zai)
 - [GLM models](/providers/glm)
-- [MiniMax](/providers/minimax)
-- [Venice (Venice AI)](/providers/venice)
-- [Amazon Bedrock](/providers/bedrock)
-- [Qianfan](/providers/qianfan)
-- [xAI](/providers/xai)
 
-For the full provider catalog (xAI, Groq, Mistral, etc.) and advanced configuration,
-see [Model providers](/concepts/model-providers).
+Removed upstream bundled providers are intentionally unsupported in this fork.
+For ids, auth choices, and example refs, see [Model providers](/concepts/model-providers).

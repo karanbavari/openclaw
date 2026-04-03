@@ -64,7 +64,6 @@ cat ~/.openclaw/openclaw.json
 - Skills status summary (eligible/missing/blocked) and plugin status.
 - Config normalization for legacy values.
 - Browser migration checks for legacy Chrome extension configs and Chrome MCP readiness.
-- OpenCode provider override warnings (`models.providers.opencode` / `models.providers.opencode-go`).
 - OAuth TLS prerequisites check for OpenAI Codex OAuth profiles.
 - Legacy on-disk state migration (sessions/agent dir/WhatsApp auth).
 - Legacy plugin manifest contract key migration (`speechProviders`, `mediaUnderstandingProviders`, `imageGenerationProviders` → `contracts`).
@@ -133,7 +132,6 @@ Current migrations:
 - `messages.tts.<provider>` (`openai`/`elevenlabs`/`microsoft`/`edge`) → `messages.tts.providers.<provider>`
 - `channels.discord.voice.tts.<provider>` (`openai`/`elevenlabs`/`microsoft`/`edge`) → `channels.discord.voice.tts.providers.<provider>`
 - `channels.discord.accounts.<id>.voice.tts.<provider>` (`openai`/`elevenlabs`/`microsoft`/`edge`) → `channels.discord.accounts.<id>.voice.tts.providers.<provider>`
-- `plugins.entries.voice-call.config.tts.<provider>` (`openai`/`elevenlabs`/`microsoft`/`edge`) → `plugins.entries.voice-call.config.tts.providers.<provider>`
 - `bindings[].match.accountID` → `bindings[].match.accountId`
 - For channels with named `accounts` but missing `accounts.default`, move account-scoped top-level single-account channel values into `channels.<channel>.accounts.default` when present
 - `identity` → `agents.list[].identity`
@@ -149,14 +147,7 @@ Doctor warnings also include account-default guidance for multi-account channels
 - If two or more `channels.<channel>.accounts` entries are configured without `channels.<channel>.defaultAccount` or `accounts.default`, doctor warns that fallback routing can pick an unexpected account.
 - If `channels.<channel>.defaultAccount` is set to an unknown account ID, doctor warns and lists configured account IDs.
 
-### 2b) OpenCode provider overrides
-
-If you’ve added `models.providers.opencode`, `opencode-zen`, or `opencode-go`
-manually, it overrides the built-in OpenCode catalog from `@mariozechner/pi-ai`.
-That can force models onto the wrong API or zero out costs. Doctor warns so you
-can remove the override and restore per-model API routing + costs.
-
-### 2c) Browser migration and Chrome MCP readiness
+### 2b) Browser migration and Chrome MCP readiness
 
 If your browser config still points at the removed Chrome extension path, doctor
 normalizes it to the current host-local Chrome MCP attach model:

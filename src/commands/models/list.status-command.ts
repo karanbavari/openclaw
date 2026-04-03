@@ -149,16 +149,14 @@ export async function modelsStatusCommand(
   const envProbeProviders = [
     "anthropic",
     "github-copilot",
-    "google-vertex",
     "openai",
     "google",
-    "groq",
-    "cerebras",
-    "xai",
     "openrouter",
     "zai",
-    "mistral",
-    "synthetic",
+    "kilocode",
+    "kimi",
+    "moonshot",
+    "minimax",
   ];
   for (const provider of envProbeProviders) {
     if (resolveEnvApiKey(provider)) {

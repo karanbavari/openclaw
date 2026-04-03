@@ -99,12 +99,6 @@ async function fetchProviderUsageSnapshotFallback(params: {
       return await fetchZaiUsage(params.auth.token, params.timeoutMs, params.fetchFn);
     case "minimax":
       return await fetchMinimaxUsage(params.auth.token, params.timeoutMs, params.fetchFn);
-    case "xiaomi":
-      return {
-        provider: "xiaomi",
-        displayName: PROVIDER_LABELS.xiaomi,
-        windows: [],
-      };
     default:
       return {
         provider: params.auth.provider,

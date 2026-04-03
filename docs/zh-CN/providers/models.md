@@ -15,7 +15,7 @@ x-i18n:
 
 # 模型提供商
 
-OpenClaw 可以使用许多 LLM 提供商。选择一个，完成身份验证，然后将默认
+这个 fork 只保留了一组精简后的内置提供商。选择一个，完成身份验证，然后将默认
 模型设置为 `provider/model`。
 
 ## 快速开始（两步）
@@ -29,23 +29,18 @@ OpenClaw 可以使用许多 LLM 提供商。选择一个，完成身份验证，
 }
 ```
 
-## 支持的提供商（入门集合）
+## 支持的提供商
 
 - [OpenAI（API + Codex）](/providers/openai)
 - [Anthropic（API + Claude Code CLI）](/providers/anthropic)
-- [OpenRouter](/providers/openrouter)
-- [Vercel AI Gateway](/providers/vercel-ai-gateway)
-- [Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)
+- [GitHub Copilot](/providers/github-copilot)
+- [Google（Gemini）](/providers/google)
+- [Kilocode](/providers/kilocode)
 - [Moonshot AI（Kimi + Kimi Coding）](/providers/moonshot)
-- [Mistral](/providers/mistral)
-- [Synthetic](/providers/synthetic)
-- [OpenCode（Zen + Go）](/providers/opencode)
+- [MiniMax](/providers/minimax)
+- [OpenRouter](/providers/openrouter)
 - [Z.AI](/providers/zai)
 - [GLM 模型](/providers/glm)
-- [MiniMax](/providers/minimax)
-- [Venice（Venice AI）](/providers/venice)
-- [Amazon Bedrock](/providers/bedrock)
-- [Qianfan](/providers/qianfan)
 
-有关完整的提供商目录（xAI、Groq、Mistral 等）和高级配置，
-请参见 [模型提供商](/concepts/model-providers)。
+上游已经移除的内置提供商在这个 fork 中不再受支持。
+有效 provider id、认证选项与示例引用请参见 [模型提供商](/concepts/model-providers)。

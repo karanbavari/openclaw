@@ -669,7 +669,7 @@ claude setup-token
 
 ### 支持 AWS Bedrock 吗
 
-是的——通过 pi-ai 的 **Amazon Bedrock (Converse)** 提供商进行**手动配置**。你必须在 Gateway 网关主机上提供 AWS 凭据/区域，并在模型配置中添加 Bedrock 提供商条目。参阅 [Amazon Bedrock](/providers/bedrock) 和[模型提供商](/providers/models)。如果你更喜欢托管密钥流程，在 Bedrock 前面使用兼容 OpenAI 的代理仍然是有效选项。
+这个分支不支持。当前仅保留 Anthropic、Google、GitHub Copilot、MiniMax、Moonshot、OpenAI、OpenRouter、Kilocode、Kimi Coding 和 Z.AI 这些内置提供商。如果你需要自托管或其他未保留的端点，请把它配置为自定义 OpenAI 兼容提供商。
 
 ### Codex 认证如何工作
 
@@ -1809,13 +1809,19 @@ MiniMax M2.1 有自己的文档：[MiniMax](/providers/minimax) 和
 
 ### 可以使用自托管模型（llama.cpp、vLLM、Ollama）吗
 
-可以。如果你的本地服务器暴露了兼容 OpenAI 的 API，你可以将自定义提供商指向它。Ollama 直接支持，是最简单的路径。
+可以。如果你的本地服务器暴露了兼容 OpenAI 的 API，你可以把自定义提供商指向它，并保留托管提供商作为回退。
+
+建议流程：
+
+1. 启动你的本地 OpenAI 兼容服务
+2. 确认它能返回 `/v1/models`
+3. 运行 `openclaw onboard --auth-choice custom-api-key`
+4. 输入本地 base URL 和 model ID
+5. 为高风险任务保留一个托管回退模型
 
 安全说明：较小或大幅量化的模型更容易受到提示注入的影响。我们强烈建议对任何可以使用工具的机器人使用**大型模型**。如果你仍然想使用小模型，启用沙箱和严格的工具允许列表。
 
-文档：[Ollama](/providers/ollama)、[本地模型](/gateway/local-models)、
-[模型提供商](/concepts/model-providers)、[安全](/gateway/security)、
-[沙箱](/gateway/sandboxing)。
+文档：[本地模型](/gateway/local-models)、[模型提供商](/concepts/model-providers)、[安全](/gateway/security)、[沙箱](/gateway/sandboxing)。
 
 ### 如何在不清空配置的情况下切换模型
 

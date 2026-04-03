@@ -70,4 +70,3 @@ Provider-specific filters are not currently supported.
 
 - [Web Search overview](/tools/web) -- all providers and auto-detection
 - [Gemini Search](/tools/gemini-search) -- AI-synthesized answers via Google grounding
-- [Grok Search](/tools/grok-search) -- AI-synthesized answers via xAI grounding

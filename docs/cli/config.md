@@ -20,10 +20,10 @@ openclaw config get browser.executablePath
 openclaw config set browser.executablePath "/usr/bin/google-chrome"
 openclaw config set agents.defaults.heartbeat.every "2h"
 openclaw config set agents.list[0].tools.exec.node "node-id-or-name"
-openclaw config set channels.discord.token --ref-provider default --ref-source env --ref-id DISCORD_BOT_TOKEN
+openclaw config set channels.telegram.botToken --ref-provider default --ref-source env --ref-id TELEGRAM_BOT_TOKEN
 openclaw config set secrets.providers.vaultfile --provider-source file --provider-path /etc/openclaw/secrets.json --provider-mode json
 openclaw config unset plugins.entries.brave.config.webSearch.apiKey
-openclaw config set channels.discord.token --ref-provider default --ref-source env --ref-id DISCORD_BOT_TOKEN --dry-run
+openclaw config set channels.telegram.botToken --ref-provider default --ref-source env --ref-id TELEGRAM_BOT_TOKEN --dry-run
 openclaw config validate
 openclaw config validate --json
 ```
@@ -77,10 +77,10 @@ openclaw config set channels.whatsapp.groups '["*"]' --strict-json
 2. SecretRef builder mode:
 
 ```bash
-openclaw config set channels.discord.token \
+openclaw config set channels.telegram.botToken \
   --ref-provider default \
   --ref-source env \
-  --ref-id DISCORD_BOT_TOKEN
+  --ref-id TELEGRAM_BOT_TOKEN
 ```
 
 3. Provider builder mode (`secrets.providers.<alias>` path only):
@@ -103,8 +103,8 @@ openclaw config set --batch-json '[
     "provider": { "source": "env" }
   },
   {
-    "path": "channels.discord.token",
-    "ref": { "source": "env", "provider": "default", "id": "DISCORD_BOT_TOKEN" }
+    "path": "channels.telegram.botToken",
+    "ref": { "source": "env", "provider": "default", "id": "TELEGRAM_BOT_TOKEN" }
   }
 ]'
 ```
@@ -123,8 +123,8 @@ Batch parsing always uses the batch payload (`--batch-json`/`--batch-file`) as t
 JSON path/value mode remains supported for both SecretRefs and providers:
 
 ```bash
-openclaw config set channels.discord.token \
-  '{"source":"env","provider":"default","id":"DISCORD_BOT_TOKEN"}' \
+openclaw config set channels.telegram.botToken \
+  '{"source":"env","provider":"default","id":"TELEGRAM_BOT_TOKEN"}' \
   --strict-json
 
 openclaw config set secrets.providers.vaultfile \
@@ -183,23 +183,23 @@ openclaw config set secrets.providers.vault \
 Use `--dry-run` to validate changes without writing `openclaw.json`.
 
 ```bash
-openclaw config set channels.discord.token \
+openclaw config set channels.telegram.botToken \
   --ref-provider default \
   --ref-source env \
-  --ref-id DISCORD_BOT_TOKEN \
+  --ref-id TELEGRAM_BOT_TOKEN \
   --dry-run
 
-openclaw config set channels.discord.token \
+openclaw config set channels.telegram.botToken \
   --ref-provider default \
   --ref-source env \
-  --ref-id DISCORD_BOT_TOKEN \
+  --ref-id TELEGRAM_BOT_TOKEN \
   --dry-run \
   --json
 
-openclaw config set channels.discord.token \
+openclaw config set channels.telegram.botToken \
   --ref-provider vault \
   --ref-source exec \
-  --ref-id discord/token \
+  --ref-id telegram/bot-token \
   --dry-run \
   --allow-exec
 ```

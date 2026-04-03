@@ -78,24 +78,22 @@ openclaw onboard --non-interactive \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Vercel AI Gateway 示例">
+  <Accordion title="OpenRouter 示例">
     ```bash
     openclaw onboard --non-interactive \
       --mode local \
-      --auth-choice ai-gateway-api-key \
-      --ai-gateway-api-key "$AI_GATEWAY_API_KEY" \
+      --auth-choice openrouter-api-key \
+      --openrouter-api-key "$OPENROUTER_API_KEY" \
       --gateway-port 18789 \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Cloudflare AI Gateway 示例">
+  <Accordion title="Kilocode 示例">
     ```bash
     openclaw onboard --non-interactive \
       --mode local \
-      --auth-choice cloudflare-ai-gateway-api-key \
-      --cloudflare-ai-gateway-account-id "your-account-id" \
-      --cloudflare-ai-gateway-gateway-id "your-gateway-id" \
-      --cloudflare-ai-gateway-api-key "$CLOUDFLARE_AI_GATEWAY_API_KEY" \
+      --auth-choice kilocode-api-key \
+      --kilocode-api-key "$KILOCODE_API_KEY" \
       --gateway-port 18789 \
       --gateway-bind loopback
     ```
@@ -110,44 +108,41 @@ openclaw onboard --non-interactive \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Mistral 示例">
+  <Accordion title="MiniMax 示例">
     ```bash
     openclaw onboard --non-interactive \
       --mode local \
-      --auth-choice mistral-api-key \
-      --mistral-api-key "$MISTRAL_API_KEY" \
+      --auth-choice minimax-global-api \
+      --minimax-api-key "$MINIMAX_API_KEY" \
       --gateway-port 18789 \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="Synthetic 示例">
+  <Accordion title="GitHub Copilot 示例">
     ```bash
     openclaw onboard --non-interactive \
       --mode local \
-      --auth-choice synthetic-api-key \
-      --synthetic-api-key "$SYNTHETIC_API_KEY" \
+      --auth-choice github-copilot \
       --gateway-port 18789 \
       --gateway-bind loopback
     ```
   </Accordion>
-  <Accordion title="OpenCode 示例">
+  <Accordion title="OpenAI 示例">
     ```bash
     openclaw onboard --non-interactive \
       --mode local \
-      --auth-choice opencode-zen \
-      --opencode-zen-api-key "$OPENCODE_API_KEY" \
+      --auth-choice openai-api-key \
+      --openai-api-key "$OPENAI_API_KEY" \
       --gateway-port 18789 \
       --gateway-bind loopback
     ```
-    对 Go 目录，可改用 `--auth-choice opencode-go --opencode-go-api-key "$OPENCODE_API_KEY"`。
   </Accordion>
-  <Accordion title="Ollama 示例">
+  <Accordion title="Google Gemini 示例">
     ```bash
     openclaw onboard --non-interactive \
       --mode local \
-      --auth-choice ollama \
-      --custom-model-id "qwen3.5:27b" \
-      --accept-risk \
+      --auth-choice gemini-api-key \
+      --gemini-api-key "$GEMINI_API_KEY" \
       --gateway-port 18789 \
       --gateway-bind loopback
     ```

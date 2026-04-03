@@ -26,7 +26,7 @@ with OpenClaw), others are **external** (published on npm by the community).
   <Step title="Install a plugin">
     ```bash
     # From npm
-    openclaw plugins install @openclaw/voice-call
+    openclaw plugins install @openclaw/open-prose
 
     # From a local directory or archive
     openclaw plugins install ./my-plugin
@@ -48,9 +48,9 @@ with OpenClaw), others are **external** (published on npm by the community).
 If you prefer chat-native control, enable `commands.plugins: true` and use:
 
 ```text
-/plugin install clawhub:@openclaw/voice-call
-/plugin show voice-call
-/plugin enable voice-call
+/plugin install clawhub:@openclaw/open-prose
+/plugin show open-prose
+/plugin enable open-prose
 ```
 
 The install path uses the same resolver as the CLI: local path/archive, explicit
@@ -72,26 +72,15 @@ and the [Plugin SDK Overview](/plugins/sdk-overview).
 
 ## Official plugins
 
-### Installable (npm)
-
-| Plugin          | Package                | Docs                                 |
-| --------------- | ---------------------- | ------------------------------------ |
-| Matrix          | `@openclaw/matrix`     | [Matrix](/channels/matrix)           |
-| Microsoft Teams | `@openclaw/msteams`    | [Microsoft Teams](/channels/msteams) |
-| Nostr           | `@openclaw/nostr`      | [Nostr](/channels/nostr)             |
-| Voice Call      | `@openclaw/voice-call` | [Voice Call](/plugins/voice-call)    |
-| Zalo            | `@openclaw/zalo`       | [Zalo](/channels/zalo)               |
-| Zalo Personal   | `@openclaw/zalouser`   | [Zalo Personal](/plugins/zalouser)   |
+This fork keeps external messaging support limited to WhatsApp and Telegram.
+WebChat, Control UI, model providers, browser tooling, and non-channel plugins remain available.
 
 ### Core (shipped with OpenClaw)
 
 <AccordionGroup>
   <Accordion title="Model providers (enabled by default)">
-    `anthropic`, `byteplus`, `cloudflare-ai-gateway`, `github-copilot`, `google`,
-    `huggingface`, `kilocode`, `kimi-coding`, `minimax`, `mistral`, `modelstudio`,
-    `moonshot`, `nvidia`, `openai`, `opencode`, `opencode-go`, `openrouter`,
-    `qianfan`, `synthetic`, `together`, `venice`,
-    `vercel-ai-gateway`, `volcengine`, `xiaomi`, `zai`
+    `anthropic`, `github-copilot`, `google`, `kilocode`, `kimi-coding`,
+    `minimax`, `moonshot`, `openai`, `openrouter`, `zai`
   </Accordion>
 
   <Accordion title="Memory plugins">
@@ -99,13 +88,8 @@ and the [Plugin SDK Overview](/plugins/sdk-overview).
     - `memory-lancedb` — install-on-demand long-term memory with auto-recall/capture (set `plugins.slots.memory = "memory-lancedb"`)
   </Accordion>
 
-  <Accordion title="Speech providers (enabled by default)">
-    `elevenlabs`, `microsoft`
-  </Accordion>
-
   <Accordion title="Other">
     - `browser` — bundled browser plugin for the browser tool, `openclaw browser` CLI, `browser.request` gateway method, browser runtime, and default browser control service (enabled by default; disable before replacing it)
-    - `copilot-proxy` — VS Code Copilot Proxy bridge (disabled by default)
   </Accordion>
 </AccordionGroup>
 
@@ -117,11 +101,11 @@ Looking for third-party plugins? See [Community Plugins](/plugins/community).
 {
   plugins: {
     enabled: true,
-    allow: ["voice-call"],
+    allow: ["open-prose"],
     deny: ["untrusted-plugin"],
-    load: { paths: ["~/Projects/oss/voice-call-extension"] },
+    load: { paths: ["~/Projects/oss/my-plugin"] },
     entries: {
-      "voice-call": { enabled: true, config: { provider: "twilio" } },
+      "open-prose": { enabled: true, config: {} },
     },
   },
 }

@@ -43,17 +43,16 @@ openclaw onboard --non-interactive \
 
 `--custom-api-key` is optional in non-interactive mode. If omitted, onboarding checks `CUSTOM_API_KEY`.
 
-Non-interactive Ollama:
+Non-interactive OpenRouter:
 
 ```bash
 openclaw onboard --non-interactive \
-  --auth-choice ollama \
-  --custom-base-url "http://ollama-host:11434" \
-  --custom-model-id "qwen3.5:27b" \
+  --auth-choice openrouter-api-key \
+  --openrouter-api-key "$OPENROUTER_API_KEY" \
   --accept-risk
 ```
 
-`--custom-base-url` defaults to `http://127.0.0.1:11434`. `--custom-model-id` is optional; if omitted, onboarding uses Ollama's suggested defaults. Cloud model IDs such as `kimi-k2.5:cloud` also work here.
+After onboarding, set a concrete `openrouter/<model>` ref with `openclaw models set`.
 
 Store provider keys as refs instead of plaintext:
 
@@ -128,21 +127,18 @@ openclaw onboard --non-interactive \
 # --auth-choice zai-cn
 ```
 
-Non-interactive Mistral example:
+Non-interactive MiniMax example:
 
 ```bash
 openclaw onboard --non-interactive \
-  --auth-choice mistral-api-key \
-  --mistral-api-key "$MISTRAL_API_KEY"
+  --auth-choice minimax-global-api \
+  --minimax-api-key "$MINIMAX_API_KEY"
 ```
 
 Flow notes:
 
 - `quickstart`: minimal prompts, auto-generates a gateway token.
 - `manual`: full prompts for port/bind/auth (alias of `advanced`).
-- In the web-search step, choosing **Grok** can trigger a separate follow-up
-  prompt to enable `x_search` with the same `XAI_API_KEY` and optionally pick
-  an `x_search` model. Other web-search providers do not show that prompt.
 - Local onboarding DM scope behavior: [CLI Setup Reference](/start/wizard-cli-reference#outputs-and-internals).
 - Fastest first chat: `openclaw dashboard` (Control UI, no channel setup).
 - Custom Provider: connect any OpenAI or Anthropic compatible endpoint,

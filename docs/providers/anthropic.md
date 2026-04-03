@@ -137,7 +137,6 @@ This lets one agent keep a long-lived cache while another agent on the same mode
 
 ### Bedrock Claude notes
 
-- Anthropic Claude models on Bedrock (`amazon-bedrock/*anthropic.claude*`) accept `cacheRetention` pass-through when configured.
 - Non-Anthropic Bedrock models are forced to `cacheRetention: "none"` at runtime.
 - Anthropic API-key smart defaults also seed `cacheRetention: "short"` for Claude-on-Bedrock model refs when no explicit value is set.
 

@@ -212,14 +212,6 @@ async function resolveProviderUsageAuthFallback(params: {
       });
       return apiKey ? { provider: "minimax", token: apiKey } : null;
     }
-    case "xiaomi": {
-      const apiKey = resolveProviderApiKeyFromConfigAndStore({
-        state: params.state,
-        providerIds: ["xiaomi"],
-        envDirect: [params.state.env.XIAOMI_API_KEY],
-      });
-      return apiKey ? { provider: "xiaomi", token: apiKey } : null;
-    }
     default:
       return null;
   }

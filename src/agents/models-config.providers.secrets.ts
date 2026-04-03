@@ -460,41 +460,5 @@ function resolveXaiConfigFallbackAuth(params: { provider: string; config?: OpenC
       mode: "api-key";
     }
   | undefined {
-  if (params.provider.trim().toLowerCase() !== "xai") {
-    return undefined;
-  }
-  const xaiPluginEntry = params.config?.plugins?.entries?.xai;
-  if (xaiPluginEntry?.enabled === false) {
-    return undefined;
-  }
-  const pluginApiKey = normalizeOptionalSecretInput(
-    resolveProviderWebSearchPluginConfig(
-      params.config as Record<string, unknown> | undefined,
-      "xai",
-    )?.apiKey,
-  );
-  if (pluginApiKey) {
-    return {
-      apiKey: pluginApiKey,
-      source: "plugins.entries.xai.config.webSearch.apiKey",
-      mode: "api-key",
-    };
-  }
-  const pluginApiKeyRef = coerceSecretRef(
-    resolveProviderWebSearchPluginConfig(
-      params.config as Record<string, unknown> | undefined,
-      "xai",
-    )?.apiKey,
-  );
-  if (pluginApiKeyRef) {
-    return {
-      apiKey:
-        pluginApiKeyRef.source === "env"
-          ? pluginApiKeyRef.id.trim()
-          : resolveNonEnvSecretRefApiKeyMarker(pluginApiKeyRef.source),
-      source: "plugins.entries.xai.config.webSearch.apiKey",
-      mode: "api-key",
-    };
-  }
   return undefined;
 }

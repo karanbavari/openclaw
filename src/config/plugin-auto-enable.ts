@@ -158,13 +158,6 @@ function hasPluginOwnedWebFetchConfig(cfg: OpenClawConfig, pluginId: string): bo
 }
 
 function hasPluginOwnedToolConfig(cfg: OpenClawConfig, pluginId: string): boolean {
-  if (pluginId === "xai") {
-    const pluginConfig = cfg.plugins?.entries?.xai?.config;
-    return Boolean(
-      isRecord(cfg.tools?.web?.x_search as Record<string, unknown> | undefined) ||
-      (isRecord(pluginConfig) && isRecord(pluginConfig.codeExecution)),
-    );
-  }
   return false;
 }
 
@@ -382,11 +375,7 @@ function configMayNeedPluginAutoEnable(cfg: OpenClawConfig, env: NodeJS.ProcessE
   if (collectModelRefs(cfg).length > 0) {
     return true;
   }
-  if (isRecord(cfg.tools?.web?.x_search as Record<string, unknown> | undefined)) {
-    return true;
-  }
   if (
-    isRecord(cfg.plugins?.entries?.xai?.config) ||
     hasConfiguredWebSearchPluginEntry(cfg) ||
     hasConfiguredWebFetchPluginEntry(cfg)
   ) {

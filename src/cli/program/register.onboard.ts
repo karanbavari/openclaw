@@ -97,9 +97,7 @@ export function registerOnboardCommand(program: Command) {
     .option(
       "--secret-input-mode <mode>",
       "API key persistence mode: plaintext|ref (default: plaintext)",
-    )
-    .option("--cloudflare-ai-gateway-account-id <id>", "Cloudflare Account ID")
-    .option("--cloudflare-ai-gateway-gateway-id <id>", "Cloudflare AI Gateway ID");
+    );
 
   for (const providerFlag of ONBOARD_AUTH_FLAGS) {
     command.option(providerFlag.cliOption, providerFlag.description);
@@ -163,8 +161,6 @@ export function registerOnboardCommand(program: Command) {
           tokenExpiresIn: opts.tokenExpiresIn as string | undefined,
           secretInputMode: opts.secretInputMode as SecretInputMode | undefined,
           ...providerAuthOptionValues,
-          cloudflareAiGatewayAccountId: opts.cloudflareAiGatewayAccountId as string | undefined,
-          cloudflareAiGatewayGatewayId: opts.cloudflareAiGatewayGatewayId as string | undefined,
           customBaseUrl: opts.customBaseUrl as string | undefined,
           customApiKey: opts.customApiKey as string | undefined,
           customModelId: opts.customModelId as string | undefined,

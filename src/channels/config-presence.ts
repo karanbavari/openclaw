@@ -7,19 +7,8 @@ import { DEFAULT_ACCOUNT_ID } from "../routing/session-key.js";
 const IGNORED_CHANNEL_CONFIG_KEYS = new Set(["defaults", "modelByChannel"]);
 
 const CHANNEL_ENV_PREFIXES = [
-  ["BLUEBUBBLES_", "bluebubbles"],
-  ["DISCORD_", "discord"],
-  ["GOOGLECHAT_", "googlechat"],
-  ["IRC_", "irc"],
-  ["LINE_", "line"],
-  ["MATRIX_", "matrix"],
-  ["MSTEAMS_", "msteams"],
-  ["SIGNAL_", "signal"],
-  ["SLACK_", "slack"],
   ["TELEGRAM_", "telegram"],
   ["WHATSAPP_", "whatsapp"],
-  ["ZALOUSER_", "zalouser"],
-  ["ZALO_", "zalo"],
 ] as const;
 
 function hasNonEmptyString(value: unknown): boolean {

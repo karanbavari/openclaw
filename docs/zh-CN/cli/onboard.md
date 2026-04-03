@@ -50,17 +50,16 @@ openclaw onboard --non-interactive \
 
 在非交互式模式下，`--custom-api-key` 是可选的。如果省略，新手引导会检查 `CUSTOM_API_KEY`。
 
-非交互式 Ollama：
+非交互式 OpenRouter：
 
 ```bash
 openclaw onboard --non-interactive \
-  --auth-choice ollama \
-  --custom-base-url "http://ollama-host:11434" \
-  --custom-model-id "qwen3.5:27b" \
+  --auth-choice openrouter-api-key \
+  --openrouter-api-key "$OPENROUTER_API_KEY" \
   --accept-risk
 ```
 
-`--custom-base-url` 默认为 `http://127.0.0.1:11434`。`--custom-model-id` 是可选的；如果省略，新手引导会使用 Ollama 建议的默认值。像 `kimi-k2.5:cloud` 这样的云端模型 ID 在这里也可用。
+完成 onboarding 后，再用 `openclaw models set` 选择具体的 `openrouter/<model>`。
 
 将提供商密钥存储为引用而不是明文：
 
@@ -135,12 +134,12 @@ openclaw onboard --non-interactive \
 # --auth-choice zai-cn
 ```
 
-非交互式 Mistral 示例：
+非交互式 MiniMax 示例：
 
 ```bash
 openclaw onboard --non-interactive \
-  --auth-choice mistral-api-key \
-  --mistral-api-key "$MISTRAL_API_KEY"
+  --auth-choice minimax-global-api \
+  --minimax-api-key "$MINIMAX_API_KEY"
 ```
 
 流程说明：

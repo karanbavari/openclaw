@@ -90,7 +90,6 @@ Each agent gets its own workspace with `SOUL.md`, `AGENTS.md`, and optional `USE
 
 Create one account per agent on your preferred channels:
 
-- Discord: one bot per agent, enable Message Content Intent, copy each token.
 - Telegram: one bot per agent via BotFather, copy each token.
 - WhatsApp: link each phone number per account.
 
@@ -98,7 +97,7 @@ Create one account per agent on your preferred channels:
 openclaw channels login --channel whatsapp --account work
 ```
 
-See channel guides: [Discord](/channels/discord), [Telegram](/channels/telegram), [WhatsApp](/channels/whatsapp).
+See channel guides: [Telegram](/channels/telegram), [WhatsApp](/channels/whatsapp).
 
   </Step>
 
@@ -218,11 +217,9 @@ Bindings are **deterministic** and **most-specific wins**:
 1. `peer` match (exact DM/group/channel id)
 2. `parentPeer` match (thread inheritance)
 3. `guildId + roles` (Discord role routing)
-4. `guildId` (Discord)
-5. `teamId` (Slack)
-6. `accountId` match for a channel
-7. channel-level match (`accountId: "*"`)
-8. fallback to default agent (`agents.list[].default`, else first list entry, default: `main`)
+4. `accountId` match for a channel
+5. channel-level match (`accountId: "*"`)
+6. fallback to default agent (`agents.list[].default`, else first list entry, default: `main`)
 
 If multiple bindings match in the same tier, the first one in config order wins.
 If a binding sets multiple match fields (for example `peer` + `guildId`), all specified fields are required (`AND` semantics).
@@ -243,11 +240,10 @@ If you want a channel-wide default account when `accountId` is omitted, set
 `channels.<channel>.defaultAccount` (optional). When unset, OpenClaw falls back
 to `default` if present, otherwise the first configured account id (sorted).
 
-Common channels supporting this pattern include:
+In this fork, the supported external messaging channels for this pattern are:
 
-- `whatsapp`, `telegram`, `discord`, `slack`, `signal`, `imessage`
-- `irc`, `line`, `googlechat`, `mattermost`, `matrix`, `nextcloud-talk`
-- `bluebubbles`, `zalo`, `zalouser`, `nostr`, `feishu`
+- `whatsapp`
+- `telegram`
 
 ## Concepts
 
@@ -257,57 +253,6 @@ Common channels supporting this pattern include:
 - Direct chats collapse to `agent:<agentId>:<mainKey>` (per-agent “main”; `session.mainKey`).
 
 ## Platform examples
-
-### Discord bots per agent
-
-Each Discord bot account maps to a unique `accountId`. Bind each account to an agent and keep allowlists per bot.
-
-```json5
-{
-  agents: {
-    list: [
-      { id: "main", workspace: "~/.openclaw/workspace-main" },
-      { id: "coding", workspace: "~/.openclaw/workspace-coding" },
-    ],
-  },
-  bindings: [
-    { agentId: "main", match: { channel: "discord", accountId: "default" } },
-    { agentId: "coding", match: { channel: "discord", accountId: "coding" } },
-  ],
-  channels: {
-    discord: {
-      groupPolicy: "allowlist",
-      accounts: {
-        default: {
-          token: "DISCORD_BOT_TOKEN_MAIN",
-          guilds: {
-            "123456789012345678": {
-              channels: {
-                "222222222222222222": { allow: true, requireMention: false },
-              },
-            },
-          },
-        },
-        coding: {
-          token: "DISCORD_BOT_TOKEN_CODING",
-          guilds: {
-            "123456789012345678": {
-              channels: {
-                "333333333333333333": { allow: true, requireMention: false },
-              },
-            },
-          },
-        },
-      },
-    },
-  },
-}
-```
-
-Notes:
-
-- Invite each bot to the guild and enable Message Content Intent.
-- Tokens live in `channels.discord.accounts.<id>.token` (default account can use `DISCORD_BOT_TOKEN`).
 
 ### Telegram bots per agent
 

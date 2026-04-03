@@ -60,8 +60,6 @@ This page describes the current CLI behavior. If commands change, update this do
 - [`skills`](/cli/skills)
 - [`daemon`](/cli/daemon) (legacy alias for gateway service commands)
 - [`clawbot`](/cli/clawbot) (legacy alias namespace)
-- [`voicecall`](/cli/voicecall) (plugin; if installed)
-
 ## Global flags
 
 - `--dev`: isolate state under `~/.openclaw-dev` and shift default ports.
@@ -367,17 +365,11 @@ Options:
 - `--mode <local|remote>`
 - `--flow <quickstart|advanced|manual>` (manual is an alias for advanced)
 - `--auth-choice <choice>` where `<choice>` is one of:
-  `setup-token`, `token`, `chutes`, `deepseek-api-key`, `openai-codex`, `openai-api-key`,
-  `openrouter-api-key`, `kilocode-api-key`, `litellm-api-key`, `ai-gateway-api-key`,
-  `cloudflare-ai-gateway-api-key`, `moonshot-api-key`, `moonshot-api-key-cn`,
-  `kimi-code-api-key`, `synthetic-api-key`, `venice-api-key`, `together-api-key`,
-  `huggingface-api-key`, `apiKey`, `gemini-api-key`, `google-gemini-cli`, `zai-api-key`,
-  `zai-coding-global`, `zai-coding-cn`, `zai-global`, `zai-cn`, `xiaomi-api-key`,
-  `minimax-global-oauth`, `minimax-global-api`, `minimax-cn-oauth`, `minimax-cn-api`,
-  `opencode-zen`, `opencode-go`, `github-copilot`, `copilot-proxy`, `xai-api-key`,
-  `mistral-api-key`, `volcengine-api-key`, `byteplus-api-key`, `qianfan-api-key`,
-  `modelstudio-standard-api-key-cn`, `modelstudio-standard-api-key`,
-  `modelstudio-api-key-cn`, `modelstudio-api-key`, `custom-api-key`, `skip`
+  `setup-token`, `token`, `openai-codex`, `openai-api-key`, `openrouter-api-key`,
+  `kilocode-api-key`, `moonshot-api-key`, `moonshot-api-key-cn`, `kimi-code-api-key`,
+  `apiKey`, `gemini-api-key`, `google-gemini-cli`, `zai-api-key`, `zai-coding-global`,
+  `zai-coding-cn`, `zai-global`, `zai-cn`, `minimax-global-oauth`, `minimax-global-api`,
+  `minimax-cn-oauth`, `minimax-cn-api`, `github-copilot`, `custom-api-key`, `skip`
 - `--token-provider <id>` (non-interactive; used with `--auth-choice token`)
 - `--token <token>` (non-interactive; used with `--auth-choice token`)
 - `--token-profile-id <id>` (non-interactive; default: `<provider>:manual`)
@@ -385,16 +377,13 @@ Options:
 - `--secret-input-mode <plaintext|ref>` (default `plaintext`; use `ref` to store provider default env refs instead of plaintext keys)
 - `--anthropic-api-key <key>`
 - `--openai-api-key <key>`
-- `--mistral-api-key <key>`
 - `--openrouter-api-key <key>`
-- `--ai-gateway-api-key <key>`
+- `--kilocode-api-key <key>`
 - `--moonshot-api-key <key>`
 - `--kimi-code-api-key <key>`
 - `--gemini-api-key <key>`
 - `--zai-api-key <key>`
 - `--minimax-api-key <key>`
-- `--opencode-zen-api-key <key>`
-- `--opencode-go-api-key <key>`
 - `--custom-base-url <url>` (non-interactive; used with `--auth-choice custom-api-key`)
 - `--custom-model-id <id>` (non-interactive; used with `--auth-choice custom-api-key`)
 - `--custom-api-key <key>` (non-interactive; optional; used with `--auth-choice custom-api-key`; falls back to `CUSTOM_API_KEY` when omitted)
@@ -418,8 +407,6 @@ Options:
 - `--skip-search`
 - `--skip-health`
 - `--skip-ui`
-- `--cloudflare-ai-gateway-account-id <id>`
-- `--cloudflare-ai-gateway-gateway-id <id>`
 - `--node-manager <npm|pnpm|bun>` (pnpm recommended; bun not recommended for Gateway runtime)
 - `--json`
 
@@ -468,7 +455,7 @@ Options:
 
 ### `channels`
 
-Manage chat channel accounts (WhatsApp/Telegram/Discord/Google Chat/Slack/Mattermost (plugin)/Signal/iMessage/Microsoft Teams).
+Manage chat channel accounts (WhatsApp/Telegram).
 
 Subcommands:
 
@@ -485,7 +472,7 @@ Subcommands:
 
 Common options:
 
-- `--channel <name>`: `whatsapp|telegram|discord|googlechat|slack|mattermost|signal|imessage|msteams`
+- `--channel <name>`: `whatsapp|telegram`
 - `--account <id>`: channel account id (default `default`)
 - `--name <label>`: display name for the account
 
@@ -517,8 +504,8 @@ Examples:
 
 ```bash
 openclaw channels add --channel telegram --account alerts --name "Alerts Bot" --token $TELEGRAM_BOT_TOKEN
-openclaw channels add --channel discord --account work --name "Work Bot" --token $DISCORD_BOT_TOKEN
-openclaw channels remove --channel discord --account work --delete
+openclaw channels login --channel whatsapp --account work
+openclaw channels remove --channel telegram --account alerts --delete
 openclaw channels status --probe
 openclaw status --deep
 ```
@@ -595,20 +582,15 @@ See: [/cli/message](/cli/message)
 
 Subcommands:
 
-- `message send|poll|react|reactions|read|edit|delete|pin|unpin|pins|permissions|search|timeout|kick|ban`
+- `message send|poll|react|reactions|read|edit|delete|pin|unpin|pins|permissions|search`
 - `message thread <create|list|reply>`
 - `message emoji <list|upload>`
 - `message sticker <send|upload>`
-- `message role <info|add|remove>`
-- `message channel <info|list>`
-- `message member info`
-- `message voice status`
-- `message event <list|create>`
 
 Examples:
 
 - `openclaw message send --target +15555550123 --message "Hi"`
-- `openclaw message poll --channel discord --target channel:123 --poll-question "Snack?" --poll-option Pizza --poll-option Sushi`
+- `openclaw message react --channel telegram --target 123456789 --message-id 456 --emoji "✅"`
 
 ### `agent`
 

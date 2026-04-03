@@ -226,15 +226,10 @@ Examples:
 
 - the bundled `openai` plugin owns OpenAI model-provider behavior and OpenAI
   speech + media-understanding + image-generation behavior
-- the bundled `elevenlabs` plugin owns ElevenLabs speech behavior
-- the bundled `microsoft` plugin owns Microsoft speech behavior
 - the bundled `google` plugin owns Google model-provider behavior plus Google
   media-understanding + image-generation + web-search behavior
 - the bundled `minimax`, `mistral`, `moonshot`, and `zai` plugins own their
   media-understanding backends
-- the `voice-call` plugin is a feature plugin: it owns call transport, tools,
-  CLI, routes, and runtime, but it consumes core TTS/STT capability instead of
-  inventing a second speech stack
 
 The intended end state is:
 
@@ -272,14 +267,13 @@ Use this mental model when deciding where code belongs:
   merge rules, delivery semantics, and typed contracts
 - **vendor plugin layer**: vendor-specific APIs, auth, model catalogs, speech
   synthesis, image generation, future video backends, usage endpoints
-- **channel/feature plugin layer**: Slack/Discord/voice-call/etc. integration
-  that consumes core capabilities and presents them on a surface
+- **channel/feature plugin layer**: surface-specific integrations that consume
+  core capabilities and present them on a surface
 
 For example, TTS follows this shape:
 
 - core owns reply-time TTS policy, fallback order, prefs, and channel delivery
-- `openai`, `elevenlabs`, and `microsoft` own synthesis implementations
-- `voice-call` consumes the telephony TTS runtime helper
+- `openai` owns the retained bundled synthesis implementation in this fork
 
 That same pattern should be preferred for future capabilities.
 

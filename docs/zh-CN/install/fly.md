@@ -437,31 +437,8 @@ fly ssh console -a my-openclaw
 
 ### 私有部署的 Webhooks
 
-如果你需要 webhook 回调（Twilio、Telnyx 等）而不暴露公共：
-
-1. **ngrok 隧道** - 在容器内或作为 sidecar 运行 ngrok
-2. **Tailscale Funnel** - 通过 Tailscale 暴露特定路径
-3. **仅出站** - 某些提供商（Twilio）对于出站呼叫无需 webhooks 也能正常工作
-
-使用 ngrok 的示例语音通话配置：
-
-```json
-{
-  "plugins": {
-    "entries": {
-      "voice-call": {
-        "enabled": true,
-        "config": {
-          "provider": "twilio",
-          "tunnel": { "provider": "ngrok" }
-        }
-      }
-    }
-  }
-}
-```
-
-ngrok 隧道在容器内运行并提供公共 webhook URL，而不暴露 Fly 应用本身。
+这个 fork 不再捆绑 voice-call 语音通话栈，因此本指南里原有的
+Twilio/Telnyx webhook 示例已移除。
 
 ### 安全优势
 

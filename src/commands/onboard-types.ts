@@ -8,22 +8,13 @@ export type BuiltInAuthChoice =
   | "oauth"
   | "setup-token"
   | "token"
-  | "chutes"
-  | "deepseek-api-key"
   | "openai-codex"
   | "openai-api-key"
   | "openrouter-api-key"
   | "kilocode-api-key"
-  | "litellm-api-key"
-  | "ai-gateway-api-key"
-  | "cloudflare-ai-gateway-api-key"
   | "moonshot-api-key"
   | "moonshot-api-key-cn"
   | "kimi-code-api-key"
-  | "synthetic-api-key"
-  | "venice-api-key"
-  | "together-api-key"
-  | "huggingface-api-key"
   | "apiKey"
   | "gemini-api-key"
   | "google-gemini-cli"
@@ -32,24 +23,11 @@ export type BuiltInAuthChoice =
   | "zai-coding-cn"
   | "zai-global"
   | "zai-cn"
-  | "xiaomi-api-key"
   | "minimax-global-oauth"
   | "minimax-global-api"
   | "minimax-cn-oauth"
   | "minimax-cn-api"
-  | "opencode-zen"
-  | "opencode-go"
   | "github-copilot"
-  | "copilot-proxy"
-  | "xai-api-key"
-  | "mistral-api-key"
-  | "volcengine-api-key"
-  | "byteplus-api-key"
-  | "qianfan-api-key"
-  | "modelstudio-standard-api-key-cn"
-  | "modelstudio-standard-api-key"
-  | "modelstudio-api-key-cn"
-  | "modelstudio-api-key"
   | "custom-api-key"
   | "skip";
 export type AuthChoice = BuiltInAuthChoice | (string & {});
@@ -57,30 +35,13 @@ export type AuthChoice = BuiltInAuthChoice | (string & {});
 export type BuiltInAuthChoiceGroupId =
   | "openai"
   | "anthropic"
-  | "chutes"
-  | "deepseek"
   | "google"
   | "copilot"
   | "openrouter"
   | "kilocode"
-  | "litellm"
-  | "ai-gateway"
-  | "cloudflare-ai-gateway"
   | "moonshot"
   | "zai"
-  | "xiaomi"
-  | "opencode"
   | "minimax"
-  | "synthetic"
-  | "venice"
-  | "mistral"
-  | "together"
-  | "huggingface"
-  | "qianfan"
-  | "modelstudio"
-  | "xai"
-  | "volcengine"
-  | "byteplus"
   | "custom";
 export type AuthChoiceGroupId = BuiltInAuthChoiceGroupId | (string & {});
 export type GatewayAuthChoice = "token" | "password";
@@ -115,36 +76,14 @@ export type OnboardOptions = {
   /** API key persistence mode for setup flows (default: plaintext). */
   secretInputMode?: SecretInputMode;
   anthropicApiKey?: string;
-  deepseekApiKey?: string;
   openaiApiKey?: string;
-  mistralApiKey?: string;
   openrouterApiKey?: string;
   kilocodeApiKey?: string;
-  litellmApiKey?: string;
-  aiGatewayApiKey?: string;
-  cloudflareAiGatewayAccountId?: string;
-  cloudflareAiGatewayGatewayId?: string;
-  cloudflareAiGatewayApiKey?: string;
   moonshotApiKey?: string;
   kimiCodeApiKey?: string;
   geminiApiKey?: string;
   zaiApiKey?: string;
-  xiaomiApiKey?: string;
   minimaxApiKey?: string;
-  syntheticApiKey?: string;
-  veniceApiKey?: string;
-  togetherApiKey?: string;
-  huggingfaceApiKey?: string;
-  opencodeZenApiKey?: string;
-  opencodeGoApiKey?: string;
-  xaiApiKey?: string;
-  volcengineApiKey?: string;
-  byteplusApiKey?: string;
-  qianfanApiKey?: string;
-  modelstudioStandardApiKeyCn?: string;
-  modelstudioStandardApiKey?: string;
-  modelstudioApiKeyCn?: string;
-  modelstudioApiKey?: string;
   customBaseUrl?: string;
   customApiKey?: string;
   customModelId?: string;

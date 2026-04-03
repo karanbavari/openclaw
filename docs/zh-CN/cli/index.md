@@ -64,8 +64,6 @@ x-i18n:
 - [`skills`](/cli/skills)
 - [`daemon`](/cli/daemon)（Gateway 网关服务命令的旧别名）
 - [`clawbot`](/cli/clawbot)（旧别名命名空间）
-- [`voicecall`](/cli/voicecall)（插件；如已安装）
-
 ## 全局标志
 
 - `--dev`：将状态隔离到 `~/.openclaw-dev` 下，并变更默认端口。
@@ -344,7 +342,7 @@ openclaw [--dev] [--profile <name>] <command>
 - `--non-interactive`
 - `--mode <local|remote>`
 - `--flow <quickstart|advanced|manual>`（`manual` 是 `advanced` 的别名）
-- `--auth-choice <setup-token|token|chutes|openai-codex|openai-api-key|openrouter-api-key|ollama|ai-gateway-api-key|moonshot-api-key|moonshot-api-key-cn|kimi-code-api-key|synthetic-api-key|venice-api-key|gemini-api-key|zai-api-key|mistral-api-key|apiKey|minimax-api|minimax-api-lightning|opencode-zen|opencode-go|custom-api-key|skip>`
+- `--auth-choice <setup-token|token|openai-codex|openai-api-key|openrouter-api-key|kilocode-api-key|moonshot-api-key|moonshot-api-key-cn|kimi-code-api-key|gemini-api-key|zai-api-key|zai-coding-global|zai-coding-cn|zai-global|zai-cn|apiKey|minimax-global-oauth|minimax-global-api|minimax-cn-oauth|minimax-cn-api|github-copilot|custom-api-key|skip>`
 - `--token-provider <id>`（非交互式；与 `--auth-choice token` 一起使用）
 - `--token <token>`（非交互式；与 `--auth-choice token` 一起使用）
 - `--token-profile-id <id>`（非交互式；默认：`<provider>:manual`）
@@ -352,18 +350,15 @@ openclaw [--dev] [--profile <name>] <command>
 - `--secret-input-mode <plaintext|ref>`（默认 `plaintext`；使用 `ref` 可存储提供商默认环境引用，而非明文密钥）
 - `--anthropic-api-key <key>`
 - `--openai-api-key <key>`
-- `--mistral-api-key <key>`
 - `--openrouter-api-key <key>`
-- `--ai-gateway-api-key <key>`
+- `--kilocode-api-key <key>`
 - `--moonshot-api-key <key>`
 - `--kimi-code-api-key <key>`
 - `--gemini-api-key <key>`
 - `--zai-api-key <key>`
 - `--minimax-api-key <key>`
-- `--opencode-zen-api-key <key>`
-- `--opencode-go-api-key <key>`
-- `--custom-base-url <url>`（非交互式；与 `--auth-choice custom-api-key` 或 `--auth-choice ollama` 一起使用）
-- `--custom-model-id <id>`（非交互式；与 `--auth-choice custom-api-key` 或 `--auth-choice ollama` 一起使用）
+- `--custom-base-url <url>`（非交互式；与 `--auth-choice custom-api-key` 一起使用）
+- `--custom-model-id <id>`（非交互式；与 `--auth-choice custom-api-key` 一起使用）
 - `--custom-api-key <key>`（非交互式；可选；与 `--auth-choice custom-api-key` 一起使用；省略时回退到 `CUSTOM_API_KEY`）
 - `--custom-provider-id <id>`（非交互式；可选自定义提供商 id）
 - `--custom-compatibility <openai|anthropic>`（非交互式；可选；默认 `openai`）

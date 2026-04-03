@@ -296,11 +296,6 @@ export function collectConfiguredModelPricingRefs(config: OpenClawConfig): Model
     refs,
   });
   addResolvedModelRef({
-    raw: resolvePluginWebSearchConfig(config, "xai")?.model as string | undefined,
-    aliasIndex,
-    refs,
-  });
-  addResolvedModelRef({
     raw: resolvePluginWebSearchConfig(config, "moonshot")?.model as string | undefined,
     aliasIndex,
     refs,

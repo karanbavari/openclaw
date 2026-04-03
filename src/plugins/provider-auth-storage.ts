@@ -73,21 +73,8 @@ const {
   setGeminiApiKey,
   setMoonshotApiKey,
   setKimiCodingApiKey,
-  setVolcengineApiKey,
-  setByteplusApiKey,
-  setSyntheticApiKey,
-  setVeniceApiKey,
   setZaiApiKey,
-  setXiaomiApiKey,
   setOpenrouterApiKey,
-  setLitellmApiKey,
-  setVercelAiGatewayApiKey,
-  setTogetherApiKey,
-  setHuggingfaceApiKey,
-  setQianfanApiKey,
-  setModelStudioApiKey,
-  setXaiApiKey,
-  setMistralApiKey,
   setKilocodeApiKey,
 } = createProviderApiKeySetters({
   setAnthropicApiKey: { provider: "anthropic" },
@@ -95,24 +82,11 @@ const {
   setGeminiApiKey: { provider: "google" },
   setMoonshotApiKey: { provider: "moonshot" },
   setKimiCodingApiKey: { provider: "kimi" },
-  setVolcengineApiKey: { provider: "volcengine" },
-  setByteplusApiKey: { provider: "byteplus" },
-  setSyntheticApiKey: { provider: "synthetic" },
-  setVeniceApiKey: { provider: "venice" },
   setZaiApiKey: { provider: "zai" },
-  setXiaomiApiKey: { provider: "xiaomi" },
   setOpenrouterApiKey: {
     provider: "openrouter",
     resolveKey: (key) => (typeof key === "string" && key === "undefined" ? "" : key),
   },
-  setLitellmApiKey: { provider: "litellm" },
-  setVercelAiGatewayApiKey: { provider: "vercel-ai-gateway" },
-  setTogetherApiKey: { provider: "together" },
-  setHuggingfaceApiKey: { provider: "huggingface" },
-  setQianfanApiKey: { provider: "qianfan" },
-  setModelStudioApiKey: { provider: "modelstudio" },
-  setXaiApiKey: { provider: "xai" },
-  setMistralApiKey: { provider: "mistral" },
   setKilocodeApiKey: { provider: "kilocode" },
 });
 
@@ -122,21 +96,8 @@ export {
   setGeminiApiKey,
   setMoonshotApiKey,
   setKimiCodingApiKey,
-  setVolcengineApiKey,
-  setByteplusApiKey,
-  setSyntheticApiKey,
-  setVeniceApiKey,
   setZaiApiKey,
-  setXiaomiApiKey,
   setOpenrouterApiKey,
-  setLitellmApiKey,
-  setVercelAiGatewayApiKey,
-  setTogetherApiKey,
-  setHuggingfaceApiKey,
-  setQianfanApiKey,
-  setModelStudioApiKey,
-  setXaiApiKey,
-  setMistralApiKey,
   setKilocodeApiKey,
 };
 
@@ -148,51 +109,4 @@ export async function setMinimaxApiKey(
 ) {
   const provider = profileId.split(":")[0] ?? "minimax";
   upsertProviderApiKeyProfile({ provider, key, agentDir, options, profileId });
-}
-
-export async function setCloudflareAiGatewayConfig(
-  accountId: string,
-  gatewayId: string,
-  apiKey: SecretInput,
-  agentDir?: string,
-  options?: ApiKeyStorageOptions,
-) {
-  const normalizedAccountId = accountId.trim();
-  const normalizedGatewayId = gatewayId.trim();
-  upsertProviderApiKeyProfile({
-    provider: "cloudflare-ai-gateway",
-    key: apiKey,
-    agentDir,
-    options,
-    metadata: {
-      accountId: normalizedAccountId,
-      gatewayId: normalizedGatewayId,
-    },
-  });
-}
-
-export async function setOpencodeZenApiKey(
-  key: SecretInput,
-  agentDir?: string,
-  options?: ApiKeyStorageOptions,
-) {
-  await setSharedOpencodeApiKey(key, agentDir, options);
-}
-
-export async function setOpencodeGoApiKey(
-  key: SecretInput,
-  agentDir?: string,
-  options?: ApiKeyStorageOptions,
-) {
-  await setSharedOpencodeApiKey(key, agentDir, options);
-}
-
-async function setSharedOpencodeApiKey(
-  key: SecretInput,
-  agentDir?: string,
-  options?: ApiKeyStorageOptions,
-) {
-  for (const provider of ["opencode", "opencode-go"] as const) {
-    upsertProviderApiKeyProfile({ provider, key, agentDir, options });
-  }
 }

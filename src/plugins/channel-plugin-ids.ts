@@ -189,11 +189,6 @@ function collectConfiguredActivationIds(config: OpenClawConfig): Set<string> {
     aliasIndex,
   });
   addResolvedActivationId({
-    raw: resolvePluginWebSearchConfig(config, "xai")?.model as string | undefined,
-    activationIds,
-    aliasIndex,
-  });
-  addResolvedActivationId({
     raw: resolvePluginWebSearchConfig(config, "moonshot")?.model as string | undefined,
     activationIds,
     aliasIndex,

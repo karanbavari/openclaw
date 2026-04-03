@@ -62,7 +62,7 @@ openclaw cron edit <job-id> --light-context
 Announce to a specific channel:
 
 ```bash
-openclaw cron edit <job-id> --announce --channel slack --to "channel:C1234567890"
+openclaw cron edit <job-id> --announce --channel telegram --to 123456789
 ```
 
 Create an isolated job with lightweight bootstrap context:

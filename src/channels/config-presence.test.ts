@@ -41,13 +41,13 @@ describe("config presence", () => {
     expect(hasMeaningfulChannelConfig({ enabled: false })).toBe(false);
     expect(hasMeaningfulChannelConfig({ enabled: true })).toBe(false);
     expect(hasMeaningfulChannelConfig({})).toBe(false);
-    expect(hasMeaningfulChannelConfig({ homeserver: "https://matrix.example.org" })).toBe(true);
+    expect(hasMeaningfulChannelConfig({ botToken: "123:abc" })).toBe(true);
   });
 
-  it("ignores enabled-only matrix config when listing configured channels", () => {
+  it("ignores enabled-only telegram config when listing configured channels", () => {
     const stateDir = makeTempStateDir();
     const env = { OPENCLAW_STATE_DIR: stateDir } as NodeJS.ProcessEnv;
-    const cfg = { channels: { matrix: { enabled: false } } };
+    const cfg = { channels: { telegram: { enabled: false } } };
 
     expectPotentialConfiguredChannelCase({
       cfg,

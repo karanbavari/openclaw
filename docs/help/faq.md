@@ -607,7 +607,7 @@ for usage/billing and raise limits as needed.
   </Accordion>
 
   <Accordion title="Is AWS Bedrock supported?">
-    Yes - via pi-ai's **Amazon Bedrock (Converse)** provider with **manual config**. You must supply AWS credentials/region on the gateway host and add a Bedrock provider entry in your models config. See [Amazon Bedrock](/providers/bedrock) and [Model providers](/providers/models). If you prefer a managed key flow, an OpenAI-compatible proxy in front of Bedrock is still a valid option.
+    Not in this fork. Supported bundled providers are limited to Anthropic, Google, GitHub Copilot, MiniMax, Moonshot, OpenAI, OpenRouter, Kilocode, Kimi Coding, and Z.AI. If you need a self-hosted or unsupported endpoint, configure it as a custom OpenAI-compatible provider instead.
   </Accordion>
 
   <Accordion title="How does Codex auth work?">
@@ -2052,29 +2052,22 @@ for usage/billing and raise limits as needed.
   </Accordion>
 
   <Accordion title="Can I use self-hosted models (llama.cpp, vLLM, Ollama)?">
-    Yes. Ollama is the easiest path for local models.
+    Yes. If your local server exposes an OpenAI-compatible API, point a custom provider at it and keep your hosted providers as fallbacks.
 
-    Quickest setup:
+    Recommended flow:
 
-    1. Install Ollama from `https://ollama.com/download`
-    2. Pull a local model such as `ollama pull glm-4.7-flash`
-    3. If you want Ollama Cloud too, run `ollama signin`
-    4. Run `openclaw onboard` and choose `Ollama`
-    5. Pick `Local` or `Cloud + Local`
-
-    Notes:
-
-    - `Cloud + Local` gives you Ollama Cloud models plus your local Ollama models
-    - cloud models such as `kimi-k2.5:cloud` do not need a local pull
-    - for manual switching, use `openclaw models list` and `openclaw models set ollama/<model>`
+    1. Start your local OpenAI-compatible server
+    2. Verify it serves `/v1/models`
+    3. Run `openclaw onboard --auth-choice custom-api-key`
+    4. Enter the local base URL and model ID
+    5. Keep a hosted fallback configured for higher-risk tasks
 
     Security note: smaller or heavily quantized models are more vulnerable to prompt
     injection. We strongly recommend **large models** for any bot that can use tools.
     If you still want small models, enable sandboxing and strict tool allowlists.
 
-    Docs: [Ollama](/providers/ollama), [Local models](/gateway/local-models),
-    [Model providers](/concepts/model-providers), [Security](/gateway/security),
-    [Sandboxing](/gateway/sandboxing).
+    Docs: [Local models](/gateway/local-models), [Model providers](/concepts/model-providers),
+    [Security](/gateway/security), [Sandboxing](/gateway/sandboxing).
 
   </Accordion>
 

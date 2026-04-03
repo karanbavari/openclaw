@@ -159,40 +159,25 @@ x-i18n:
     当模型未设置、为 `openai/*` 或 `openai-codex/*` 时，将 `agents.defaults.model` 设置为 `openai/gpt-5.1-codex`。
 
   </Accordion>
-  <Accordion title="xAI（Grok）API 密钥">
-    提示输入 `XAI_API_KEY`，并将 xAI 配置为模型提供商。
+  <Accordion title="OpenRouter API 密钥">
+    提示输入 `OPENROUTER_API_KEY`。
   </Accordion>
-  <Accordion title="OpenCode">
-    提示输入 `OPENCODE_API_KEY`（或 `OPENCODE_ZEN_API_KEY`），并让你选择 Zen 或 Go 目录。
-    设置 URL：[opencode.ai/auth](https://opencode.ai/auth)。
+  <Accordion title="GitHub Copilot">
+    启动 GitHub Copilot 设备登录流程。
   </Accordion>
   <Accordion title="API 密钥（通用）">
     会为你存储该密钥。
   </Accordion>
-  <Accordion title="Vercel AI Gateway">
-    提示输入 `AI_GATEWAY_API_KEY`。
-    更多详情：[Vercel AI Gateway](/providers/vercel-ai-gateway)。
-  </Accordion>
-  <Accordion title="Cloudflare AI Gateway">
-    提示输入账户 ID、Gateway ID 和 `CLOUDFLARE_AI_GATEWAY_API_KEY`。
-    更多详情：[Cloudflare AI Gateway](/providers/cloudflare-ai-gateway)。
-  </Accordion>
-  <Accordion title="MiniMax M2.5">
+  <Accordion title="MiniMax">
     配置会自动写入。
     更多详情：[MiniMax](/providers/minimax)。
-  </Accordion>
-  <Accordion title="Synthetic（兼容 Anthropic）">
-    提示输入 `SYNTHETIC_API_KEY`。
-    更多详情：[Synthetic](/providers/synthetic)。
-  </Accordion>
-  <Accordion title="Ollama（Cloud 和本地开放模型）">
-    提示输入基础 URL（默认 `http://127.0.0.1:11434`），然后提供 Cloud + Local 或 Local 模式。
-    会发现可用模型并建议默认值。
-    更多详情：[Ollama](/providers/ollama)。
   </Accordion>
   <Accordion title="Moonshot 和 Kimi Coding">
     Moonshot（Kimi K2）和 Kimi Coding 配置会自动写入。
     更多详情：[Moonshot AI（Kimi + Kimi Coding）](/providers/moonshot)。
+  </Accordion>
+  <Accordion title="Z.AI">
+    复用同一个 API key，在支持的 global/CN/coding 端点预设之间选择。
   </Accordion>
   <Accordion title="自定义提供商">
     适用于兼容 OpenAI 和兼容 Anthropic 的端点。

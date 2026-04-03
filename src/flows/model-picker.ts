@@ -158,12 +158,6 @@ function addModelSelectOption(params: {
 }
 
 function matchesPreferredProvider(entryProvider: string, preferredProvider: string): boolean {
-  if (preferredProvider === "volcengine") {
-    return entryProvider === "volcengine" || entryProvider === "volcengine-plan";
-  }
-  if (preferredProvider === "byteplus") {
-    return entryProvider === "byteplus" || entryProvider === "byteplus-plan";
-  }
   return entryProvider === preferredProvider;
 }
 

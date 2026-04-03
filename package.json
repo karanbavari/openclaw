@@ -171,10 +171,6 @@
       "types": "./dist/plugin-sdk/thread-bindings-runtime.d.ts",
       "default": "./dist/plugin-sdk/thread-bindings-runtime.js"
     },
-    "./plugin-sdk/together": {
-      "types": "./dist/plugin-sdk/together.d.ts",
-      "default": "./dist/plugin-sdk/together.js"
-    },
     "./plugin-sdk/text-runtime": {
       "types": "./dist/plugin-sdk/text-runtime.d.ts",
       "default": "./dist/plugin-sdk/text-runtime.js"
@@ -279,10 +275,6 @@
       "types": "./dist/plugin-sdk/agent-config-primitives.d.ts",
       "default": "./dist/plugin-sdk/agent-config-primitives.js"
     },
-    "./plugin-sdk/amazon-bedrock": {
-      "types": "./dist/plugin-sdk/amazon-bedrock.d.ts",
-      "default": "./dist/plugin-sdk/amazon-bedrock.js"
-    },
     "./plugin-sdk/allow-from": {
       "types": "./dist/plugin-sdk/allow-from.d.ts",
       "default": "./dist/plugin-sdk/allow-from.js"
@@ -290,10 +282,6 @@
     "./plugin-sdk/allowlist-config-edit": {
       "types": "./dist/plugin-sdk/allowlist-config-edit.d.ts",
       "default": "./dist/plugin-sdk/allowlist-config-edit.js"
-    },
-    "./plugin-sdk/anthropic-vertex": {
-      "types": "./dist/plugin-sdk/anthropic-vertex.d.ts",
-      "default": "./dist/plugin-sdk/anthropic-vertex.js"
     },
     "./plugin-sdk/bluebubbles": {
       "types": "./dist/plugin-sdk/bluebubbles.d.ts",
@@ -323,18 +311,6 @@
       "types": "./dist/plugin-sdk/dangerous-name-runtime.d.ts",
       "default": "./dist/plugin-sdk/dangerous-name-runtime.js"
     },
-    "./plugin-sdk/cloudflare-ai-gateway": {
-      "types": "./dist/plugin-sdk/cloudflare-ai-gateway.d.ts",
-      "default": "./dist/plugin-sdk/cloudflare-ai-gateway.js"
-    },
-    "./plugin-sdk/byteplus": {
-      "types": "./dist/plugin-sdk/byteplus.d.ts",
-      "default": "./dist/plugin-sdk/byteplus.js"
-    },
-    "./plugin-sdk/chutes": {
-      "types": "./dist/plugin-sdk/chutes.d.ts",
-      "default": "./dist/plugin-sdk/chutes.js"
-    },
     "./plugin-sdk/command-auth": {
       "types": "./dist/plugin-sdk/command-auth.d.ts",
       "default": "./dist/plugin-sdk/command-auth.js"
@@ -362,10 +338,6 @@
     "./plugin-sdk/direct-dm": {
       "types": "./dist/plugin-sdk/direct-dm.d.ts",
       "default": "./dist/plugin-sdk/direct-dm.js"
-    },
-    "./plugin-sdk/deepseek": {
-      "types": "./dist/plugin-sdk/deepseek.d.ts",
-      "default": "./dist/plugin-sdk/deepseek.js"
     },
     "./plugin-sdk/device-bootstrap": {
       "types": "./dist/plugin-sdk/device-bootstrap.d.ts",
@@ -506,10 +478,6 @@
     "./plugin-sdk/global-singleton": {
       "types": "./dist/plugin-sdk/global-singleton.d.ts",
       "default": "./dist/plugin-sdk/global-singleton.js"
-    },
-    "./plugin-sdk/huggingface": {
-      "types": "./dist/plugin-sdk/huggingface.d.ts",
-      "default": "./dist/plugin-sdk/huggingface.js"
     },
     "./plugin-sdk/directory-runtime": {
       "types": "./dist/plugin-sdk/directory-runtime.d.ts",
@@ -675,21 +643,9 @@
       "types": "./dist/plugin-sdk/minimax.d.ts",
       "default": "./dist/plugin-sdk/minimax.js"
     },
-    "./plugin-sdk/modelstudio": {
-      "types": "./dist/plugin-sdk/modelstudio.d.ts",
-      "default": "./dist/plugin-sdk/modelstudio.js"
-    },
-    "./plugin-sdk/modelstudio-definitions": {
-      "types": "./dist/plugin-sdk/modelstudio-definitions.d.ts",
-      "default": "./dist/plugin-sdk/modelstudio-definitions.js"
-    },
     "./plugin-sdk/moonshot": {
       "types": "./dist/plugin-sdk/moonshot.d.ts",
       "default": "./dist/plugin-sdk/moonshot.js"
-    },
-    "./plugin-sdk/mistral": {
-      "types": "./dist/plugin-sdk/mistral.d.ts",
-      "default": "./dist/plugin-sdk/mistral.js"
     },
     "./plugin-sdk/msteams": {
       "types": "./dist/plugin-sdk/msteams.d.ts",
@@ -711,37 +667,13 @@
       "types": "./dist/plugin-sdk/nextcloud-talk.d.ts",
       "default": "./dist/plugin-sdk/nextcloud-talk.js"
     },
-    "./plugin-sdk/nvidia": {
-      "types": "./dist/plugin-sdk/nvidia.d.ts",
-      "default": "./dist/plugin-sdk/nvidia.js"
-    },
     "./plugin-sdk/nostr": {
       "types": "./dist/plugin-sdk/nostr.d.ts",
       "default": "./dist/plugin-sdk/nostr.js"
     },
-    "./plugin-sdk/ollama": {
-      "types": "./dist/plugin-sdk/ollama.d.ts",
-      "default": "./dist/plugin-sdk/ollama.js"
-    },
-    "./plugin-sdk/ollama-surface": {
-      "types": "./dist/plugin-sdk/ollama-surface.d.ts",
-      "default": "./dist/plugin-sdk/ollama-surface.js"
-    },
     "./plugin-sdk/openai": {
       "types": "./dist/plugin-sdk/openai.d.ts",
       "default": "./dist/plugin-sdk/openai.js"
-    },
-    "./plugin-sdk/opencode": {
-      "types": "./dist/plugin-sdk/opencode.d.ts",
-      "default": "./dist/plugin-sdk/opencode.js"
-    },
-    "./plugin-sdk/opencode-go": {
-      "types": "./dist/plugin-sdk/opencode-go.d.ts",
-      "default": "./dist/plugin-sdk/opencode-go.js"
-    },
-    "./plugin-sdk/qianfan": {
-      "types": "./dist/plugin-sdk/qianfan.d.ts",
-      "default": "./dist/plugin-sdk/qianfan.js"
     },
     "./plugin-sdk/provider-auth": {
       "types": "./dist/plugin-sdk/provider-auth.d.ts",
@@ -883,10 +815,6 @@
       "types": "./dist/plugin-sdk/speech.d.ts",
       "default": "./dist/plugin-sdk/speech.js"
     },
-    "./plugin-sdk/sglang": {
-      "types": "./dist/plugin-sdk/sglang.d.ts",
-      "default": "./dist/plugin-sdk/sglang.js"
-    },
     "./plugin-sdk/session-store-runtime": {
       "types": "./dist/plugin-sdk/session-store-runtime.d.ts",
       "default": "./dist/plugin-sdk/session-store-runtime.js"
@@ -898,10 +826,6 @@
     "./plugin-sdk/state-paths": {
       "types": "./dist/plugin-sdk/state-paths.d.ts",
       "default": "./dist/plugin-sdk/state-paths.js"
-    },
-    "./plugin-sdk/synthetic": {
-      "types": "./dist/plugin-sdk/synthetic.d.ts",
-      "default": "./dist/plugin-sdk/synthetic.js"
     },
     "./plugin-sdk/telegram-account": {
       "types": "./dist/plugin-sdk/telegram-account.d.ts",
@@ -939,18 +863,6 @@
       "types": "./dist/plugin-sdk/twitch.d.ts",
       "default": "./dist/plugin-sdk/twitch.js"
     },
-    "./plugin-sdk/venice": {
-      "types": "./dist/plugin-sdk/venice.d.ts",
-      "default": "./dist/plugin-sdk/venice.js"
-    },
-    "./plugin-sdk/vllm": {
-      "types": "./dist/plugin-sdk/vllm.d.ts",
-      "default": "./dist/plugin-sdk/vllm.js"
-    },
-    "./plugin-sdk/xai": {
-      "types": "./dist/plugin-sdk/xai.d.ts",
-      "default": "./dist/plugin-sdk/xai.js"
-    },
     "./plugin-sdk/webhook-ingress": {
       "types": "./dist/plugin-sdk/webhook-ingress.d.ts",
       "default": "./dist/plugin-sdk/webhook-ingress.js"
@@ -966,14 +878,6 @@
     "./plugin-sdk/web-media": {
       "types": "./dist/plugin-sdk/web-media.d.ts",
       "default": "./dist/plugin-sdk/web-media.js"
-    },
-    "./plugin-sdk/voice-call": {
-      "types": "./dist/plugin-sdk/voice-call.d.ts",
-      "default": "./dist/plugin-sdk/voice-call.js"
-    },
-    "./plugin-sdk/volcengine": {
-      "types": "./dist/plugin-sdk/volcengine.d.ts",
-      "default": "./dist/plugin-sdk/volcengine.js"
     },
     "./plugin-sdk/whatsapp-auth-presence": {
       "types": "./dist/plugin-sdk/whatsapp-auth-presence.d.ts",
