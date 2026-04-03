@@ -34,11 +34,29 @@ import { OpenClawSchema } from "./zod-schema.js";
 
 const LEGACY_REMOVED_PLUGIN_IDS = new Set(["google-antigravity-auth", "google-gemini-cli-auth"]);
 const REMOVED_CAPABILITY_PLUGIN_IDS = new Set([
+  "acpx",
+  "brave",
+  "browser",
+  "device-pair",
   "deepgram",
+  "diagnostics-otel",
+  "diffs",
+  "duckduckgo",
   "elevenlabs",
+  "exa",
+  "firecrawl",
   "groq",
+  "llm-task",
+  "lobster",
   "microsoft",
+  "open-prose",
+  "openshell",
+  "perplexity",
+  "phone-control",
+  "searxng",
+  "tavily",
   "talk-voice",
+  "thread-ownership",
   "voice-call",
 ]);
 const REMOVED_PROVIDER_IDS = new Set([
@@ -505,6 +523,36 @@ function buildRemovedMediaProviderMessage(providerId: string): string {
   return `audio/media provider "${providerId}" is no longer supported in this fork`;
 }
 
+function validateUnsupportedSaasConfig(config: OpenClawConfig): ConfigValidationIssue[] {
+  const issues: ConfigValidationIssue[] = [];
+
+  if (config.browser && Object.keys(config.browser).length > 0) {
+    issues.push({
+      path: "browser",
+      message:
+        'browser automation is no longer supported in this SaaS-focused fork; remove the top-level "browser" config block',
+    });
+  }
+
+  if (config.wizard && Object.keys(config.wizard).length > 0) {
+    issues.push({
+      path: "wizard",
+      message:
+        'CLI onboarding state is no longer part of this CRM-focused fork; remove the top-level "wizard" config block',
+    });
+  }
+
+  if (config.tools?.web?.search && Object.keys(config.tools.web.search).length > 0) {
+    issues.push({
+      path: "tools.web.search",
+      message:
+        'web_search is no longer bundled in this SaaS-focused fork; remove "tools.web.search" config',
+    });
+  }
+
+  return issues;
+}
+
 export function collectUnsupportedSecretRefPolicyIssues(raw: unknown): ConfigValidationIssue[] {
   return collectUnsupportedMutableSecretRefIssues(raw);
 }
@@ -659,6 +707,10 @@ export function validateConfigObjectRaw(
   const gatewayTailscaleBindIssues = validateGatewayTailscaleBind(validatedConfig);
   if (gatewayTailscaleBindIssues.length > 0) {
     return { ok: false, issues: gatewayTailscaleBindIssues };
+  }
+  const unsupportedSaasIssues = validateUnsupportedSaasConfig(validatedConfig);
+  if (unsupportedSaasIssues.length > 0) {
+    return { ok: false, issues: unsupportedSaasIssues };
   }
   return {
     ok: true,

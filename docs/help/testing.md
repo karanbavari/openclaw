@@ -354,17 +354,7 @@ OPENCLAW_LIVE_ACP_BIND=1 \
   pnpm test:live src/gateway/gateway-acp-bind.live.test.ts
 ```
 
-Docker recipe:
-
-```bash
-pnpm test:docker:live-acp-bind
-```
-
-Docker notes:
-
-- The Docker runner lives at `scripts/test-live-acp-bind-docker.sh`.
-- It sources `~/.profile`, copies the matching CLI auth home (`~/.claude` or `~/.codex`) into the container, installs `acpx` into a writable npm prefix, then installs the requested live CLI (`@anthropic-ai/claude-code` or `@openai/codex`) if missing.
-- Inside Docker, the runner sets `OPENCLAW_LIVE_ACP_BIND_ACPX_COMMAND=$HOME/.npm-global/bin/acpx` so acpx keeps provider env vars from the sourced profile available to the child harness CLI.
+The old ACPX Docker recipe is not shipped in this SaaS-focused fork.
 
 ### Recommended live recipes
 
@@ -489,52 +479,10 @@ If you want to rely on env keys (e.g. exported in your `~/.profile`), run local 
 - Optional auth behavior:
   - `OPENCLAW_LIVE_REQUIRE_PROFILE_KEYS=1` to force profile-store auth and ignore env-only overrides
 
-## Docker runners (optional "works in Linux" checks)
+## Container runners
 
-These Docker runners split into two buckets:
-
-- Live-model runners: `test:docker:live-models` and `test:docker:live-gateway` run `pnpm test:live` inside the repo Docker image, mounting your local config dir and workspace (and sourcing `~/.profile` if mounted).
-- Container smoke runners: `test:docker:openwebui`, `test:docker:onboard`, `test:docker:gateway-network`, `test:docker:mcp-channels`, and `test:docker:plugins` boot one or more real containers and verify higher-level integration paths.
-
-The live-model Docker runners also bind-mount only the needed CLI auth homes (or all supported ones when the run is not narrowed), then copy them into the container home before the run so external-CLI OAuth can refresh tokens without mutating the host auth store:
-
-- Direct models: `pnpm test:docker:live-models` (script: `scripts/test-live-models-docker.sh`)
-- ACP bind smoke: `pnpm test:docker:live-acp-bind` (script: `scripts/test-live-acp-bind-docker.sh`)
-- CLI backend smoke: `pnpm test:docker:live-cli-backend` (script: `scripts/test-live-cli-backend-docker.sh`)
-- Gateway + dev agent: `pnpm test:docker:live-gateway` (script: `scripts/test-live-gateway-models-docker.sh`)
-- Open WebUI live smoke: `pnpm test:docker:openwebui` (script: `scripts/e2e/openwebui-docker.sh`)
-- Onboarding wizard (TTY, full scaffolding): `pnpm test:docker:onboard` (script: `scripts/e2e/onboard-docker.sh`)
-- Gateway networking (two containers, WS auth + health): `pnpm test:docker:gateway-network` (script: `scripts/e2e/gateway-network-docker.sh`)
-- MCP channel bridge (seeded Gateway + stdio bridge + raw Claude notification-frame smoke): `pnpm test:docker:mcp-channels` (script: `scripts/e2e/mcp-channels-docker.sh`)
-- Plugins (install smoke + `/plugin` alias + Claude-bundle restart semantics): `pnpm test:docker:plugins` (script: `scripts/e2e/plugins-docker.sh`)
-
-The live-model Docker runners also bind-mount the current checkout read-only and
-stage it into a temporary workdir inside the container. This keeps the runtime
-image slim while still running Vitest against your exact local source/config.
-They also set `OPENCLAW_SKIP_CHANNELS=1` so gateway live probes do not start
-real Telegram/Discord/etc. channel workers inside the container.
-`test:docker:live-models` still runs `pnpm test:live`, so pass through
-`OPENCLAW_LIVE_GATEWAY_*` as well when you need to narrow or exclude gateway
-live coverage from that Docker lane.
-`test:docker:openwebui` is a higher-level compatibility smoke: it starts an
-OpenClaw gateway container with the OpenAI-compatible HTTP endpoints enabled,
-starts a pinned Open WebUI container against that gateway, signs in through
-Open WebUI, verifies `/api/models` exposes `openclaw/default`, then sends a
-real chat request through Open WebUI's `/api/chat/completions` proxy.
-The first run can be noticeably slower because Docker may need to pull the
-Open WebUI image and Open WebUI may need to finish its own cold-start setup.
-This lane expects a usable live model key, and `OPENCLAW_PROFILE_FILE`
-(`~/.profile` by default) is the primary way to provide it in Dockerized runs.
-Successful runs print a small JSON payload like `{ "ok": true, "model":
-"openclaw/default", ... }`.
-`test:docker:mcp-channels` is intentionally deterministic and does not need a
-real Telegram, Discord, or iMessage account. It boots a seeded Gateway
-container, starts a second container that spawns `openclaw mcp serve`, then
-verifies routed conversation discovery, transcript reads, attachment metadata,
-live event queue behavior, outbound send routing, and Claude-style channel +
-permission notifications over the real stdio MCP bridge. The notification check
-inspects the raw stdio MCP frames directly so the smoke validates what the
-bridge actually emits, not just what a specific client SDK happens to surface.
+Containerized smoke and onboarding runners are not part of this CRM-focused fork anymore.
+Use the retained web UI, backend tests, and standard local build/test flows instead.
 
 Manual ACP plain-language thread smoke (not CI):
 

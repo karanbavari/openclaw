@@ -53,10 +53,7 @@ export const FALLBACK_TOOL_SECTIONS: AgentToolSection[] = [
   {
     id: "web",
     label: "Web",
-    tools: [
-      { id: "web_search", label: "web_search", description: "Search the web" },
-      { id: "web_fetch", label: "web_fetch", description: "Fetch web content" },
-    ],
+    tools: [{ id: "web_fetch", label: "web_fetch", description: "Fetch web content" }],
   },
   {
     id: "memory",
@@ -80,10 +77,7 @@ export const FALLBACK_TOOL_SECTIONS: AgentToolSection[] = [
   {
     id: "ui",
     label: "UI",
-    tools: [
-      { id: "browser", label: "browser", description: "Control web browser" },
-      { id: "canvas", label: "canvas", description: "Control canvases" },
-    ],
+    tools: [{ id: "canvas", label: "canvas", description: "Control canvases" }],
   },
   {
     id: "messaging",

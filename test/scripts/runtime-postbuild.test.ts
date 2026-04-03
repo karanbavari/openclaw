@@ -23,16 +23,14 @@ async function createTempRoot() {
 }
 
 describe("runtime postbuild static assets", () => {
-  it("tracks plugin-owned static assets that release packaging must ship", () => {
-    expect(listStaticExtensionAssetOutputs()).toContain(
-      "dist/extensions/diffs/assets/viewer-runtime.js",
-    );
+  it("does not track removed plugin-owned runtime assets in the SaaS fork", () => {
+    expect(listStaticExtensionAssetOutputs()).toEqual([]);
   });
 
   it("copies declared static assets into dist", async () => {
     const rootDir = await createTempRoot();
-    const src = "extensions/acpx/src/runtime-internals/mcp-proxy.mjs";
-    const dest = "dist/extensions/acpx/mcp-proxy.mjs";
+    const src = "extensions/example/static.mjs";
+    const dest = "dist/extensions/example/static.mjs";
     const sourcePath = path.join(rootDir, src);
     const destPath = path.join(rootDir, dest);
     await fs.mkdir(path.dirname(sourcePath), { recursive: true });

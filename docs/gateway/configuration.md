@@ -20,7 +20,7 @@ If the file is missing, OpenClaw uses safe defaults. Common reasons to add a con
 See the [full reference](/gateway/configuration-reference) for every available field.
 
 <Tip>
-**New to configuration?** Start with `openclaw onboard` for interactive setup, or check out the [Configuration Examples](/gateway/configuration-examples) guide for complete copy-paste configs.
+**New to configuration?** In this fork, prefer direct config editing or the Control UI. The long-term product direction is web-first SaaS setup, not CLI onboarding. For copy-paste examples, see [Configuration Examples](/gateway/configuration-examples).
 </Tip>
 
 ## Minimal config
@@ -36,17 +36,11 @@ See the [full reference](/gateway/configuration-reference) for every available f
 ## Editing config
 
 <Tabs>
-  <Tab title="Interactive wizard">
-    ```bash
-    openclaw onboard       # full onboarding flow
-    openclaw configure     # config wizard
-    ```
-  </Tab>
   <Tab title="CLI (one-liners)">
     ```bash
     openclaw config get agents.defaults.workspace
     openclaw config set agents.defaults.heartbeat.every "2h"
-    openclaw config unset plugins.entries.brave.config.webSearch.apiKey
+    openclaw config set channels.whatsapp.allowFrom '["+15555550123"]'
     ```
   </Tab>
   <Tab title="Control UI">

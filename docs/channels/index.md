@@ -9,14 +9,15 @@ title: "Chat Channels"
 # Chat Channels
 
 This fork supports only two external messaging channels through the Gateway:
-WhatsApp and Telegram. WebChat remains available as the built-in browser chat UI.
+WhatsApp and Telegram. WebChat remains available as the built-in web admin chat
+surface.
 
 ## Supported external channels
 
 - [Telegram](/channels/telegram) — Bot API via grammY; supports groups.
 - [WhatsApp](/channels/whatsapp) — Most popular; uses Baileys and requires QR pairing.
 
-## Built-in browser chat
+## Built-in web chat
 
 - [WebChat](/web/webchat) — Gateway WebChat UI over WebSocket.
 

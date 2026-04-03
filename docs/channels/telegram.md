@@ -340,21 +340,11 @@ curl "https://api.telegram.org/bot<bot_token>/getUpdates"
     - `setMyCommands failed` with `BOT_COMMANDS_TOO_MUCH` means the Telegram menu still overflowed after trimming; reduce plugin/skill/custom commands or disable `channels.telegram.commands.native`.
     - `setMyCommands failed` with network/fetch errors usually means outbound DNS/HTTPS to `api.telegram.org` is blocked.
 
-    ### Device pairing commands (`device-pair` plugin)
+    ### Device pairing
 
-    When the `device-pair` plugin is installed:
-
-    1. `/pair` generates setup code
-    2. paste code in iOS app
-    3. `/pair pending` lists pending requests (including role/scopes)
-    4. approve the request:
-       - `/pair approve <requestId>` for explicit approval
-       - `/pair approve` when there is only one pending request
-       - `/pair approve latest` for most recent
-
-    If a device retries with changed auth details (for example role/scopes/public key), the previous pending request is superseded and the new request uses a different `requestId`. Re-run `/pair pending` before approving.
-
-    More details: [Pairing](/channels/pairing#pair-via-telegram-recommended-for-ios).
+    The legacy `device-pair` plugin is not bundled in this SaaS-focused fork.
+    Use the web admin/control surface for tenant-managed setup instead of
+    Telegram-driven device pairing flows.
 
   </Accordion>
 

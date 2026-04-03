@@ -35,16 +35,10 @@ Related:
 - Use fallbacks for cost/latency-sensitive tasks and lower-stakes chat.
 - For tool-enabled agents or untrusted inputs, avoid older/weaker model tiers.
 
-## Onboarding (recommended)
+## Setup direction
 
-If you don’t want to hand-edit config, run onboarding:
-
-```bash
-openclaw onboard
-```
-
-It can set up model + auth for common providers, including **OpenAI Code (Codex)
-subscription** (OAuth) and **Anthropic** (API key or `claude setup-token`).
+This fork is moving toward web-first SaaS setup. For now, prefer direct config
+editing or the Control UI when setting model + auth choices.
 
 ## Config keys (overview)
 

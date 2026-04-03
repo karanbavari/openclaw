@@ -2,7 +2,6 @@ import { execFileSync } from "node:child_process";
 import { mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
-import { parseReleaseVersion, resolveNpmPublishPlan } from "../openclaw-npm-release-check.ts";
 
 export type PluginPackageJson = {
   name?: string;
@@ -59,6 +58,29 @@ type PublishablePluginPackageCandidate = {
   packageDir: string;
   packageJson: PluginPackageJson;
 };
+
+type ParsedReleaseVersion = {
+  channel: "stable" | "beta";
+};
+
+function parseReleaseVersion(version: string): ParsedReleaseVersion | null {
+  const normalized = version.trim();
+  if (/^\d{4}\.\d{1,2}\.\d{1,2}(?:-\d+)?$/.test(normalized)) {
+    return { channel: "stable" };
+  }
+  if (/^\d{4}\.\d{1,2}\.\d{1,2}-beta\.\d+$/.test(normalized)) {
+    return { channel: "beta" };
+  }
+  return null;
+}
+
+function resolveNpmPublishPlan(version: string): { publishTag: "latest" | "beta" } {
+  const parsedVersion = parseReleaseVersion(version);
+  if (!parsedVersion) {
+    throw new Error(`Unsupported release version: ${version}`);
+  }
+  return { publishTag: parsedVersion.channel === "beta" ? "beta" : "latest" };
+}
 
 function readPluginPackageJson(path: string): PluginPackageJson {
   return JSON.parse(readFileSync(path, "utf8")) as PluginPackageJson;
